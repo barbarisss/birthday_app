@@ -7,4 +7,6 @@ abstract class AppImages {
   static const seafood = 'assets/images/seafood.png';
   static const shashlik = 'assets/images/shashlik.png';
   static const map = 'assets/images/map.png';
+  static const boardGames = 'assets/images/board_games.png';
+  static const pool = 'assets/images/pool.png';
 }
