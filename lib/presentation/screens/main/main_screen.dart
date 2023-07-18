@@ -12,31 +12,29 @@ class MainScreenWidget extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-            child: Expanded(
-          child: Column(
-            children: [
-              const SwiperWidget(),
-              const SizedBox(height: 16),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  AppStrings.invite,
-                  style: TextStyle(fontSize: 14),
-                ),
+            child: Column(
+          children: [
+            const SwiperWidget(),
+            const SizedBox(height: 16),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                AppStrings.invite,
+                style: TextStyle(fontSize: 14),
               ),
-              const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    YellowButtonWidget(title: AppStrings.guests),
-                    YellowButtonWidget(title: AppStrings.wishlist),
-                  ],
-                ),
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  YellowButtonWidget(title: AppStrings.guests),
+                  YellowButtonWidget(title: AppStrings.wishlist),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         )),
       ),
     );
@@ -89,7 +87,7 @@ class _SwiperWidgetState extends State<SwiperWidget> {
           top: 22,
           left: 22,
           child: Text(
-            '25 августа\n2023', // заменить на константу
+            AppStrings.date, // заменить на константу
             style: TextStyle(
               color: AppColors.white,
               fontWeight: FontWeight.w600, // добавить bold
