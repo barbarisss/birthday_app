@@ -37,6 +37,8 @@ flutter:
           weight: 500
         - asset: assets/fonts/jost/Jost-SemiBold.ttf
           weight: 600
+        - asset: assets/fonts/jost/Jost-Bold.ttf
+          weight: 700
     - family: Yeseva One
       fonts:
         - asset: assets/fonts/yeseva_one/YesevaOne-Regular.ttf
