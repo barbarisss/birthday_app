@@ -88,10 +88,10 @@ class _SwiperWidgetState extends State<SwiperWidget> {
           top: 22,
           left: 22,
           child: Text(
-            AppStrings.date, // заменить на константу
+            AppStrings.date,
             style: TextStyle(
               color: AppColors.white,
-              fontWeight: FontWeight.w600, // добавить bold
+              fontWeight: FontWeight.w700,
               height: 1,
               fontSize: 24,
             ),
