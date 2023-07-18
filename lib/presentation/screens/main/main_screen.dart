@@ -11,31 +11,32 @@ class MainScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-            child: Column(
+        body: ListView(
           children: [
             const SwiperWidget(),
             const SizedBox(height: 16),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                AppStrings.invite,
-                style: TextStyle(fontSize: 14),
-              ),
-            ),
-            const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  YellowButtonWidget(title: AppStrings.guests),
-                  YellowButtonWidget(title: AppStrings.wishlist),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const Text(
+                    AppStrings.invite,
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      YellowButtonWidget(title: AppStrings.guests),
+                      YellowButtonWidget(title: AppStrings.wishlist),
+                    ],
+                  ),
                 ],
               ),
-            ),
+            )
           ],
-        )),
+        ),
       ),
     );
   }
