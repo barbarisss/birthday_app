@@ -246,7 +246,7 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
             });
           },
           child: Text(
-            isColapsed == true ? 'Развернуть ▼' : 'Свернуть ▲',
+            isColapsed == true ? AppStrings.expand : AppStrings.collapse,
             style: const TextStyle(
               color: AppColors.black,
               decoration: TextDecoration.underline,
@@ -353,7 +353,7 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
             });
           },
           child: Text(
-            isColapsed == true ? 'Развернуть ▼' : 'Свернуть ▲',
+            isColapsed == true ? AppStrings.expand : AppStrings.collapse,
             style: const TextStyle(
               color: AppColors.black,
               decoration: TextDecoration.underline,
