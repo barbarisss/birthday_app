@@ -9,6 +9,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MainScreenWidget extends StatelessWidget {
@@ -21,17 +22,17 @@ class MainScreenWidget extends StatelessWidget {
         body: ListView(
           children: [
             const SwiperWidget(),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
                 children: [
-                  const SizedBox(height: 16),
-                  const Text(
+                  SizedBox(height: 16.h),
+                  Text(
                     AppStrings.invite,
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 14.sp),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
@@ -39,11 +40,11 @@ class MainScreenWidget extends StatelessWidget {
                       YellowButtonWidget(title: AppStrings.wishlist),
                     ],
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30.h),
                   const _MenuViewWidget(),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30.h),
                   const _EntertaimentViewWidget(),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30.h),
                   const _MapSectionWidget(),
                 ],
               ),
@@ -87,7 +88,7 @@ class _SwiperWidgetState extends State<SwiperWidget> {
           },
           itemCount: images.length,
           options: CarouselOptions(
-            height: 250,
+            height: 250.h,
             viewportFraction: 1,
             enlargeCenterPage: false,
             onPageChanged: (page, _) {
@@ -97,33 +98,33 @@ class _SwiperWidgetState extends State<SwiperWidget> {
             },
           ),
         ),
-        const Positioned(
-          top: 22,
-          left: 22,
+        Positioned(
+          top: 22.h,
+          left: 22.w,
           child: Text(
             AppStrings.date,
             style: TextStyle(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
               height: 1,
-              fontSize: 24,
+              fontSize: 24.sp,
             ),
           ),
         ),
         Positioned(
-          bottom: 10,
+          bottom: 10.h,
           child: Align(
             child: Row(
               children: List.generate(images.length, (index) {
                 return Padding(
-                  padding: const EdgeInsets.only(right: 7),
+                  padding: EdgeInsets.only(right: 7.w),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    height: 5,
-                    width: activePage == index ? 30 : 5,
+                    height: 5.h,
+                    width: activePage == index ? 30.w : 5.w,
                     decoration: BoxDecoration(
                       color: AppColors.white,
-                      borderRadius: BorderRadius.circular(40),
+                      borderRadius: BorderRadius.circular(40.r),
                     ),
                   ),
                 );
@@ -147,8 +148,8 @@ class YellowButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
-      width: 156,
+      height: 50.h,
+      width: 156.w,
       child: ElevatedButton(
         onPressed: () {},
         style: ButtonStyle(
@@ -157,15 +158,15 @@ class YellowButtonWidget extends StatelessWidget {
           elevation: MaterialStateProperty.all(0),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
+              borderRadius: BorderRadius.circular(15.r),
             ),
           ),
         ),
         child: Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: 16.sp,
           ),
         ),
       ),
@@ -198,15 +199,15 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text(
+        Text(
           AppStrings.menu,
           style: TextStyle(
             fontFamily: 'Yeseva One',
             color: AppColors.darkBlack,
-            fontSize: 24,
+            fontSize: 24.sp,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -219,18 +220,18 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
               children: [
                 Image.asset(
                   items[index].image,
-                  width: 140,
-                  height: 154,
+                  width: 140.w,
+                  height: 154.h,
                 ),
                 SizedBox(
-                  width: 140,
+                  width: 140.w,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       items[index].title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.grey,
-                        fontSize: 14,
+                        fontSize: 14.sp,
                       ),
                     ),
                   ),
@@ -247,10 +248,10 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
           },
           child: Text(
             isColapsed == true ? AppStrings.expand : AppStrings.collapse,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.black,
               decoration: TextDecoration.underline,
-              fontSize: 14,
+              fontSize: 14.sp,
             ),
           ),
         )
@@ -309,24 +310,24 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text(
+        Text(
           AppStrings.entertainment,
           style: TextStyle(
             fontFamily: 'Yeseva One',
             color: AppColors.darkBlack,
-            fontSize: 24,
+            fontSize: 24.sp,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         ListView.separated(
           itemBuilder: (context, index) {
             return SizedBox(
-              height: 42,
+              height: 42.h,
               child: ListTile(
                 leading: Image.asset(
                   items[index].icon,
-                  width: 42,
-                  height: 42,
+                  width: 42.w,
+                  height: 42.h,
                 ),
                 title: Text(items[index].title),
                 subtitle: Text(
@@ -340,12 +341,12 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
               ),
             );
           },
-          separatorBuilder: (context, index) => const SizedBox(height: 16),
+          separatorBuilder: (context, index) => SizedBox(height: 16.h),
           itemCount: isColapsed == true ? 2 : items.length,
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         TextButton(
           onPressed: () {
             setState(() {
@@ -354,10 +355,10 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
           },
           child: Text(
             isColapsed == true ? AppStrings.expand : AppStrings.collapse,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.black,
               decoration: TextDecoration.underline,
-              fontSize: 14,
+              fontSize: 14.sp,
             ),
           ),
         ),
@@ -378,25 +379,25 @@ class _MapSectionWidgetState extends State<_MapSectionWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
+        SizedBox(
           width: double.infinity,
-          height: 246,
-          child: YandexMap(),
+          height: 246.h,
+          child: const YandexMap(),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4.h),
         const Text(
           AppStrings.address,
           style: TextStyle(color: AppColors.grey),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4.h),
         TextButton(
           onPressed: goToGoogle,
-          child: const Text(
+          child: Text(
             AppStrings.goToWebsite,
             style: TextStyle(
               color: AppColors.black,
               decoration: TextDecoration.underline,
-              fontSize: 14,
+              fontSize: 14.sp,
             ),
           ),
         ),
