@@ -1,8 +1,10 @@
 import 'package:birthday_app/presentation/screens/main/main_screen.dart';
 import 'package:birthday_app/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 void main() {
+  AndroidYandexMap.useAndroidViewSurface = false;
   runApp(const MyApp());
 }
 

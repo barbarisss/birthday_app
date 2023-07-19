@@ -9,6 +9,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MainScreenWidget extends StatelessWidget {
   const MainScreenWidget({super.key});
@@ -365,17 +366,22 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
   }
 }
 
-class _MapSectionWidget extends StatelessWidget {
+class _MapSectionWidget extends StatefulWidget {
   const _MapSectionWidget({super.key});
 
+  @override
+  State<_MapSectionWidget> createState() => _MapSectionWidgetState();
+}
+
+class _MapSectionWidgetState extends State<_MapSectionWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(
-          AppImages.map,
+        const SizedBox(
           width: double.infinity,
           height: 246,
+          child: YandexMap(),
         ),
         const SizedBox(height: 4),
         const Text(
