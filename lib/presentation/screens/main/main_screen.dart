@@ -22,7 +22,6 @@ class MainScreenWidget extends StatelessWidget {
         body: ListView(
           children: [
             const SwiperWidget(),
-            SizedBox(height: 16.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
@@ -46,6 +45,7 @@ class MainScreenWidget extends StatelessWidget {
                   const _EntertaimentViewWidget(),
                   SizedBox(height: 30.h),
                   const _MapSectionWidget(),
+                  SizedBox(height: 100.h),
                 ],
               ),
             )
@@ -118,13 +118,18 @@ class _SwiperWidgetState extends State<SwiperWidget> {
               children: List.generate(images.length, (index) {
                 return Padding(
                   padding: EdgeInsets.only(right: 7.w),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    height: 5.h,
-                    width: activePage == index ? 30.w : 5.w,
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(40.r),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      height: 5.h,
+                      width: activePage == index ? 30.w : 5.w,
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        shape: activePage == index
+                            ? BoxShape.rectangle
+                            : BoxShape.circle,
+                      ),
                     ),
                   ),
                 );
@@ -208,38 +213,42 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
           ),
         ),
         SizedBox(height: 16.h),
-        GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: isColapsed == true ? 2 : items.length,
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                Image.asset(
-                  items[index].image,
-                  width: 140.w,
-                  height: 154.h,
-                ),
-                SizedBox(
-                  width: 140.w,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      items[index].title,
-                      style: TextStyle(
-                        color: AppColors.grey,
-                        fontSize: 14.sp,
-                      ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 32.w,
+              mainAxisSpacing: 16.w,
+              childAspectRatio: 0.865, //вот так все работает збс
+            ),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            // padding: EdgeInsets.all(20),
+            itemCount: isColapsed == true ? 2 : items.length,
+            itemBuilder: (context, index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: clipImage(index, 25.r),
+                    child: Image.asset(
+                      items[index].image,
                     ),
                   ),
-                ),
-              ],
-            );
-          },
+                  Text(
+                    items[index].title,
+                    style: TextStyle(
+                      color: AppColors.grey,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
+        SizedBox(height: 12.h),
         TextButton(
           onPressed: () {
             setState(() {
@@ -257,6 +266,22 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
         )
       ],
     );
+  }
+
+  BorderRadiusGeometry clipImage(int index, double radius) {
+    final borderRadius = Radius.circular(radius);
+
+    if (index % 2 == 0) {
+      return BorderRadius.only(
+        topRight: borderRadius,
+        bottomLeft: borderRadius,
+      );
+    } else {
+      return BorderRadius.only(
+        topLeft: borderRadius,
+        bottomRight: borderRadius,
+      );
+    }
   }
 }
 
@@ -318,7 +343,7 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
             fontSize: 24.sp,
           ),
         ),
-        SizedBox(height: 16.h),
+        // SizedBox(height: 4.h),
         ListView.separated(
           itemBuilder: (context, index) {
             return SizedBox(
@@ -326,12 +351,21 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
               child: ListTile(
                 leading: Image.asset(
                   items[index].icon,
-                  width: 42.w,
-                  height: 42.h,
                 ),
-                title: Text(items[index].title),
+                title: Text(
+                  items[index].title,
+                  style: TextStyle(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14.sp,
+                  ),
+                ),
                 subtitle: Text(
                   items[index].discription,
+                  style: TextStyle(
+                    color: AppColors.grey,
+                    fontSize: 14.sp,
+                  ),
                 ),
                 trailing: SvgPicture.asset(
                   AppIcons.arrow,
@@ -385,9 +419,12 @@ class _MapSectionWidgetState extends State<_MapSectionWidget> {
           child: const YandexMap(),
         ),
         SizedBox(height: 4.h),
-        const Text(
+        Text(
           AppStrings.address,
-          style: TextStyle(color: AppColors.grey),
+          style: TextStyle(
+            color: AppColors.grey,
+            fontSize: 14.sp,
+          ),
         ),
         SizedBox(height: 4.h),
         TextButton(

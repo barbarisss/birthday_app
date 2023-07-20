@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         theme: theme(),
         home: const MainScreenWidget(),
       ),
-      designSize: const Size(375, 812),
+      designSize: const Size(375, 753),
     );
   }
 }
