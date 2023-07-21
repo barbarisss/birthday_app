@@ -343,36 +343,44 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
             fontSize: 24.sp,
           ),
         ),
-        // SizedBox(height: 4.h),
+        SizedBox(height: 16.h),
         ListView.separated(
           itemBuilder: (context, index) {
-            return SizedBox(
-              height: 42.h,
-              child: ListTile(
-                leading: Image.asset(
+            return Row(
+              children: [
+                Image.asset(
                   items[index].icon,
+                  height: (14.sp * 1.5) * 2,
                 ),
-                title: Text(
-                  items[index].title,
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14.sp,
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        items[index].title,
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                      Text(
+                        items[index].discription,
+                        style: TextStyle(
+                          color: AppColors.grey,
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                subtitle: Text(
-                  items[index].discription,
-                  style: TextStyle(
-                    color: AppColors.grey,
-                    fontSize: 14.sp,
-                  ),
-                ),
-                trailing: SvgPicture.asset(
+                SvgPicture.asset(
                   AppIcons.arrow,
                   semanticsLabel: 'Arrow',
+                  height: (14.sp * 1.5) / 2,
                 ),
-                contentPadding: EdgeInsets.zero,
-              ),
+              ],
             );
           },
           separatorBuilder: (context, index) => SizedBox(height: 16.h),
