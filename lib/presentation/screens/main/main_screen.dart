@@ -1,6 +1,7 @@
 import 'package:birthday_app/models/entertaiment_item.dart';
 import 'package:birthday_app/models/menu_item.dart';
 import 'package:birthday_app/utils/colors.dart';
+import 'package:birthday_app/utils/constants.dart';
 import 'package:birthday_app/utils/icons.dart';
 import 'package:birthday_app/utils/images.dart';
 import 'package:birthday_app/utils/links.dart';
@@ -13,38 +14,106 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MainScreenWidget extends StatelessWidget {
-  const MainScreenWidget({super.key});
+  MainScreenWidget({super.key});
+
+  final List<String> swiperItems = [
+    AppImages.camp,
+    AppImages.camp,
+    AppImages.camp,
+    AppImages.camp,
+  ];
+
+  final List<MenuItem> menuItems = const [
+    MenuItem(image: AppImages.canapes, title: AppStrings.canapes),
+    MenuItem(image: AppImages.cheesePlate, title: AppStrings.cheesePlate),
+    MenuItem(image: AppImages.shashlik, title: AppStrings.shashlik),
+    MenuItem(image: AppImages.seafood, title: AppStrings.seafood),
+    MenuItem(image: AppImages.fruits, title: AppStrings.fruits),
+    MenuItem(image: AppImages.limonades, title: AppStrings.limonades),
+  ];
+
+  final List<EntertaimentItem> entertaimentItems = const [
+    EntertaimentItem(
+      icon: AppImages.boardGames,
+      title: AppStrings.boardGames,
+      discription: AppStrings.aboutBoardGames,
+    ),
+    EntertaimentItem(
+      icon: AppImages.pool,
+      title: AppStrings.pool,
+      discription: AppStrings.aboutPool,
+    ),
+    EntertaimentItem(
+      icon: AppImages.boardGames,
+      title: AppStrings.boardGames,
+      discription: AppStrings.aboutBoardGames,
+    ),
+    EntertaimentItem(
+      icon: AppImages.pool,
+      title: AppStrings.pool,
+      discription: AppStrings.aboutPool,
+    ),
+    EntertaimentItem(
+      icon: AppImages.boardGames,
+      title: AppStrings.boardGames,
+      discription: AppStrings.aboutBoardGames,
+    ),
+    EntertaimentItem(
+      icon: AppImages.pool,
+      title: AppStrings.pool,
+      discription: AppStrings.aboutPool,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return SafeArea(
       child: Scaffold(
         body: ListView(
           children: [
-            const SwiperWidget(),
+            SwiperWidget(
+              textTheme: textTheme,
+              items: swiperItems,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
                 children: [
                   SizedBox(height: 16.h),
-                  Text(
-                    AppStrings.invite,
-                    style: TextStyle(fontSize: 14.sp),
-                  ),
+                  Text(AppStrings.invite,
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: AppColors.black,
+                      )),
                   SizedBox(height: 16.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      YellowButtonWidget(title: AppStrings.guests),
-                      YellowButtonWidget(title: AppStrings.wishlist),
+                    children: [
+                      YellowButtonWidget(
+                        height: 50.h,
+                        width: 156.w,
+                        title: AppStrings.guests,
+                      ),
+                      YellowButtonWidget(
+                        height: 50.h,
+                        width: 156.w,
+                        title: AppStrings.wishlist,
+                      ),
                     ],
                   ),
                   SizedBox(height: 30.h),
-                  const _MenuViewWidget(),
+                  _MenuViewWidget(
+                    textTheme: textTheme,
+                    items: menuItems,
+                  ),
                   SizedBox(height: 30.h),
-                  const _EntertaimentViewWidget(),
+                  _EntertaimentViewWidget(
+                    textTheme: textTheme,
+                    items: entertaimentItems,
+                  ),
                   SizedBox(height: 30.h),
-                  const _MapSectionWidget(),
+                  _MapSectionWidget(textTheme: textTheme),
                   SizedBox(height: 100.h),
                 ],
               ),
@@ -57,36 +126,38 @@ class MainScreenWidget extends StatelessWidget {
 }
 
 class SwiperWidget extends StatefulWidget {
-  const SwiperWidget({super.key});
+  const SwiperWidget({
+    required this.textTheme,
+    required this.items,
+    super.key,
+  });
+
+  final TextTheme textTheme;
+  final List<String> items;
 
   @override
   State<SwiperWidget> createState() => _SwiperWidgetState();
 }
 
 class _SwiperWidgetState extends State<SwiperWidget> {
-  List<String> images = [
-    AppImages.camp,
-    AppImages.camp,
-    AppImages.camp,
-    AppImages.camp,
-  ];
-
   var activePage = 0;
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = widget.textTheme;
+
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
         CarouselSlider.builder(
           itemBuilder: (context, index, realIndex) {
             return Image.asset(
-              images[index],
+              widget.items[index],
               fit: BoxFit.fill,
               width: double.infinity,
             );
           },
-          itemCount: images.length,
+          itemCount: widget.items.length,
           options: CarouselOptions(
             height: 250.h,
             viewportFraction: 1,
@@ -103,11 +174,11 @@ class _SwiperWidgetState extends State<SwiperWidget> {
           left: 22.w,
           child: Text(
             AppStrings.date,
-            style: TextStyle(
+            style: textTheme.headlineSmall?.copyWith(
+              fontFamily: 'Jost',
               color: AppColors.white,
               fontWeight: FontWeight.w700,
               height: 1,
-              fontSize: 24.sp,
             ),
           ),
         ),
@@ -115,7 +186,7 @@ class _SwiperWidgetState extends State<SwiperWidget> {
           bottom: 10.h,
           child: Align(
             child: Row(
-              children: List.generate(images.length, (index) {
+              children: List.generate(widget.items.length, (index) {
                 return Padding(
                   padding: EdgeInsets.only(right: 7.w),
                   child: ClipRRect(
@@ -145,34 +216,24 @@ class _SwiperWidgetState extends State<SwiperWidget> {
 class YellowButtonWidget extends StatelessWidget {
   const YellowButtonWidget({
     required this.title,
+    required this.height,
+    required this.width,
     super.key,
   });
 
   final String title;
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50.h,
-      width: 156.w,
+      height: height,
+      width: width,
       child: ElevatedButton(
         onPressed: () {},
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(AppColors.yellow),
-          foregroundColor: MaterialStateProperty.all(AppColors.white),
-          elevation: MaterialStateProperty.all(0),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.r),
-            ),
-          ),
-        ),
         child: Text(
           title,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16.sp,
-          ),
         ),
       ),
     );
@@ -181,36 +242,30 @@ class YellowButtonWidget extends StatelessWidget {
 
 class _MenuViewWidget extends StatefulWidget {
   const _MenuViewWidget({
+    required this.textTheme,
+    required this.items,
     super.key,
   });
+
+  final TextTheme textTheme;
+  final List<MenuItem> items;
 
   @override
   State<_MenuViewWidget> createState() => _MenuViewWidgetState();
 }
 
 class _MenuViewWidgetState extends State<_MenuViewWidget> {
-  List<MenuItem> items = const [
-    MenuItem(image: AppImages.canapes, title: AppStrings.canapes),
-    MenuItem(image: AppImages.cheesePlate, title: AppStrings.cheesePlate),
-    MenuItem(image: AppImages.shashlik, title: AppStrings.shashlik),
-    MenuItem(image: AppImages.seafood, title: AppStrings.seafood),
-    MenuItem(image: AppImages.fruits, title: AppStrings.fruits),
-    MenuItem(image: AppImages.limonades, title: AppStrings.limonades),
-  ];
-
   var isColapsed = false;
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = widget.textTheme;
+
     return Column(
       children: [
         Text(
           AppStrings.menu,
-          style: TextStyle(
-            fontFamily: 'Yeseva One',
-            color: AppColors.darkBlack,
-            fontSize: 24.sp,
-          ),
+          style: textTheme.headlineSmall,
         ),
         SizedBox(height: 16.h),
         Padding(
@@ -220,12 +275,11 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
               crossAxisCount: 2,
               crossAxisSpacing: 32.w,
               mainAxisSpacing: 16.w,
-              childAspectRatio: 0.865, //вот так все работает збс
+              childAspectRatio: AppConstants.childAspectRatio,
             ),
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            // padding: EdgeInsets.all(20),
-            itemCount: isColapsed == true ? 2 : items.length,
+            itemCount: isColapsed == true ? 2 : widget.items.length,
             itemBuilder: (context, index) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,15 +287,12 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
                   ClipRRect(
                     borderRadius: clipImage(index, 25.r),
                     child: Image.asset(
-                      items[index].image,
+                      widget.items[index].image,
                     ),
                   ),
                   Text(
-                    items[index].title,
-                    style: TextStyle(
-                      color: AppColors.grey,
-                      fontSize: 14.sp,
-                    ),
+                    widget.items[index].title,
+                    style: textTheme.bodyMedium,
                   ),
                 ],
               );
@@ -257,10 +308,9 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
           },
           child: Text(
             isColapsed == true ? AppStrings.expand : AppStrings.collapse,
-            style: TextStyle(
+            style: textTheme.bodyMedium?.copyWith(
               color: AppColors.black,
               decoration: TextDecoration.underline,
-              fontSize: 14.sp,
             ),
           ),
         )
@@ -287,8 +337,13 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
 
 class _EntertaimentViewWidget extends StatefulWidget {
   const _EntertaimentViewWidget({
+    required this.textTheme,
+    required this.items,
     super.key,
   });
+
+  final TextTheme textTheme;
+  final List<EntertaimentItem> items;
 
   @override
   State<_EntertaimentViewWidget> createState() =>
@@ -296,43 +351,17 @@ class _EntertaimentViewWidget extends StatefulWidget {
 }
 
 class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
-  List<EntertaimentItem> items = const [
-    EntertaimentItem(
-      icon: AppImages.boardGames,
-      title: AppStrings.boardGames,
-      discription: AppStrings.aboutBoardGames,
-    ),
-    EntertaimentItem(
-      icon: AppImages.pool,
-      title: AppStrings.pool,
-      discription: AppStrings.aboutPool,
-    ),
-    EntertaimentItem(
-      icon: AppImages.boardGames,
-      title: AppStrings.boardGames,
-      discription: AppStrings.aboutBoardGames,
-    ),
-    EntertaimentItem(
-      icon: AppImages.pool,
-      title: AppStrings.pool,
-      discription: AppStrings.aboutPool,
-    ),
-    EntertaimentItem(
-      icon: AppImages.boardGames,
-      title: AppStrings.boardGames,
-      discription: AppStrings.aboutBoardGames,
-    ),
-    EntertaimentItem(
-      icon: AppImages.pool,
-      title: AppStrings.pool,
-      discription: AppStrings.aboutPool,
-    ),
-  ];
-
   var isColapsed = true;
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = widget.textTheme;
+
+    final textSize = widget.textTheme.bodyMedium?.fontSize;
+    const textHeight = 1.5;
+    final height =
+        textSize != null ? (textSize * textHeight) : (14.sp * textHeight);
+
     return Column(
       children: [
         Text(
@@ -349,8 +378,8 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
             return Row(
               children: [
                 Image.asset(
-                  items[index].icon,
-                  height: (14.sp * 1.5) * 2,
+                  widget.items[index].icon,
+                  height: height * 2,
                 ),
                 SizedBox(width: 12.w),
                 Expanded(
@@ -358,19 +387,15 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        items[index].title,
-                        style: TextStyle(
+                        widget.items[index].title,
+                        style: textTheme.bodyMedium?.copyWith(
                           color: AppColors.black,
                           fontWeight: FontWeight.w500,
-                          fontSize: 14.sp,
                         ),
                       ),
                       Text(
-                        items[index].discription,
-                        style: TextStyle(
-                          color: AppColors.grey,
-                          fontSize: 14.sp,
-                        ),
+                        widget.items[index].discription,
+                        style: textTheme.bodyMedium,
                       ),
                     ],
                   ),
@@ -378,13 +403,13 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
                 SvgPicture.asset(
                   AppIcons.arrow,
                   semanticsLabel: 'Arrow',
-                  height: (14.sp * 1.5) / 2,
+                  height: height / 2,
                 ),
               ],
             );
           },
           separatorBuilder: (context, index) => SizedBox(height: 16.h),
-          itemCount: isColapsed == true ? 2 : items.length,
+          itemCount: isColapsed == true ? 2 : widget.items.length,
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
         ),
@@ -397,10 +422,9 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
           },
           child: Text(
             isColapsed == true ? AppStrings.expand : AppStrings.collapse,
-            style: TextStyle(
+            style: textTheme.bodyMedium?.copyWith(
               color: AppColors.black,
               decoration: TextDecoration.underline,
-              fontSize: 14.sp,
             ),
           ),
         ),
@@ -410,7 +434,12 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
 }
 
 class _MapSectionWidget extends StatefulWidget {
-  const _MapSectionWidget({super.key});
+  const _MapSectionWidget({
+    required this.textTheme,
+    super.key,
+  });
+
+  final TextTheme textTheme;
 
   @override
   State<_MapSectionWidget> createState() => _MapSectionWidgetState();
@@ -419,6 +448,8 @@ class _MapSectionWidget extends StatefulWidget {
 class _MapSectionWidgetState extends State<_MapSectionWidget> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = widget.textTheme;
+
     return Column(
       children: [
         SizedBox(
@@ -429,20 +460,16 @@ class _MapSectionWidgetState extends State<_MapSectionWidget> {
         SizedBox(height: 4.h),
         Text(
           AppStrings.address,
-          style: TextStyle(
-            color: AppColors.grey,
-            fontSize: 14.sp,
-          ),
+          style: textTheme.bodyMedium,
         ),
         SizedBox(height: 4.h),
         TextButton(
           onPressed: goToGoogle,
           child: Text(
             AppStrings.goToWebsite,
-            style: TextStyle(
+            style: textTheme.bodyMedium?.copyWith(
               color: AppColors.black,
               decoration: TextDecoration.underline,
-              fontSize: 14.sp,
             ),
           ),
         ),

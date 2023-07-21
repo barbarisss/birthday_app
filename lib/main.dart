@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'Birthday App',
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: const MainScreenWidget(),
+        home: MainScreenWidget(),
       ),
       designSize: const Size(375, 753),
     );
