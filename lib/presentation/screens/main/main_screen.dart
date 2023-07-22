@@ -82,12 +82,12 @@ class MainScreenWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
                 children: [
-                  SizedBox(height: 16.h),
+                  SizedBox(height: AppConstants.mainPaddingHeight),
                   Text(AppStrings.invite,
                       style: textTheme.bodyMedium?.copyWith(
                         color: AppColors.black,
                       )),
-                  SizedBox(height: 16.h),
+                  SizedBox(height: AppConstants.mainPaddingHeight),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -243,14 +243,15 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
           AppStrings.menu,
           style: textTheme.headlineSmall,
         ),
-        SizedBox(height: 16.h),
+        SizedBox(height: AppConstants.mainPaddingHeight),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding:
+              EdgeInsets.symmetric(horizontal: AppConstants.mainPaddingWidth),
           child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 32.w,
-              mainAxisSpacing: 16.w,
+              crossAxisSpacing: AppConstants.mainPaddingWidth * 2,
+              mainAxisSpacing: AppConstants.mainPaddingWidth,
               childAspectRatio: AppConstants.childAspectRatio,
             ),
             physics: const NeverScrollableScrollPhysics(),
@@ -357,7 +358,7 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
         ),
-        SizedBox(height: 16.h),
+        SizedBox(height: AppConstants.mainPaddingHeight),
         TextButton(
           onPressed: () {
             setState(() {
