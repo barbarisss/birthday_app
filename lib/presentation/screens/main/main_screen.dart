@@ -352,15 +352,11 @@ class _EntertaimentViewWidget extends StatefulWidget {
 
 class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
   var isColapsed = true;
+  var turns = 0.0;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = widget.textTheme;
-
-    final textSize = widget.textTheme.bodyMedium?.fontSize;
-    const textHeight = 1.5;
-    final height =
-        textSize != null ? (textSize * textHeight) : (14.sp * textHeight);
 
     return Column(
       children: [
@@ -375,37 +371,9 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
         SizedBox(height: 16.h),
         ListView.separated(
           itemBuilder: (context, index) {
-            return Row(
-              children: [
-                Image.asset(
-                  widget.items[index].icon,
-                  height: height * 2,
-                ),
-                SizedBox(width: 12.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.items[index].title,
-                        style: textTheme.bodyMedium?.copyWith(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        widget.items[index].discription,
-                        style: textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                ),
-                SvgPicture.asset(
-                  AppIcons.arrow,
-                  semanticsLabel: 'Arrow',
-                  height: height / 2,
-                ),
-              ],
+            return _AnimatedEntertaimentItemWidget(
+              textTheme: textTheme,
+              item: widget.items[index],
             );
           },
           separatorBuilder: (context, index) => SizedBox(height: 16.h),
@@ -430,6 +398,105 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
         ),
       ],
     );
+  }
+}
+
+class _AnimatedEntertaimentItemWidget extends StatefulWidget {
+  const _AnimatedEntertaimentItemWidget({
+    required this.textTheme,
+    required this.item,
+    super.key,
+  });
+
+  final TextTheme textTheme;
+  final EntertaimentItem item;
+
+  @override
+  State<_AnimatedEntertaimentItemWidget> createState() =>
+      _AnimatedEntertaimentItemWidgetState();
+}
+
+class _AnimatedEntertaimentItemWidgetState
+    extends State<_AnimatedEntertaimentItemWidget> {
+  var onTap = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = widget.textTheme;
+
+    final textSize = widget.textTheme.bodyMedium?.fontSize;
+    const textHeight = 1.5;
+    final height =
+        textSize != null ? (textSize * textHeight) : (14.sp * textHeight);
+
+    const duration = Duration(milliseconds: 500);
+
+    return GestureDetector(
+      onTap: anomationTo,
+      child: Row(
+        children: [
+          AnimatedRotation(
+            turns: onTap == true ? 1.0 : 0.0,
+            duration: duration,
+            onEnd: animationBack,
+            child: Image.asset(
+              widget.item.icon,
+              height: height * 2,
+            ),
+          ),
+          SizedBox(width: 12.w),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AnimatedAlign(
+                  duration: duration,
+                  alignment: onTap == true
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  child: Text(
+                    widget.item.title,
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: AppColors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                AnimatedOpacity(
+                  duration: duration,
+                  opacity: onTap == true ? 0.0 : 1.0,
+                  child: Text(
+                    widget.item.discription,
+                    style: textTheme.bodyMedium,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          AnimatedSize(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.linear,
+            child: SvgPicture.asset(
+              AppIcons.arrow,
+              semanticsLabel: 'Arrow',
+              height: onTap == true ? height : height / 2,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void anomationTo() {
+    setState(() {
+      onTap = true;
+    });
+  }
+
+  void animationBack() {
+    setState(() {
+      onTap = false;
+    });
   }
 }
 
