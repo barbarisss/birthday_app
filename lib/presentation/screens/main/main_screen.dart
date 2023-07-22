@@ -1,5 +1,6 @@
 import 'package:birthday_app/models/entertaiment_item.dart';
 import 'package:birthday_app/models/menu_item.dart';
+import 'package:birthday_app/presentation/shared_widgets/custom_button_widget.dart';
 import 'package:birthday_app/utils/colors.dart';
 import 'package:birthday_app/utils/constants.dart';
 import 'package:birthday_app/utils/icons.dart';
@@ -14,64 +15,64 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MainScreenWidget extends StatelessWidget {
-  MainScreenWidget({super.key});
-
-  final List<String> swiperItems = [
-    AppImages.camp,
-    AppImages.camp,
-    AppImages.camp,
-    AppImages.camp,
-  ];
-
-  final List<MenuItem> menuItems = const [
-    MenuItem(image: AppImages.canapes, title: AppStrings.canapes),
-    MenuItem(image: AppImages.cheesePlate, title: AppStrings.cheesePlate),
-    MenuItem(image: AppImages.shashlik, title: AppStrings.shashlik),
-    MenuItem(image: AppImages.seafood, title: AppStrings.seafood),
-    MenuItem(image: AppImages.fruits, title: AppStrings.fruits),
-    MenuItem(image: AppImages.limonades, title: AppStrings.limonades),
-  ];
-
-  final List<EntertaimentItem> entertaimentItems = const [
-    EntertaimentItem(
-      icon: AppImages.boardGames,
-      title: AppStrings.boardGames,
-      discription: AppStrings.aboutBoardGames,
-    ),
-    EntertaimentItem(
-      icon: AppImages.pool,
-      title: AppStrings.pool,
-      discription: AppStrings.aboutPool,
-    ),
-    EntertaimentItem(
-      icon: AppImages.boardGames,
-      title: AppStrings.boardGames,
-      discription: AppStrings.aboutBoardGames,
-    ),
-    EntertaimentItem(
-      icon: AppImages.pool,
-      title: AppStrings.pool,
-      discription: AppStrings.aboutPool,
-    ),
-    EntertaimentItem(
-      icon: AppImages.boardGames,
-      title: AppStrings.boardGames,
-      discription: AppStrings.aboutBoardGames,
-    ),
-    EntertaimentItem(
-      icon: AppImages.pool,
-      title: AppStrings.pool,
-      discription: AppStrings.aboutPool,
-    ),
-  ];
+  const MainScreenWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return SafeArea(
-      child: Scaffold(
-        body: ListView(
+    const List<String> swiperItems = [
+      AppImages.camp,
+      AppImages.camp,
+      AppImages.camp,
+      AppImages.camp,
+    ];
+
+    const List<MenuItem> menuItems = [
+      MenuItem(image: AppImages.canapes, title: AppStrings.canapes),
+      MenuItem(image: AppImages.cheesePlate, title: AppStrings.cheesePlate),
+      MenuItem(image: AppImages.shashlik, title: AppStrings.shashlik),
+      MenuItem(image: AppImages.seafood, title: AppStrings.seafood),
+      MenuItem(image: AppImages.fruits, title: AppStrings.fruits),
+      MenuItem(image: AppImages.limonades, title: AppStrings.limonades),
+    ];
+
+    const List<EntertaimentItem> entertaimentItems = [
+      EntertaimentItem(
+        icon: AppImages.boardGames,
+        title: AppStrings.boardGames,
+        discription: AppStrings.aboutBoardGames,
+      ),
+      EntertaimentItem(
+        icon: AppImages.pool,
+        title: AppStrings.pool,
+        discription: AppStrings.aboutPool,
+      ),
+      EntertaimentItem(
+        icon: AppImages.boardGames,
+        title: AppStrings.boardGames,
+        discription: AppStrings.aboutBoardGames,
+      ),
+      EntertaimentItem(
+        icon: AppImages.pool,
+        title: AppStrings.pool,
+        discription: AppStrings.aboutPool,
+      ),
+      EntertaimentItem(
+        icon: AppImages.boardGames,
+        title: AppStrings.boardGames,
+        discription: AppStrings.aboutBoardGames,
+      ),
+      EntertaimentItem(
+        icon: AppImages.pool,
+        title: AppStrings.pool,
+        discription: AppStrings.aboutPool,
+      ),
+    ];
+
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
           children: [
             SwiperWidget(
               textTheme: textTheme,
@@ -90,12 +91,14 @@ class MainScreenWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      YellowButtonWidget(
+                      CustomButtonWidget(
+                        onPressed: () {},
                         height: 50.h,
                         width: 156.w,
                         title: AppStrings.guests,
                       ),
-                      YellowButtonWidget(
+                      CustomButtonWidget(
+                        onPressed: () {},
                         height: 50.h,
                         width: 156.w,
                         title: AppStrings.wishlist,
@@ -209,33 +212,6 @@ class _SwiperWidgetState extends State<SwiperWidget> {
           ),
         ),
       ],
-    );
-  }
-}
-
-class YellowButtonWidget extends StatelessWidget {
-  const YellowButtonWidget({
-    required this.title,
-    required this.height,
-    required this.width,
-    super.key,
-  });
-
-  final String title;
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      width: width,
-      child: ElevatedButton(
-        onPressed: () {},
-        child: Text(
-          title,
-        ),
-      ),
     );
   }
 }
