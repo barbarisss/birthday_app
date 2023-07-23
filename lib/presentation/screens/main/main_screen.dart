@@ -79,7 +79,8 @@ class MainScreenWidget extends StatelessWidget {
               items: swiperItems,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppConstants.mainPaddingWidth),
               child: Column(
                 children: [
                   SizedBox(height: AppConstants.mainPaddingHeight),
@@ -165,11 +166,7 @@ class _SwiperWidgetState extends State<SwiperWidget> {
             height: 250.h,
             viewportFraction: 1,
             enlargeCenterPage: false,
-            onPageChanged: (page, _) {
-              setState(() {
-                activePage = page;
-              });
-            },
+            onPageChanged: (page, _) => swipePage(page),
           ),
         ),
         Positioned(
@@ -213,6 +210,12 @@ class _SwiperWidgetState extends State<SwiperWidget> {
         ),
       ],
     );
+  }
+
+  void swipePage(int page) {
+    setState(() {
+      activePage = page;
+    });
   }
 }
 
@@ -278,11 +281,7 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
         ),
         SizedBox(height: 12.h),
         TextButton(
-          onPressed: () {
-            setState(() {
-              isColapsed = !isColapsed;
-            });
-          },
+          onPressed: changeState,
           child: Text(
             isColapsed == true ? AppStrings.expand : AppStrings.collapse,
             style: textTheme.bodyMedium?.copyWith(
@@ -293,6 +292,12 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
         )
       ],
     );
+  }
+
+  void changeState() {
+    setState(() {
+      isColapsed = !isColapsed;
+    });
   }
 
   BorderRadiusGeometry clipImage(int index, double radius) {
@@ -360,11 +365,7 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
         ),
         SizedBox(height: AppConstants.mainPaddingHeight),
         TextButton(
-          onPressed: () {
-            setState(() {
-              isColapsed = !isColapsed;
-            });
-          },
+          onPressed: changeState,
           child: Text(
             isColapsed == true ? AppStrings.expand : AppStrings.collapse,
             style: textTheme.bodyMedium?.copyWith(
@@ -375,6 +376,12 @@ class _EntertaimentViewWidgetState extends State<_EntertaimentViewWidget> {
         ),
       ],
     );
+  }
+
+  void changeState() {
+    setState(() {
+      isColapsed = !isColapsed;
+    });
   }
 }
 
@@ -395,7 +402,7 @@ class _AnimatedEntertaimentItemWidget extends StatefulWidget {
 
 class _AnimatedEntertaimentItemWidgetState
     extends State<_AnimatedEntertaimentItemWidget> {
-  var onTap = false;
+  var animationStatus = false;
 
   @override
   Widget build(BuildContext context) {
@@ -409,13 +416,13 @@ class _AnimatedEntertaimentItemWidgetState
     const duration = Duration(milliseconds: 500);
 
     return GestureDetector(
-      onTap: anomationTo,
+      onTap: animateTo,
       child: Row(
         children: [
           AnimatedRotation(
-            turns: onTap == true ? 1.0 : 0.0,
+            turns: animationStatus == true ? 1.0 : 0.0,
             duration: duration,
-            onEnd: animationBack,
+            onEnd: animateBack,
             child: Image.asset(
               widget.item.icon,
               height: height * 2,
@@ -428,7 +435,7 @@ class _AnimatedEntertaimentItemWidgetState
               children: [
                 AnimatedAlign(
                   duration: duration,
-                  alignment: onTap == true
+                  alignment: animationStatus == true
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   child: Text(
@@ -441,7 +448,7 @@ class _AnimatedEntertaimentItemWidgetState
                 ),
                 AnimatedOpacity(
                   duration: duration,
-                  opacity: onTap == true ? 0.0 : 1.0,
+                  opacity: animationStatus == true ? 0.0 : 1.0,
                   child: Text(
                     widget.item.discription,
                     style: textTheme.bodyMedium,
@@ -451,12 +458,12 @@ class _AnimatedEntertaimentItemWidgetState
             ),
           ),
           AnimatedSize(
-            duration: const Duration(milliseconds: 500),
+            duration: duration,
             curve: Curves.linear,
             child: SvgPicture.asset(
               AppIcons.arrow,
               semanticsLabel: 'Arrow',
-              height: onTap == true ? height : height / 2,
+              height: animationStatus == true ? height : height / 2,
             ),
           ),
         ],
@@ -464,15 +471,15 @@ class _AnimatedEntertaimentItemWidgetState
     );
   }
 
-  void anomationTo() {
+  void animateTo() {
     setState(() {
-      onTap = true;
+      animationStatus = true;
     });
   }
 
-  void animationBack() {
+  void animateBack() {
     setState(() {
-      onTap = false;
+      animationStatus = false;
     });
   }
 }
