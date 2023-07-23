@@ -17,6 +17,7 @@ ThemeData theme() {
         ),
         textStyle: MaterialStateProperty.all(
           TextStyle(
+            fontFamily: 'Jost',
             fontWeight: FontWeight.w600,
             fontSize: 16.sp,
           ),
