@@ -8,6 +8,8 @@ import 'package:birthday_app/utils/images.dart';
 import 'package:birthday_app/utils/links.dart';
 import 'package:birthday_app/utils/strings.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -500,13 +502,40 @@ class _MapSectionWidgetState extends State<_MapSectionWidget> {
   @override
   Widget build(BuildContext context) {
     final textTheme = widget.textTheme;
+    const point = Point(latitude: 47.242516, longitude: 38.690101);
 
     return Column(
       children: [
         SizedBox(
           width: double.infinity,
           height: 246.h,
-          child: const YandexMap(),
+          child: YandexMap(
+            mapObjects: [
+              PlacemarkMapObject(
+                  mapId: const MapObjectId('0'),
+                  point: point,
+                  icon: PlacemarkIcon.single(
+                    PlacemarkIconStyle(
+                      image: BitmapDescriptor.fromAssetImage(AppImages.marker),
+                      scale: 0.2,
+                    ),
+                  ))
+            ],
+            onMapCreated: (YandexMapController controller) {
+              controller.moveCamera(
+                CameraUpdate.newCameraPosition(
+                  const CameraPosition(
+                    target: point,
+                    zoom: 8,
+                  ),
+                ),
+              );
+            },
+            gestureRecognizers: {
+              Factory<OneSequenceGestureRecognizer>(
+                  () => EagerGestureRecognizer())
+            },
+          ),
         ),
         SizedBox(height: 4.h),
         Text(

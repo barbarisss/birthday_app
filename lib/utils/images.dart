@@ -9,4 +9,5 @@ abstract class AppImages {
   static const map = 'assets/images/map.png';
   static const boardGames = 'assets/images/board_games.png';
   static const pool = 'assets/images/pool.png';
+  static const marker = 'assets/images/marker.png';
 }
