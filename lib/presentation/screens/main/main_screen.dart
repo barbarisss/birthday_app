@@ -517,7 +517,7 @@ class _MapSectionWidgetState extends State<_MapSectionWidget> {
                   icon: PlacemarkIcon.single(
                     PlacemarkIconStyle(
                       image: BitmapDescriptor.fromAssetImage(AppImages.marker),
-                      scale: 0.2,
+                      scale: 0.08,
                     ),
                   ))
             ],
@@ -526,7 +526,7 @@ class _MapSectionWidgetState extends State<_MapSectionWidget> {
                 CameraUpdate.newCameraPosition(
                   const CameraPosition(
                     target: point,
-                    zoom: 8,
+                    zoom: 10,
                   ),
                 ),
               );
