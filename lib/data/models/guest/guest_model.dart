@@ -1,10 +1,11 @@
+import 'package:birthday_app/data/models/model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'guest_model.freezed.dart';
 part 'guest_model.g.dart';
 
 @freezed
-class GuestModel with _$GuestModel {
+class GuestModel extends Model with _$GuestModel {
   factory GuestModel({
     required String avatar,
     required String name,
