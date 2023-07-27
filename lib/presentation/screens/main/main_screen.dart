@@ -1,5 +1,5 @@
-import 'package:birthday_app/models/entertaiment_item.dart';
-import 'package:birthday_app/models/menu_item.dart';
+import 'package:birthday_app/domain/models/entertaiment_item.dart';
+import 'package:birthday_app/domain/models/menu_item.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_button_widget.dart';
 import 'package:birthday_app/utils/colors.dart';
 import 'package:birthday_app/utils/constants.dart';
