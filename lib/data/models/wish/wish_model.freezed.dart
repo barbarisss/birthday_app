@@ -20,6 +20,7 @@ WishModel _$WishModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WishModel {
+  int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get link => throw _privateConstructorUsedError;
   bool get isSelected => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $WishModelCopyWith<$Res> {
   factory $WishModelCopyWith(WishModel value, $Res Function(WishModel) then) =
       _$WishModelCopyWithImpl<$Res, WishModel>;
   @useResult
-  $Res call({String title, String link, bool isSelected});
+  $Res call({int id, String title, String link, bool isSelected});
 }
 
 /// @nodoc
@@ -51,11 +52,16 @@ class _$WishModelCopyWithImpl<$Res, $Val extends WishModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? link = null,
     Object? isSelected = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -79,7 +85,7 @@ abstract class _$$_WishModelCopyWith<$Res> implements $WishModelCopyWith<$Res> {
       __$$_WishModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String link, bool isSelected});
+  $Res call({int id, String title, String link, bool isSelected});
 }
 
 /// @nodoc
@@ -93,11 +99,16 @@ class __$$_WishModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? link = null,
     Object? isSelected = null,
   }) {
     return _then(_$_WishModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -118,11 +129,17 @@ class __$$_WishModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_WishModel implements _WishModel {
   _$_WishModel(
-      {required this.title, required this.link, this.isSelected = false});
+      {this.id = 0,
+      required this.title,
+      required this.link,
+      this.isSelected = false});
 
   factory _$_WishModel.fromJson(Map<String, dynamic> json) =>
       _$$_WishModelFromJson(json);
 
+  @override
+  @JsonKey()
+  final int id;
   @override
   final String title;
   @override
@@ -133,7 +150,7 @@ class _$_WishModel implements _WishModel {
 
   @override
   String toString() {
-    return 'WishModel(title: $title, link: $link, isSelected: $isSelected)';
+    return 'WishModel(id: $id, title: $title, link: $link, isSelected: $isSelected)';
   }
 
   @override
@@ -141,6 +158,7 @@ class _$_WishModel implements _WishModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WishModel &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.link, link) || other.link == link) &&
             (identical(other.isSelected, isSelected) ||
@@ -149,7 +167,7 @@ class _$_WishModel implements _WishModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, link, isSelected);
+  int get hashCode => Object.hash(runtimeType, id, title, link, isSelected);
 
   @JsonKey(ignore: true)
   @override
@@ -167,13 +185,16 @@ class _$_WishModel implements _WishModel {
 
 abstract class _WishModel implements WishModel {
   factory _WishModel(
-      {required final String title,
+      {final int id,
+      required final String title,
       required final String link,
       final bool isSelected}) = _$_WishModel;
 
   factory _WishModel.fromJson(Map<String, dynamic> json) =
       _$_WishModel.fromJson;
 
+  @override
+  int get id;
   @override
   String get title;
   @override

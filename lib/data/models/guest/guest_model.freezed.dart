@@ -20,8 +20,10 @@ GuestModel _$GuestModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GuestModel {
+  int get id => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get surname => throw _privateConstructorUsedError;
   DateTime get birthDate => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get profession => throw _privateConstructorUsedError;
@@ -39,8 +41,10 @@ abstract class $GuestModelCopyWith<$Res> {
       _$GuestModelCopyWithImpl<$Res, GuestModel>;
   @useResult
   $Res call(
-      {String avatar,
+      {int id,
+      String avatar,
       String name,
+      String surname,
       DateTime birthDate,
       String phoneNumber,
       String profession});
@@ -59,13 +63,19 @@ class _$GuestModelCopyWithImpl<$Res, $Val extends GuestModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? avatar = null,
     Object? name = null,
+    Object? surname = null,
     Object? birthDate = null,
     Object? phoneNumber = null,
     Object? profession = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -73,6 +83,10 @@ class _$GuestModelCopyWithImpl<$Res, $Val extends GuestModel>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      surname: null == surname
+          ? _value.surname
+          : surname // ignore: cast_nullable_to_non_nullable
               as String,
       birthDate: null == birthDate
           ? _value.birthDate
@@ -99,8 +113,10 @@ abstract class _$$_GuestModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String avatar,
+      {int id,
+      String avatar,
       String name,
+      String surname,
       DateTime birthDate,
       String phoneNumber,
       String profession});
@@ -117,13 +133,19 @@ class __$$_GuestModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? avatar = null,
     Object? name = null,
+    Object? surname = null,
     Object? birthDate = null,
     Object? phoneNumber = null,
     Object? profession = null,
   }) {
     return _then(_$_GuestModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -131,6 +153,10 @@ class __$$_GuestModelCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      surname: null == surname
+          ? _value.surname
+          : surname // ignore: cast_nullable_to_non_nullable
               as String,
       birthDate: null == birthDate
           ? _value.birthDate
@@ -152,8 +178,10 @@ class __$$_GuestModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GuestModel implements _GuestModel {
   _$_GuestModel(
-      {required this.avatar,
+      {this.id = 0,
+      required this.avatar,
       required this.name,
+      required this.surname,
       required this.birthDate,
       required this.phoneNumber,
       required this.profession});
@@ -162,9 +190,14 @@ class _$_GuestModel implements _GuestModel {
       _$$_GuestModelFromJson(json);
 
   @override
+  @JsonKey()
+  final int id;
+  @override
   final String avatar;
   @override
   final String name;
+  @override
+  final String surname;
   @override
   final DateTime birthDate;
   @override
@@ -174,7 +207,7 @@ class _$_GuestModel implements _GuestModel {
 
   @override
   String toString() {
-    return 'GuestModel(avatar: $avatar, name: $name, birthDate: $birthDate, phoneNumber: $phoneNumber, profession: $profession)';
+    return 'GuestModel(id: $id, avatar: $avatar, name: $name, surname: $surname, birthDate: $birthDate, phoneNumber: $phoneNumber, profession: $profession)';
   }
 
   @override
@@ -182,8 +215,10 @@ class _$_GuestModel implements _GuestModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GuestModel &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.birthDate, birthDate) ||
                 other.birthDate == birthDate) &&
             (identical(other.phoneNumber, phoneNumber) ||
@@ -194,8 +229,8 @@ class _$_GuestModel implements _GuestModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, avatar, name, birthDate, phoneNumber, profession);
+  int get hashCode => Object.hash(runtimeType, id, avatar, name, surname,
+      birthDate, phoneNumber, profession);
 
   @JsonKey(ignore: true)
   @override
@@ -213,8 +248,10 @@ class _$_GuestModel implements _GuestModel {
 
 abstract class _GuestModel implements GuestModel {
   factory _GuestModel(
-      {required final String avatar,
+      {final int id,
+      required final String avatar,
       required final String name,
+      required final String surname,
       required final DateTime birthDate,
       required final String phoneNumber,
       required final String profession}) = _$_GuestModel;
@@ -223,9 +260,13 @@ abstract class _GuestModel implements GuestModel {
       _$_GuestModel.fromJson;
 
   @override
+  int get id;
+  @override
   String get avatar;
   @override
   String get name;
+  @override
+  String get surname;
   @override
   DateTime get birthDate;
   @override
