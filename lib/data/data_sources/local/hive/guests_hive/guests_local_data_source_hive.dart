@@ -1,12 +1,11 @@
+import 'package:birthday_app/data/data_sources/local/guests_local_data_source.dart';
 import 'package:birthday_app/data/data_sources/local/hive/guests_hive/guest.dart';
-import 'package:birthday_app/data/data_sources/local/local_data_source.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:path_provider/path_provider.dart';
-import 'package:birthday_app/data/models/model.dart';
 import 'package:hive/hive.dart';
 
-class GuestsLocalDataSourceHive implements LocalDataSource {
+class GuestsLocalDataSourceHive implements GuestsLocalDataSource {
   final _kGuestsBoxName = 'GuestsBox';
 
   @override
@@ -21,7 +20,7 @@ class GuestsLocalDataSourceHive implements LocalDataSource {
   }
 
   @override
-  Future<List<Model>> getAllItems() async {
+  Future<List<GuestModel>> getAllGuests() async {
     final guestsBox = Hive.box<Guest>(_kGuestsBoxName);
     final result = guestsBox.values
         .map(
@@ -39,8 +38,7 @@ class GuestsLocalDataSourceHive implements LocalDataSource {
   }
 
   @override
-  Future<bool> addItem(Model itemModel) async {
-    final guestModel = itemModel as GuestModel;
+  Future<bool> addGuest(GuestModel guestModel) async {
     final guestsBox = Hive.box<Guest>(_kGuestsBoxName);
 
     final convertedGuest = Guest(
@@ -58,7 +56,7 @@ class GuestsLocalDataSourceHive implements LocalDataSource {
   }
 
   @override
-  Future<bool> deleteItem(int index) {
+  Future<bool> deleteGuest(int index) {
     // TODO: implement deleteItem
     throw UnimplementedError();
   }
