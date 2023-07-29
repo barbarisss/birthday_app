@@ -1,5 +1,5 @@
 import 'package:birthday_app/presentation/screens/main/main_screen.dart';
-import 'package:birthday_app/theme/theme.dart';
+import 'package:birthday_app/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
