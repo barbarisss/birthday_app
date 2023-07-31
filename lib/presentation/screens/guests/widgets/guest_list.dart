@@ -52,7 +52,7 @@ class _GuestWidget extends StatelessWidget {
       children: [
         Image.asset(
           guest.avatar,
-          height: 64.w,
+          height: 64.h,
         ),
         SizedBox(width: AppConstants.mainPaddingWidth),
         Column(
