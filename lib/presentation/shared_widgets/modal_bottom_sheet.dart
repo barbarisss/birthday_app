@@ -21,10 +21,12 @@ class ModalBottomSheet {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      backgroundColor: Colors.transparent,
       builder: (context) {
         return Container(
-          height: 633.h,
+          height: 600.h,
           decoration: BoxDecoration(
+            color: AppColors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
           ),
           child: Column(
