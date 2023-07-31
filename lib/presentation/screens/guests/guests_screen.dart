@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
 import 'package:birthday_app/core/utils/images.dart';
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/presentation/screens/guests/widgets/guest_list.dart';
+import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_button.dart';
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -42,6 +44,9 @@ class GuestsScreenWidget extends StatelessWidget {
 
     return Scaffold(
       appBar: MainAppBarWidget(title: AppStrings.guests),
+      floatingActionButton: CustomFloatingActionButton(
+        onPressed: () {},
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppConstants.mainPaddingWidth,
