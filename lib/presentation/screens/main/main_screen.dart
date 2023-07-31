@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:birthday_app/domain/models/entertaiment_item.dart';
 import 'package:birthday_app/domain/models/menu_item.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_button_widget.dart';
@@ -16,6 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
+@RoutePage()
 class MainScreenWidget extends StatelessWidget {
   const MainScreenWidget({super.key});
 
@@ -95,7 +97,8 @@ class MainScreenWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomButtonWidget(
-                        onPressed: () {},
+                        onPressed: () =>
+                            AutoRouter.of(context).pushNamed('/guests'),
                         height: 50.h,
                         width: 156.w,
                         title: AppStrings.guests,

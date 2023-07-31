@@ -1,4 +1,4 @@
-import 'package:birthday_app/presentation/screens/main/main_screen.dart';
+import 'package:birthday_app/core/route/app_router.dart';
 import 'package:birthday_app/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder: (context, widget) => MaterialApp(
+      builder: (context, widget) => MaterialApp.router(
         title: 'Birthday App',
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: const MainScreenWidget(),
+        routerConfig: AppRouter().config(),
       ),
       designSize: const Size(375, 753),
     );
