@@ -25,7 +25,7 @@ class MainAppBarWidget extends StatelessWidget with PreferredSizeWidget {
       leading: IconButton(
         onPressed: () => AutoRouter.of(context).pop(),
         icon: SvgPicture.asset(
-          AppIcons.backArrowBig,
+          AppIcons.backArrow,
           width: 24.w,
         ),
       ),
