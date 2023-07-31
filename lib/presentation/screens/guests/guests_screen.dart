@@ -5,6 +5,7 @@ import 'package:birthday_app/core/utils/images.dart';
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/presentation/screens/guests/widgets/guest_list.dart';
+import 'package:birthday_app/presentation/screens/guests/widgets/guest_modal_bottom_sheet.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_button.dart';
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -43,9 +44,15 @@ class GuestsScreenWidget extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: MainAppBarWidget(title: AppStrings.guests),
+      appBar: const MainAppBarWidget(title: AppStrings.guests),
       floatingActionButton: CustomFloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          final guestModalBottomSheet = GuestModalBottomSheet(
+            context: context,
+            onButtonPressed: () {},
+          );
+          guestModalBottomSheet.show();
+        },
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(

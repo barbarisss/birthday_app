@@ -21,4 +21,5 @@ abstract class AppStrings {
   static const address = 'Центральная ул., 84, хутор Седых';
   static const goToWebsite = 'Перейти на сайт места';
   static const date = '25 августа\n2023';
+  static const signUp = 'Записаться';
 }

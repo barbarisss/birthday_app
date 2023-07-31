@@ -5,25 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: AppColors.backgroundWhite,
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(AppColors.yellow),
-        foregroundColor: MaterialStateProperty.all(AppColors.white),
-        elevation: MaterialStateProperty.all(0),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.r),
-          ),
-        ),
-        textStyle: MaterialStateProperty.all(
-          TextStyle(
-            fontFamily: 'Jost',
-            fontWeight: FontWeight.w600,
-            fontSize: 16.sp,
-          ),
-        ),
-      ),
-    ),
     textTheme: _textTheme,
     fontFamily: 'Jost',
   );

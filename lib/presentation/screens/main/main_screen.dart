@@ -99,12 +99,14 @@ class MainScreenWidget extends StatelessWidget {
                       CustomButtonWidget(
                         onPressed: () =>
                             AutoRouter.of(context).pushNamed('/guests'),
+                        color: AppColors.yellow,
                         height: 50.h,
                         width: 156.w,
                         title: AppStrings.guests,
                       ),
                       CustomButtonWidget(
                         onPressed: () {},
+                        color: AppColors.yellow,
                         height: 50.h,
                         width: 156.w,
                         title: AppStrings.wishlist,

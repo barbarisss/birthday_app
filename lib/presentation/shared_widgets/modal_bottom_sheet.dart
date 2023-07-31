@@ -20,9 +20,10 @@ class ModalBottomSheet {
   void show() {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (context) {
         return Container(
-          height: 100.h,
+          height: 633.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
           ),
@@ -42,6 +43,7 @@ class ModalBottomSheet {
               SizedBox(height: 50.h),
               CustomButtonWidget(
                 onPressed: onButtonPressed,
+                color: AppColors.green,
                 height: 50.h,
                 width: 156.w,
                 title: buttomTitle,
