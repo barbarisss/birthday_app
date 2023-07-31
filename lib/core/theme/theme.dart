@@ -41,15 +41,15 @@ TextTheme _textTheme = TextTheme(
     fontSize: 20.sp,
   ),
   bodyLarge: TextStyle(
-    color: AppColors.grey,
+    color: AppColors.darkGrey,
     fontSize: 16.sp,
   ),
   bodyMedium: TextStyle(
-    color: AppColors.grey,
+    color: AppColors.darkGrey,
     fontSize: 14.sp,
   ),
   bodySmall: TextStyle(
-    color: AppColors.grey,
+    color: AppColors.darkGrey,
     fontSize: 12.sp,
   ),
 );

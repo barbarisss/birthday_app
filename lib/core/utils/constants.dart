@@ -4,6 +4,8 @@ abstract class AppConstants {
   static const double childAspectRatio =
       0.865; //оптимальное значение для _MenuViewWidget, не трогать
 
+  static double appBarHeight = 48.h;
+
   static double mainPaddingHeight = 16.h;
   static double mainPaddingWidth = 16.w;
 }
