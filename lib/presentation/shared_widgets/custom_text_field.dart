@@ -6,11 +6,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.labelText,
+    this.inputNumber = false,
     this.suffixIcon = '',
     super.key,
   });
 
   final String labelText;
+  final bool inputNumber;
   final String suffixIcon;
 
   @override
@@ -25,6 +27,7 @@ class CustomTextField extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
         cursorColor: AppColors.green,
+        keyboardType: inputNumber ? TextInputType.phone : null,
         decoration: InputDecoration(
           filled: true,
           fillColor: AppColors.textFieldWhite,
