@@ -22,4 +22,9 @@ abstract class AppStrings {
   static const goToWebsite = 'Перейти на сайт места';
   static const date = '25 августа\n2023';
   static const signUp = 'Записаться';
+  static const name = 'Имя';
+  static const surname = 'Фамилия';
+  static const birthDate = 'Дата рождения';
+  static const phone = 'Телефон';
+  static const profession = 'Профессия';
 }

@@ -29,28 +29,32 @@ class ModalBottomSheet {
             color: AppColors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
           ),
-          child: Column(
-            children: [
-              SizedBox(height: AppConstants.mainPaddingHeight),
-              Container(
-                width: 35.w,
-                height: 4.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
-                  color: AppColors.lightGrey,
+          child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: AppConstants.mainPaddingWidth),
+            child: Column(
+              children: [
+                SizedBox(height: AppConstants.mainPaddingHeight),
+                Container(
+                  width: 35.w,
+                  height: 4.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.r),
+                    color: AppColors.lightGrey,
+                  ),
                 ),
-              ),
-              SizedBox(height: 18.h),
-              content,
-              SizedBox(height: 50.h),
-              CustomButtonWidget(
-                onPressed: onButtonPressed,
-                color: AppColors.green,
-                height: 50.h,
-                width: 156.w,
-                title: buttomTitle,
-              )
-            ],
+                SizedBox(height: 18.h),
+                content,
+                SizedBox(height: 50.h),
+                CustomButtonWidget(
+                  onPressed: onButtonPressed,
+                  color: AppColors.green,
+                  height: 50.h,
+                  width: 156.w,
+                  title: buttomTitle,
+                )
+              ],
+            ),
           ),
         );
       },
