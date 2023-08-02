@@ -50,7 +50,7 @@ packages:
     source: hosted
     version: "7.2.0"
   bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: bloc
       sha256: "3820f15f502372d979121de1f6b97bfcf1630ebff8fe1d52fb2b0bfa49be5b49"
@@ -313,7 +313,7 @@ packages:
     source: hosted
     version: "2.4.1"
   freezed_annotation:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: freezed_annotation
       sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
