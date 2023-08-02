@@ -6,8 +6,8 @@ part 'guests_event.dart';
 part 'guests_state.dart';
 part 'guests_bloc.freezed.dart';
 
-class GuestsBlocBloc extends Bloc<GuestsEvent, GuestsState> {
-  GuestsBlocBloc() : super(const GuestsState.initial()) {
+class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
+  GuestsBloc() : super(const GuestsState.initial()) {
     on<GuestsEvent>((event, emit) {
       // TODO: implement event handler
     });
