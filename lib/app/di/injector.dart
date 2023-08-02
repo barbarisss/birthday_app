@@ -29,7 +29,10 @@ Future<void> initDependencies() async {
   );
 
   // BLoC
-  injector.registerFactory(() => GuestsBloc());
+  injector.registerFactory(() => GuestsBloc(
+        getAllGuestsUseCase: injector(),
+        addGuestUseCase: injector(),
+      ));
 
   // Init DB
   await injector<GuestsLocalDataSource>().initDb();
