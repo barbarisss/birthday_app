@@ -5,12 +5,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
+    required this.controller,
     required this.labelText,
     this.inputNumber = false,
     this.suffixIcon = '',
     super.key,
   });
 
+  final TextEditingController controller;
   final String labelText;
   final bool inputNumber;
   final String suffixIcon;
@@ -22,6 +24,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       height: 58.h,
       child: TextField(
+        controller: controller,
         style: textTheme.bodyLarge?.copyWith(
           color: AppColors.black,
           fontWeight: FontWeight.w500,

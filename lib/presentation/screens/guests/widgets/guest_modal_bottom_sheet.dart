@@ -20,21 +20,23 @@ class GuestModalBottomSheet {
       onButtonPressed: onButtonPressed,
       buttomTitle: AppStrings.signUp,
       content: Column(children: [
-        const CustomTextField(labelText: AppStrings.name),
-        SizedBox(height: 12.h),
-        const CustomTextField(labelText: AppStrings.surname),
-        SizedBox(height: 12.h),
-        const CustomTextField(
-          labelText: AppStrings.birthDate,
-          suffixIcon: AppIcons.calendar,
-        ),
-        SizedBox(height: 12.h),
-        const CustomTextField(
-          labelText: AppStrings.phone,
-          inputNumber: true,
-        ),
-        SizedBox(height: 12.h),
-        const CustomTextField(labelText: AppStrings.profession),
+        // const CustomTextField(,
+        //   labelText: AppStrings.name,
+        // ),
+        // SizedBox(height: 12.h),
+        // const CustomTextField(labelText: AppStrings.surname),
+        // SizedBox(height: 12.h),
+        // const CustomTextField(
+        //   labelText: AppStrings.birthDate,
+        //   suffixIcon: AppIcons.calendar,
+        // ),
+        // SizedBox(height: 12.h),
+        // const CustomTextField(
+        //   labelText: AppStrings.phone,
+        //   inputNumber: true,
+        // ),
+        // SizedBox(height: 12.h),
+        // const CustomTextField(labelText: AppStrings.profession),
       ]),
     );
 

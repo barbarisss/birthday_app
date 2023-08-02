@@ -19,32 +19,38 @@ mixin _$GuestsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllGuests,
+    required TResult Function(GuestModel guestModel) allGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllGuests,
+    TResult? Function(GuestModel guestModel)? allGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllGuests,
+    TResult Function(GuestModel guestModel)? allGuest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetAllGuestsEvent value) getAllGuests,
+    required TResult Function(AddGuestEvent value) allGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetAllGuestsEvent value)? getAllGuests,
+    TResult? Function(AddGuestEvent value)? allGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetAllGuestsEvent value)? getAllGuests,
+    TResult Function(AddGuestEvent value)? allGuest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllGuests,
+    required TResult Function(GuestModel guestModel) allGuest,
   }) {
     return getAllGuests();
   }
@@ -115,6 +122,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllGuests,
+    TResult? Function(GuestModel guestModel)? allGuest,
   }) {
     return getAllGuests?.call();
   }
@@ -123,6 +131,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllGuests,
+    TResult Function(GuestModel guestModel)? allGuest,
     required TResult orElse(),
   }) {
     if (getAllGuests != null) {
@@ -135,6 +144,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetAllGuestsEvent value) getAllGuests,
+    required TResult Function(AddGuestEvent value) allGuest,
   }) {
     return getAllGuests(this);
   }
@@ -143,6 +153,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetAllGuestsEvent value)? getAllGuests,
+    TResult? Function(AddGuestEvent value)? allGuest,
   }) {
     return getAllGuests?.call(this);
   }
@@ -151,6 +162,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetAllGuestsEvent value)? getAllGuests,
+    TResult Function(AddGuestEvent value)? allGuest,
     required TResult orElse(),
   }) {
     if (getAllGuests != null) {
@@ -162,6 +174,150 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
 
 abstract class GetAllGuestsEvent implements GuestsEvent {
   const factory GetAllGuestsEvent() = _$GetAllGuestsEvent;
+}
+
+/// @nodoc
+abstract class _$$AddGuestEventCopyWith<$Res> {
+  factory _$$AddGuestEventCopyWith(
+          _$AddGuestEvent value, $Res Function(_$AddGuestEvent) then) =
+      __$$AddGuestEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({GuestModel guestModel});
+
+  $GuestModelCopyWith<$Res> get guestModel;
+}
+
+/// @nodoc
+class __$$AddGuestEventCopyWithImpl<$Res>
+    extends _$GuestsEventCopyWithImpl<$Res, _$AddGuestEvent>
+    implements _$$AddGuestEventCopyWith<$Res> {
+  __$$AddGuestEventCopyWithImpl(
+      _$AddGuestEvent _value, $Res Function(_$AddGuestEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? guestModel = null,
+  }) {
+    return _then(_$AddGuestEvent(
+      null == guestModel
+          ? _value.guestModel
+          : guestModel // ignore: cast_nullable_to_non_nullable
+              as GuestModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GuestModelCopyWith<$Res> get guestModel {
+    return $GuestModelCopyWith<$Res>(_value.guestModel, (value) {
+      return _then(_value.copyWith(guestModel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$AddGuestEvent implements AddGuestEvent {
+  const _$AddGuestEvent(this.guestModel);
+
+  @override
+  final GuestModel guestModel;
+
+  @override
+  String toString() {
+    return 'GuestsEvent.allGuest(guestModel: $guestModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddGuestEvent &&
+            (identical(other.guestModel, guestModel) ||
+                other.guestModel == guestModel));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, guestModel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddGuestEventCopyWith<_$AddGuestEvent> get copyWith =>
+      __$$AddGuestEventCopyWithImpl<_$AddGuestEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getAllGuests,
+    required TResult Function(GuestModel guestModel) allGuest,
+  }) {
+    return allGuest(guestModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getAllGuests,
+    TResult? Function(GuestModel guestModel)? allGuest,
+  }) {
+    return allGuest?.call(guestModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAllGuests,
+    TResult Function(GuestModel guestModel)? allGuest,
+    required TResult orElse(),
+  }) {
+    if (allGuest != null) {
+      return allGuest(guestModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetAllGuestsEvent value) getAllGuests,
+    required TResult Function(AddGuestEvent value) allGuest,
+  }) {
+    return allGuest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetAllGuestsEvent value)? getAllGuests,
+    TResult? Function(AddGuestEvent value)? allGuest,
+  }) {
+    return allGuest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetAllGuestsEvent value)? getAllGuests,
+    TResult Function(AddGuestEvent value)? allGuest,
+    required TResult orElse(),
+  }) {
+    if (allGuest != null) {
+      return allGuest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddGuestEvent implements GuestsEvent {
+  const factory AddGuestEvent(final GuestModel guestModel) = _$AddGuestEvent;
+
+  GuestModel get guestModel;
+  @JsonKey(ignore: true)
+  _$$AddGuestEventCopyWith<_$AddGuestEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
