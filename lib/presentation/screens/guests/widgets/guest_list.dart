@@ -1,6 +1,7 @@
 import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
+import 'package:birthday_app/presentation/screens/guests/guests_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -46,6 +47,9 @@ class _GuestWidget extends StatelessWidget {
     const MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start;
     const CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start;
 
+    final age = calculateAge(guest.birthDate);
+    final noun = getNoun(age, 'год', 'года', 'лет');
+
     return Row(
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
@@ -67,7 +71,7 @@ class _GuestWidget extends StatelessWidget {
               ),
             ),
             Text(
-              '${calculateAge(guest.birthDate)} лет',
+              '$age $noun',
               style: textTheme.bodySmall?.copyWith(
                 height: 1,
               ),
