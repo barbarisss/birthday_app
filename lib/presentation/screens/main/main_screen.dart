@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:birthday_app/domain/models/entertaiment_item.dart';
-import 'package:birthday_app/domain/models/menu_item.dart';
+import 'package:birthday_app/app/route/app_router.gr.dart';
+import 'package:birthday_app/domain/models/entertaiment_item_model.dart';
+import 'package:birthday_app/domain/models/menu_item_model.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_button_widget.dart';
 import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
@@ -32,42 +33,66 @@ class MainScreenWidget extends StatelessWidget {
       AppImages.camp,
     ];
 
-    const List<MenuItem> menuItems = [
-      MenuItem(image: AppImages.canapes, title: AppStrings.canapes),
-      MenuItem(image: AppImages.cheesePlate, title: AppStrings.cheesePlate),
-      MenuItem(image: AppImages.shashlik, title: AppStrings.shashlik),
-      MenuItem(image: AppImages.seafood, title: AppStrings.seafood),
-      MenuItem(image: AppImages.fruits, title: AppStrings.fruits),
-      MenuItem(image: AppImages.limonades, title: AppStrings.limonades),
+    List<MenuItemModel> menuItems = [
+      MenuItemModel(
+        image: AppImages.canapes,
+        title: AppStrings.canapes,
+        ingredients: ['Хлеб', 'Ветчина', 'Салат', 'Яйцо'],
+      ),
+      MenuItemModel(
+        image: AppImages.cheesePlate,
+        title: AppStrings.cheesePlate,
+        ingredients: ['Сыры', 'Виноград', 'Орехи', 'Соус'],
+      ),
+      MenuItemModel(
+        image: AppImages.shashlik,
+        title: AppStrings.shashlik,
+        ingredients: ['Свинина', 'Лук', 'Помидоры', 'Кетчуп'],
+      ),
+      MenuItemModel(
+        image: AppImages.seafood,
+        title: AppStrings.seafood,
+        ingredients: ['Лобстеры', 'Мидии', 'Креветки', 'Устрицы'],
+      ),
+      MenuItemModel(
+        image: AppImages.fruits,
+        title: AppStrings.fruits,
+        ingredients: ['Арбузик', 'Ананасик', 'Бананы', 'Киви'],
+      ),
+      MenuItemModel(
+        image: AppImages.limonades,
+        title: AppStrings.limonades,
+        ingredients: ['Оранжевый', 'Белый', 'Зеленый', 'Красный'],
+      ),
     ];
 
-    const List<EntertaimentItem> entertaimentItems = [
-      EntertaimentItem(
+    List<EntertaimentItemModel> entertaimentItems = [
+      EntertaimentItemModel(
         icon: AppImages.boardGames,
         title: AppStrings.boardGames,
         discription: AppStrings.aboutBoardGames,
       ),
-      EntertaimentItem(
+      EntertaimentItemModel(
         icon: AppImages.pool,
         title: AppStrings.pool,
         discription: AppStrings.aboutPool,
       ),
-      EntertaimentItem(
+      EntertaimentItemModel(
         icon: AppImages.boardGames,
         title: AppStrings.boardGames,
         discription: AppStrings.aboutBoardGames,
       ),
-      EntertaimentItem(
+      EntertaimentItemModel(
         icon: AppImages.pool,
         title: AppStrings.pool,
         discription: AppStrings.aboutPool,
       ),
-      EntertaimentItem(
+      EntertaimentItemModel(
         icon: AppImages.boardGames,
         title: AppStrings.boardGames,
         discription: AppStrings.aboutBoardGames,
       ),
-      EntertaimentItem(
+      EntertaimentItemModel(
         icon: AppImages.pool,
         title: AppStrings.pool,
         discription: AppStrings.aboutPool,
@@ -98,7 +123,7 @@ class MainScreenWidget extends StatelessWidget {
                     children: [
                       CustomButtonWidget(
                         onPressed: () =>
-                            AutoRouter.of(context).pushNamed('/guests'),
+                            AutoRouter.of(context).push(const GuestsRoute()),
                         color: AppColors.yellow,
                         height: 50.h,
                         width: 156.w,
@@ -234,7 +259,7 @@ class _MenuViewWidget extends StatefulWidget {
   });
 
   final TextTheme textTheme;
-  final List<MenuItem> items;
+  final List<MenuItemModel> items;
 
   @override
   State<_MenuViewWidget> createState() => _MenuViewWidgetState();
@@ -268,20 +293,26 @@ class _MenuViewWidgetState extends State<_MenuViewWidget> {
             shrinkWrap: true,
             itemCount: isColapsed == true ? 2 : widget.items.length,
             itemBuilder: (context, index) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: clipImage(index, 25.r),
-                    child: Image.asset(
-                      widget.items[index].image,
+              return GestureDetector(
+                onTap: () {
+                  AutoRouter.of(context)
+                      .push(MenuDetailsRoute(menuItem: widget.items[index]));
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: clipImage(index, 25.r),
+                      child: Image.asset(
+                        widget.items[index].image,
+                      ),
                     ),
-                  ),
-                  Text(
-                    widget.items[index].title,
-                    style: textTheme.bodyMedium,
-                  ),
-                ],
+                    Text(
+                      widget.items[index].title,
+                      style: textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
               );
             },
           ),
@@ -332,7 +363,7 @@ class _EntertaimentViewWidget extends StatefulWidget {
   });
 
   final TextTheme textTheme;
-  final List<EntertaimentItem> items;
+  final List<EntertaimentItemModel> items;
 
   @override
   State<_EntertaimentViewWidget> createState() =>
@@ -400,7 +431,7 @@ class _AnimatedEntertaimentItemWidget extends StatefulWidget {
   });
 
   final TextTheme textTheme;
-  final EntertaimentItem item;
+  final EntertaimentItemModel item;
 
   @override
   State<_AnimatedEntertaimentItemWidget> createState() =>
