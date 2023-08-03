@@ -1,5 +1,6 @@
 import 'package:birthday_app/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -7,12 +8,18 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.controller,
     required this.labelText,
-    this.inputNumber = false,
+    this.hintText,
     this.suffixIcon = '',
+    this.inputNumber = false,
+    this.inputFormatters,
+    this.validator,
     super.key,
   });
 
+  final FormFieldValidator? validator;
   final TextEditingController controller;
+  final List<TextInputFormatter>? inputFormatters;
+  final String? hintText;
   final String labelText;
   final bool inputNumber;
   final String suffixIcon;
@@ -23,19 +30,22 @@ class CustomTextField extends StatelessWidget {
 
     return SizedBox(
       height: 58.h,
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         style: textTheme.bodyLarge?.copyWith(
           color: AppColors.black,
           fontWeight: FontWeight.w500,
         ),
         cursorColor: AppColors.green,
-        keyboardType: inputNumber ? TextInputType.phone : null,
+        keyboardType: inputNumber ? TextInputType.datetime : null,
+        // validator: (field) => field.isEmpty,
+        inputFormatters: inputFormatters,
         decoration: InputDecoration(
           filled: true,
           fillColor: AppColors.textFieldWhite,
           labelText: labelText,
           labelStyle: textTheme.bodyLarge,
+          hintText: hintText,
           suffixIcon: suffixIcon == ''
               ? null
               : Padding(

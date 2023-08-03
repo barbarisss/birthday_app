@@ -7,12 +7,14 @@ import 'package:birthday_app/core/utils/images.dart';
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/presentation/blocs/guests_bloc/guests_bloc.dart';
+import 'package:birthday_app/presentation/screens/guests/widgets/date_text_input_formatter.dart';
 import 'package:birthday_app/presentation/screens/guests/widgets/guest_list.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_button.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_text_field.dart';
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';
 import 'package:birthday_app/presentation/shared_widgets/modal_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -84,12 +86,27 @@ class GuestsScreenWidget extends StatelessWidget {
                     SizedBox(height: 12.h),
                     CustomTextField(
                       controller: birthDateController,
+                      inputFormatters: [
+                        DateTextInputFormatter(
+                          sample: 'XX-XX-XXXX',
+                          separator: '-',
+                        ),
+                      ],
+                      hintText: 'ДД-ММ-ГГГГ',
                       labelText: AppStrings.birthDate,
                       suffixIcon: AppIcons.calendar,
+                      inputNumber: true,
                     ),
                     SizedBox(height: 12.h),
                     CustomTextField(
                       controller: phoneController,
+                      inputFormatters: [
+                        DateTextInputFormatter(
+                          sample: 'XX-XX-XXXX',
+                          separator: '-',
+                        ),
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
                       labelText: AppStrings.phone,
                       inputNumber: true,
                     ),
