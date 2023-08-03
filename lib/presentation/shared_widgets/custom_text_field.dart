@@ -38,7 +38,7 @@ class CustomTextField extends StatelessWidget {
         ),
         cursorColor: AppColors.green,
         keyboardType: inputNumber ? TextInputType.datetime : null,
-        // validator: (field) => field.isEmpty,
+        validator: validator,
         inputFormatters: inputFormatters,
         decoration: InputDecoration(
           filled: true,

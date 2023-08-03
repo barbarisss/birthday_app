@@ -67,7 +67,7 @@ class _GuestWidget extends StatelessWidget {
               ),
             ),
             Text(
-              '20 лет',
+              '${calculateAge(guest.birthDate)} лет',
               style: textTheme.bodySmall?.copyWith(
                 height: 1,
               ),
@@ -83,7 +83,8 @@ class _GuestWidget extends StatelessWidget {
   }
 
   String calculateAge(DateTime birthDate) {
-    //Todo: body of the func
-    return '';
+    final now = DateTime.now();
+    final age = (now.difference(birthDate).inDays / 365).floor();
+    return age.toString();
   }
 }

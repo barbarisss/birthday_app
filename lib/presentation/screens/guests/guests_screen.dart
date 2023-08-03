@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class GuestsScreenWidget extends StatelessWidget {
@@ -45,23 +46,23 @@ class GuestsScreenWidget extends StatelessWidget {
           injector<GuestsBloc>()..add(const GetAllGuestsEvent()),
       child: Scaffold(
         appBar: const MainAppBarWidget(title: AppStrings.guests),
-        floatingActionButton: BlocConsumer<GuestsBloc, GuestsState>(
-          listener: (context, state) {
-            // TODO: implement listener
-          },
+        floatingActionButton: BlocBuilder<GuestsBloc, GuestsState>(
           builder: (context, state) {
             return CustomFloatingActionButton(
               onPressed: () {
                 final modalBottomSheet = ModalBottomSheet(
                   context: context,
                   onButtonPressed: () {
+                    final birthDate = DateFormat('dd-MM-yyyy')
+                        .parse(birthDateController.text);
+
                     context.read<GuestsBloc>().add(
                           AddGuestEvent(
                             GuestModel(
                               avatar: AppImages.avatar,
                               name: nameController.text,
                               surname: surnameController.text,
-                              birthDate: DateTime.now(),
+                              birthDate: birthDate,
                               phoneNumber: phoneController.text,
                               profession: professionController.text,
                             ),
@@ -101,10 +102,6 @@ class GuestsScreenWidget extends StatelessWidget {
                     CustomTextField(
                       controller: phoneController,
                       inputFormatters: [
-                        DateTextInputFormatter(
-                          sample: 'XX-XX-XXXX',
-                          separator: '-',
-                        ),
                         FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                       ],
                       labelText: AppStrings.phone,
