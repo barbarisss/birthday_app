@@ -7,7 +7,6 @@ import 'package:birthday_app/core/utils/images.dart';
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/presentation/blocs/guests_bloc/guests_bloc.dart';
-import 'package:birthday_app/presentation/screens/guests/widgets/date_text_input_formatter.dart';
 import 'package:birthday_app/presentation/screens/guests/widgets/guest_list.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_button.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_text_field.dart';
@@ -16,6 +15,7 @@ import 'package:birthday_app/presentation/shared_widgets/modal_bottom_sheet.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -53,16 +53,13 @@ class GuestsScreenWidget extends StatelessWidget {
                 final modalBottomSheet = ModalBottomSheet(
                   context: context,
                   onButtonPressed: () {
-                    final birthDate = DateFormat('dd-MM-yyyy')
-                        .parse(birthDateController.text);
-
                     context.read<GuestsBloc>().add(
                           AddGuestEvent(
                             GuestModel(
                               avatar: AppImages.avatar,
                               name: nameController.text,
                               surname: surnameController.text,
-                              birthDate: birthDate,
+                              birthDate: parse(birthDateController.text),
                               phoneNumber: phoneController.text,
                               profession: professionController.text,
                             ),
@@ -87,23 +84,29 @@ class GuestsScreenWidget extends StatelessWidget {
                     SizedBox(height: 12.h),
                     CustomTextField(
                       controller: birthDateController,
-                      inputFormatters: [
-                        DateTextInputFormatter(
-                          sample: 'XX-XX-XXXX',
-                          separator: '-',
-                        ),
-                      ],
-                      hintText: 'ДД-ММ-ГГГГ',
                       labelText: AppStrings.birthDate,
                       suffixIcon: AppIcons.calendar,
                       inputNumber: true,
+                      onTap: () async {
+                        final pickedDate =
+                            await DatePicker.showSimpleDatePicker(
+                          context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1962),
+                          lastDate: DateTime.now(),
+                          dateFormat: "dd-MMMM-yyyy",
+                          locale: DateTimePickerLocale.ru,
+                          titleText: 'Выберите дату',
+                          looping: true,
+                        );
+                        if (pickedDate != null) {
+                          birthDateController.text = format(pickedDate);
+                        }
+                      },
                     ),
                     SizedBox(height: 12.h),
                     CustomTextField(
                       controller: phoneController,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                      ],
                       labelText: AppStrings.phone,
                       inputNumber: true,
                     ),
@@ -154,9 +157,19 @@ class GuestsScreenWidget extends StatelessWidget {
       ),
     );
   }
+
+  String format(DateTime date) {
+    String pattern = 'dd.MM.yyyy';
+    return DateFormat(pattern).format(date);
+  }
+
+  DateTime parse(String str) {
+    String pattern = 'dd.MM.yyyy';
+    return DateFormat(pattern).parse(str);
+  }
 }
 
-String getNoun(number, one, two, five) {
+String getNoun(int number, String one, String two, String five) {
   number %= 100;
   if (number >= 5 && number <= 20) {
     return five;

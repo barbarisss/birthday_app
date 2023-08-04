@@ -71,6 +71,7 @@ class _GuestWidget extends StatelessWidget {
               ),
             ),
             Text(
+              // '$age',
               '$age $noun',
               style: textTheme.bodySmall?.copyWith(
                 height: 1,
@@ -86,9 +87,9 @@ class _GuestWidget extends StatelessWidget {
     );
   }
 
-  String calculateAge(DateTime birthDate) {
+  int calculateAge(DateTime birthDate) {
     final now = DateTime.now();
     final age = (now.difference(birthDate).inDays / 365).floor();
-    return age.toString();
+    return age;
   }
 }

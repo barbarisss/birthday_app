@@ -16,26 +16,17 @@ class CustomFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: 16.w, bottom: 24.h),
-      child: Container(
-        // height: 131,
+      child: SizedBox(
         height: 84.h,
-        color: Colors.red,
         child: FittedBox(
-          child: Container(
-            color: Colors.black,
-            child: FloatingActionButton(
-              onPressed: onPressed,
-              backgroundColor: AppColors.green,
-              foregroundColor: AppColors.floatingButtonWhite,
-              elevation: 0,
-              child: Container(
-                color: Colors.blue,
-                child: SvgPicture.asset(
-                  AppIcons.plus,
-                  height: 30.h,
-                  // fit: BoxFit.none,
-                ),
-              ),
+          child: FloatingActionButton(
+            onPressed: onPressed,
+            backgroundColor: AppColors.green,
+            foregroundColor: AppColors.floatingButtonWhite,
+            elevation: 0,
+            child: SvgPicture.asset(
+              AppIcons.plus,
+              height: 30.h,
             ),
           ),
         ),

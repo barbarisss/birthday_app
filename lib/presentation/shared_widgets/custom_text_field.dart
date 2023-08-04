@@ -8,21 +8,21 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.controller,
     required this.labelText,
-    this.hintText,
     this.suffixIcon = '',
     this.inputNumber = false,
     this.inputFormatters,
     this.validator,
+    this.onTap,
     super.key,
   });
 
   final FormFieldValidator? validator;
   final TextEditingController controller;
   final List<TextInputFormatter>? inputFormatters;
-  final String? hintText;
   final String labelText;
   final bool inputNumber;
   final String suffixIcon;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +31,14 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       height: 58.h,
       child: TextFormField(
+        onTap: onTap,
         controller: controller,
         style: textTheme.bodyLarge?.copyWith(
           color: AppColors.black,
           fontWeight: FontWeight.w500,
         ),
         cursorColor: AppColors.green,
-        keyboardType: inputNumber ? TextInputType.datetime : null,
+        keyboardType: inputNumber ? TextInputType.phone : null,
         validator: validator,
         inputFormatters: inputFormatters,
         decoration: InputDecoration(
@@ -45,7 +46,6 @@ class CustomTextField extends StatelessWidget {
           fillColor: AppColors.textFieldWhite,
           labelText: labelText,
           labelStyle: textTheme.bodyLarge,
-          hintText: hintText,
           suffixIcon: suffixIcon == ''
               ? null
               : Padding(
