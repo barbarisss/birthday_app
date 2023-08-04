@@ -4,6 +4,6 @@ part of 'guests_bloc.dart';
 class GuestsState with _$GuestsState {
   const factory GuestsState.initial() = _InitialGuestsState;
   const factory GuestsState.loading() = _LoadingGuestsState;
-  const factory GuestsState.loaded(List<GuestModel> guests) =
-      _LoadedGuestsState;
+  const factory GuestsState.loaded(
+      List<GuestModel> guests, String currentSortType) = _LoadedGuestsState;
 }

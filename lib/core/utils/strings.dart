@@ -27,4 +27,7 @@ abstract class AppStrings {
   static const birthDate = 'Дата рождения';
   static const phone = 'Телефон';
   static const profession = 'Профессия';
+  static const sortWithout = 'Без сортировки';
+  static const sortName = 'По имени';
+  static const choseDate = 'Выберите дату';
 }

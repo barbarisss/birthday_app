@@ -8,12 +8,12 @@ import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/presentation/blocs/guests_bloc/guests_bloc.dart';
 import 'package:birthday_app/presentation/screens/guests/widgets/guest_list.dart';
+import 'package:birthday_app/presentation/screens/guests/widgets/info_section.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_button.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_text_field.dart';
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';
 import 'package:birthday_app/presentation/shared_widgets/modal_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +25,14 @@ class GuestsScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     late Widget bodyWidget;
+
+    final sorts = [
+      AppStrings.sortWithout,
+      AppStrings.sortName,
+    ];
 
     final TextEditingController nameController = TextEditingController();
     final TextEditingController surnameController = TextEditingController();
@@ -42,8 +49,8 @@ class GuestsScreenWidget extends StatelessWidget {
     }
 
     return BlocProvider(
-      create: (context) =>
-          injector<GuestsBloc>()..add(const GetAllGuestsEvent()),
+      create: (context) => injector<GuestsBloc>()
+        ..add(const GetAllGuestsEvent(AppStrings.sortWithout)),
       child: Scaffold(
         appBar: const MainAppBarWidget(title: AppStrings.guests),
         floatingActionButton: BlocBuilder<GuestsBloc, GuestsState>(
@@ -67,7 +74,9 @@ class GuestsScreenWidget extends StatelessWidget {
                         );
 
                     AutoRouter.of(context).pop();
-                    context.read<GuestsBloc>().add(const GetAllGuestsEvent());
+                    context
+                        .read<GuestsBloc>()
+                        .add(const GetAllGuestsEvent(AppStrings.sortWithout));
                     cleanControllers();
                   },
                   buttomTitle: AppStrings.signUp,
@@ -96,7 +105,7 @@ class GuestsScreenWidget extends StatelessWidget {
                           lastDate: DateTime.now(),
                           dateFormat: "dd-MMMM-yyyy",
                           locale: DateTimePickerLocale.ru,
-                          titleText: 'Выберите дату',
+                          titleText: AppStrings.choseDate,
                           looping: true,
                         );
                         if (pickedDate != null) {
@@ -139,9 +148,27 @@ class GuestsScreenWidget extends StatelessWidget {
                     color: AppColors.green,
                   ));
                 },
-                loaded: (guests) {
+                loaded: (guests, sortType) {
                   bodyWidget = Column(
                     children: [
+                      SizedBox(height: AppConstants.mainPaddingHeight),
+                      InfoSectionWidget(
+                        guestsLenght: guests.length,
+                        popupMenuItems: sorts
+                            .map(
+                              (sort) => PopupMenuItem<String>(
+                                child: Text(sort),
+                                onTap: () {
+                                  context.read<GuestsBloc>().add(
+                                        GetAllGuestsEvent(sort),
+                                      );
+                                },
+                              ),
+                            )
+                            .toList(),
+                        currentSortType: sortType,
+                        textStyle: textTheme.bodyMedium,
+                      ),
                       SizedBox(height: AppConstants.mainPaddingHeight),
                       Expanded(
                         child: GuestListWidget(guests: guests),

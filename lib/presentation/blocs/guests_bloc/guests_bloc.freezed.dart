@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GuestsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getAllGuests,
+    required TResult Function(String sortType) getAllGuests,
     required TResult Function(GuestModel guestModel) allGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getAllGuests,
+    TResult? Function(String sortType)? getAllGuests,
     TResult? Function(GuestModel guestModel)? allGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getAllGuests,
+    TResult Function(String sortType)? getAllGuests,
     TResult Function(GuestModel guestModel)? allGuest,
     required TResult orElse(),
   }) =>
@@ -79,6 +79,8 @@ abstract class _$$GetAllGuestsEventCopyWith<$Res> {
   factory _$$GetAllGuestsEventCopyWith(
           _$GetAllGuestsEvent value, $Res Function(_$GetAllGuestsEvent) then) =
       __$$GetAllGuestsEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String sortType});
 }
 
 /// @nodoc
@@ -88,54 +90,79 @@ class __$$GetAllGuestsEventCopyWithImpl<$Res>
   __$$GetAllGuestsEventCopyWithImpl(
       _$GetAllGuestsEvent _value, $Res Function(_$GetAllGuestsEvent) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sortType = null,
+  }) {
+    return _then(_$GetAllGuestsEvent(
+      null == sortType
+          ? _value.sortType
+          : sortType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetAllGuestsEvent implements GetAllGuestsEvent {
-  const _$GetAllGuestsEvent();
+  const _$GetAllGuestsEvent(this.sortType);
+
+  @override
+  final String sortType;
 
   @override
   String toString() {
-    return 'GuestsEvent.getAllGuests()';
+    return 'GuestsEvent.getAllGuests(sortType: $sortType)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetAllGuestsEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllGuestsEvent &&
+            (identical(other.sortType, sortType) ||
+                other.sortType == sortType));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, sortType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetAllGuestsEventCopyWith<_$GetAllGuestsEvent> get copyWith =>
+      __$$GetAllGuestsEventCopyWithImpl<_$GetAllGuestsEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getAllGuests,
+    required TResult Function(String sortType) getAllGuests,
     required TResult Function(GuestModel guestModel) allGuest,
   }) {
-    return getAllGuests();
+    return getAllGuests(sortType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getAllGuests,
+    TResult? Function(String sortType)? getAllGuests,
     TResult? Function(GuestModel guestModel)? allGuest,
   }) {
-    return getAllGuests?.call();
+    return getAllGuests?.call(sortType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getAllGuests,
+    TResult Function(String sortType)? getAllGuests,
     TResult Function(GuestModel guestModel)? allGuest,
     required TResult orElse(),
   }) {
     if (getAllGuests != null) {
-      return getAllGuests();
+      return getAllGuests(sortType);
     }
     return orElse();
   }
@@ -173,7 +200,12 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
 }
 
 abstract class GetAllGuestsEvent implements GuestsEvent {
-  const factory GetAllGuestsEvent() = _$GetAllGuestsEvent;
+  const factory GetAllGuestsEvent(final String sortType) = _$GetAllGuestsEvent;
+
+  String get sortType;
+  @JsonKey(ignore: true)
+  _$$GetAllGuestsEventCopyWith<_$GetAllGuestsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -251,7 +283,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getAllGuests,
+    required TResult Function(String sortType) getAllGuests,
     required TResult Function(GuestModel guestModel) allGuest,
   }) {
     return allGuest(guestModel);
@@ -260,7 +292,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getAllGuests,
+    TResult? Function(String sortType)? getAllGuests,
     TResult? Function(GuestModel guestModel)? allGuest,
   }) {
     return allGuest?.call(guestModel);
@@ -269,7 +301,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getAllGuests,
+    TResult Function(String sortType)? getAllGuests,
     TResult Function(GuestModel guestModel)? allGuest,
     required TResult orElse(),
   }) {
@@ -326,21 +358,22 @@ mixin _$GuestsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<GuestModel> guests) loaded,
+    required TResult Function(List<GuestModel> guests, String currentSortType)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<GuestModel> guests)? loaded,
+    TResult? Function(List<GuestModel> guests, String currentSortType)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<GuestModel> guests)? loaded,
+    TResult Function(List<GuestModel> guests, String currentSortType)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -426,7 +459,8 @@ class _$_InitialGuestsState implements _InitialGuestsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<GuestModel> guests) loaded,
+    required TResult Function(List<GuestModel> guests, String currentSortType)
+        loaded,
   }) {
     return initial();
   }
@@ -436,7 +470,7 @@ class _$_InitialGuestsState implements _InitialGuestsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<GuestModel> guests)? loaded,
+    TResult? Function(List<GuestModel> guests, String currentSortType)? loaded,
   }) {
     return initial?.call();
   }
@@ -446,7 +480,7 @@ class _$_InitialGuestsState implements _InitialGuestsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<GuestModel> guests)? loaded,
+    TResult Function(List<GuestModel> guests, String currentSortType)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -534,7 +568,8 @@ class _$_LoadingGuestsState implements _LoadingGuestsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<GuestModel> guests) loaded,
+    required TResult Function(List<GuestModel> guests, String currentSortType)
+        loaded,
   }) {
     return loading();
   }
@@ -544,7 +579,7 @@ class _$_LoadingGuestsState implements _LoadingGuestsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<GuestModel> guests)? loaded,
+    TResult? Function(List<GuestModel> guests, String currentSortType)? loaded,
   }) {
     return loading?.call();
   }
@@ -554,7 +589,7 @@ class _$_LoadingGuestsState implements _LoadingGuestsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<GuestModel> guests)? loaded,
+    TResult Function(List<GuestModel> guests, String currentSortType)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -608,7 +643,7 @@ abstract class _$$_LoadedGuestsStateCopyWith<$Res> {
           $Res Function(_$_LoadedGuestsState) then) =
       __$$_LoadedGuestsStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<GuestModel> guests});
+  $Res call({List<GuestModel> guests, String currentSortType});
 }
 
 /// @nodoc
@@ -623,12 +658,17 @@ class __$$_LoadedGuestsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? guests = null,
+    Object? currentSortType = null,
   }) {
     return _then(_$_LoadedGuestsState(
       null == guests
           ? _value._guests
           : guests // ignore: cast_nullable_to_non_nullable
               as List<GuestModel>,
+      null == currentSortType
+          ? _value.currentSortType
+          : currentSortType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -636,7 +676,9 @@ class __$$_LoadedGuestsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadedGuestsState implements _LoadedGuestsState {
-  const _$_LoadedGuestsState(final List<GuestModel> guests) : _guests = guests;
+  const _$_LoadedGuestsState(
+      final List<GuestModel> guests, this.currentSortType)
+      : _guests = guests;
 
   final List<GuestModel> _guests;
   @override
@@ -647,8 +689,11 @@ class _$_LoadedGuestsState implements _LoadedGuestsState {
   }
 
   @override
+  final String currentSortType;
+
+  @override
   String toString() {
-    return 'GuestsState.loaded(guests: $guests)';
+    return 'GuestsState.loaded(guests: $guests, currentSortType: $currentSortType)';
   }
 
   @override
@@ -656,12 +701,14 @@ class _$_LoadedGuestsState implements _LoadedGuestsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoadedGuestsState &&
-            const DeepCollectionEquality().equals(other._guests, _guests));
+            const DeepCollectionEquality().equals(other._guests, _guests) &&
+            (identical(other.currentSortType, currentSortType) ||
+                other.currentSortType == currentSortType));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_guests));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_guests), currentSortType);
 
   @JsonKey(ignore: true)
   @override
@@ -675,9 +722,10 @@ class _$_LoadedGuestsState implements _LoadedGuestsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<GuestModel> guests) loaded,
+    required TResult Function(List<GuestModel> guests, String currentSortType)
+        loaded,
   }) {
-    return loaded(guests);
+    return loaded(guests, currentSortType);
   }
 
   @override
@@ -685,9 +733,9 @@ class _$_LoadedGuestsState implements _LoadedGuestsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<GuestModel> guests)? loaded,
+    TResult? Function(List<GuestModel> guests, String currentSortType)? loaded,
   }) {
-    return loaded?.call(guests);
+    return loaded?.call(guests, currentSortType);
   }
 
   @override
@@ -695,11 +743,11 @@ class _$_LoadedGuestsState implements _LoadedGuestsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<GuestModel> guests)? loaded,
+    TResult Function(List<GuestModel> guests, String currentSortType)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(guests);
+      return loaded(guests, currentSortType);
     }
     return orElse();
   }
@@ -740,10 +788,12 @@ class _$_LoadedGuestsState implements _LoadedGuestsState {
 }
 
 abstract class _LoadedGuestsState implements GuestsState {
-  const factory _LoadedGuestsState(final List<GuestModel> guests) =
+  const factory _LoadedGuestsState(
+          final List<GuestModel> guests, final String currentSortType) =
       _$_LoadedGuestsState;
 
   List<GuestModel> get guests;
+  String get currentSortType;
   @JsonKey(ignore: true)
   _$$_LoadedGuestsStateCopyWith<_$_LoadedGuestsState> get copyWith =>
       throw _privateConstructorUsedError;

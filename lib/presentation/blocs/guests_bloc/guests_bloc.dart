@@ -1,3 +1,4 @@
+import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/domain/use_cases/add_guest_use_case.dart';
 import 'package:birthday_app/domain/use_cases/get_all_guests_use_case.dart';
@@ -24,7 +25,14 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
     emit(const GuestsState.loading());
     final response = await getAllGuestsUseCase();
 
-    emit(GuestsState.loaded(response));
+    if (event.sortType == AppStrings.sortName) {
+      response.sort((a, b) {
+        return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+      });
+    }
+    final sortType = event.sortType;
+
+    emit(GuestsState.loaded(response, sortType));
   }
 
   _onAddGuest(AddGuestEvent event, Emitter<GuestsState> emit) async {
