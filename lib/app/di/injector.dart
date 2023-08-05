@@ -3,6 +3,7 @@ import 'package:birthday_app/data/data_sources/local/hive/guests_hive/guests_loc
 import 'package:birthday_app/data/repositories/guests_repository_impl.dart';
 import 'package:birthday_app/domain/repositories/guests_repository.dart';
 import 'package:birthday_app/domain/use_cases/add_guest_use_case.dart';
+import 'package:birthday_app/domain/use_cases/delete_guest_use_case.dart';
 import 'package:birthday_app/domain/use_cases/get_all_guests_use_case.dart';
 import 'package:birthday_app/presentation/blocs/guests_bloc/guests_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -27,11 +28,15 @@ Future<void> initDependencies() async {
   injector.registerLazySingleton(
     () => AddGuestUseCase(guestRepository: injector()),
   );
+  injector.registerLazySingleton(
+    () => DeleteGuestUseCase(guestRepository: injector()),
+  );
 
   // BLoC
   injector.registerFactory(() => GuestsBloc(
         getAllGuestsUseCase: injector(),
         addGuestUseCase: injector(),
+        deleteGuestUseCase: injector(),
       ));
 
   // Init DB

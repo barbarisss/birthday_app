@@ -6,7 +6,8 @@ part 'guest_model.g.dart';
 @freezed
 class GuestModel with _$GuestModel {
   factory GuestModel({
-    @Default(0) int id,
+    required String id,
+    required DateTime additionDate,
     required String avatar,
     required String name,
     required String surname,

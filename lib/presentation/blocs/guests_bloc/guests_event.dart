@@ -4,4 +4,5 @@ part of 'guests_bloc.dart';
 class GuestsEvent with _$GuestsEvent {
   const factory GuestsEvent.getAllGuests(String sortType) = GetAllGuestsEvent;
   const factory GuestsEvent.allGuest(GuestModel guestModel) = AddGuestEvent;
+  const factory GuestsEvent.deleteGuest(String id) = DeleteGuestEvent;
 }

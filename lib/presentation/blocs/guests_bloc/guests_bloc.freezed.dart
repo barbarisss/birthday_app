@@ -20,18 +20,21 @@ mixin _$GuestsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String sortType) getAllGuests,
     required TResult Function(GuestModel guestModel) allGuest,
+    required TResult Function(String id) deleteGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String sortType)? getAllGuests,
     TResult? Function(GuestModel guestModel)? allGuest,
+    TResult? Function(String id)? deleteGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String sortType)? getAllGuests,
     TResult Function(GuestModel guestModel)? allGuest,
+    TResult Function(String id)? deleteGuest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$GuestsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetAllGuestsEvent value) getAllGuests,
     required TResult Function(AddGuestEvent value) allGuest,
+    required TResult Function(DeleteGuestEvent value) deleteGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetAllGuestsEvent value)? getAllGuests,
     TResult? Function(AddGuestEvent value)? allGuest,
+    TResult? Function(DeleteGuestEvent value)? deleteGuest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetAllGuestsEvent value)? getAllGuests,
     TResult Function(AddGuestEvent value)? allGuest,
+    TResult Function(DeleteGuestEvent value)? deleteGuest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +147,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String sortType) getAllGuests,
     required TResult Function(GuestModel guestModel) allGuest,
+    required TResult Function(String id) deleteGuest,
   }) {
     return getAllGuests(sortType);
   }
@@ -150,6 +157,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String sortType)? getAllGuests,
     TResult? Function(GuestModel guestModel)? allGuest,
+    TResult? Function(String id)? deleteGuest,
   }) {
     return getAllGuests?.call(sortType);
   }
@@ -159,6 +167,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String sortType)? getAllGuests,
     TResult Function(GuestModel guestModel)? allGuest,
+    TResult Function(String id)? deleteGuest,
     required TResult orElse(),
   }) {
     if (getAllGuests != null) {
@@ -172,6 +181,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetAllGuestsEvent value) getAllGuests,
     required TResult Function(AddGuestEvent value) allGuest,
+    required TResult Function(DeleteGuestEvent value) deleteGuest,
   }) {
     return getAllGuests(this);
   }
@@ -181,6 +191,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetAllGuestsEvent value)? getAllGuests,
     TResult? Function(AddGuestEvent value)? allGuest,
+    TResult? Function(DeleteGuestEvent value)? deleteGuest,
   }) {
     return getAllGuests?.call(this);
   }
@@ -190,6 +201,7 @@ class _$GetAllGuestsEvent implements GetAllGuestsEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetAllGuestsEvent value)? getAllGuests,
     TResult Function(AddGuestEvent value)? allGuest,
+    TResult Function(DeleteGuestEvent value)? deleteGuest,
     required TResult orElse(),
   }) {
     if (getAllGuests != null) {
@@ -285,6 +297,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String sortType) getAllGuests,
     required TResult Function(GuestModel guestModel) allGuest,
+    required TResult Function(String id) deleteGuest,
   }) {
     return allGuest(guestModel);
   }
@@ -294,6 +307,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String sortType)? getAllGuests,
     TResult? Function(GuestModel guestModel)? allGuest,
+    TResult? Function(String id)? deleteGuest,
   }) {
     return allGuest?.call(guestModel);
   }
@@ -303,6 +317,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String sortType)? getAllGuests,
     TResult Function(GuestModel guestModel)? allGuest,
+    TResult Function(String id)? deleteGuest,
     required TResult orElse(),
   }) {
     if (allGuest != null) {
@@ -316,6 +331,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetAllGuestsEvent value) getAllGuests,
     required TResult Function(AddGuestEvent value) allGuest,
+    required TResult Function(DeleteGuestEvent value) deleteGuest,
   }) {
     return allGuest(this);
   }
@@ -325,6 +341,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetAllGuestsEvent value)? getAllGuests,
     TResult? Function(AddGuestEvent value)? allGuest,
+    TResult? Function(DeleteGuestEvent value)? deleteGuest,
   }) {
     return allGuest?.call(this);
   }
@@ -334,6 +351,7 @@ class _$AddGuestEvent implements AddGuestEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetAllGuestsEvent value)? getAllGuests,
     TResult Function(AddGuestEvent value)? allGuest,
+    TResult Function(DeleteGuestEvent value)? deleteGuest,
     required TResult orElse(),
   }) {
     if (allGuest != null) {
@@ -349,6 +367,145 @@ abstract class AddGuestEvent implements GuestsEvent {
   GuestModel get guestModel;
   @JsonKey(ignore: true)
   _$$AddGuestEventCopyWith<_$AddGuestEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteGuestEventCopyWith<$Res> {
+  factory _$$DeleteGuestEventCopyWith(
+          _$DeleteGuestEvent value, $Res Function(_$DeleteGuestEvent) then) =
+      __$$DeleteGuestEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$DeleteGuestEventCopyWithImpl<$Res>
+    extends _$GuestsEventCopyWithImpl<$Res, _$DeleteGuestEvent>
+    implements _$$DeleteGuestEventCopyWith<$Res> {
+  __$$DeleteGuestEventCopyWithImpl(
+      _$DeleteGuestEvent _value, $Res Function(_$DeleteGuestEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteGuestEvent(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteGuestEvent implements DeleteGuestEvent {
+  const _$DeleteGuestEvent(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'GuestsEvent.deleteGuest(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteGuestEvent &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteGuestEventCopyWith<_$DeleteGuestEvent> get copyWith =>
+      __$$DeleteGuestEventCopyWithImpl<_$DeleteGuestEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String sortType) getAllGuests,
+    required TResult Function(GuestModel guestModel) allGuest,
+    required TResult Function(String id) deleteGuest,
+  }) {
+    return deleteGuest(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String sortType)? getAllGuests,
+    TResult? Function(GuestModel guestModel)? allGuest,
+    TResult? Function(String id)? deleteGuest,
+  }) {
+    return deleteGuest?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String sortType)? getAllGuests,
+    TResult Function(GuestModel guestModel)? allGuest,
+    TResult Function(String id)? deleteGuest,
+    required TResult orElse(),
+  }) {
+    if (deleteGuest != null) {
+      return deleteGuest(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetAllGuestsEvent value) getAllGuests,
+    required TResult Function(AddGuestEvent value) allGuest,
+    required TResult Function(DeleteGuestEvent value) deleteGuest,
+  }) {
+    return deleteGuest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetAllGuestsEvent value)? getAllGuests,
+    TResult? Function(AddGuestEvent value)? allGuest,
+    TResult? Function(DeleteGuestEvent value)? deleteGuest,
+  }) {
+    return deleteGuest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetAllGuestsEvent value)? getAllGuests,
+    TResult Function(AddGuestEvent value)? allGuest,
+    TResult Function(DeleteGuestEvent value)? deleteGuest,
+    required TResult orElse(),
+  }) {
+    if (deleteGuest != null) {
+      return deleteGuest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteGuestEvent implements GuestsEvent {
+  const factory DeleteGuestEvent(final String id) = _$DeleteGuestEvent;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DeleteGuestEventCopyWith<_$DeleteGuestEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

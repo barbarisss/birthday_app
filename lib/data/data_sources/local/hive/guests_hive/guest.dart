@@ -4,22 +4,25 @@ part 'guest.g.dart';
 @HiveType(typeId: 0)
 class Guest {
   @HiveField(0)
-  final int id;
+  final String id;
   @HiveField(1)
-  final String avatar;
+  final DateTime additionDate;
   @HiveField(2)
-  final String name;
+  final String avatar;
   @HiveField(3)
-  final String surname;
+  final String name;
   @HiveField(4)
-  final DateTime birthDate;
+  final String surname;
   @HiveField(5)
-  final String phoneNumber;
+  final DateTime birthDate;
   @HiveField(6)
+  final String phoneNumber;
+  @HiveField(7)
   final String profession;
 
   Guest({
     required this.id,
+    required this.additionDate,
     required this.avatar,
     required this.name,
     required this.surname,

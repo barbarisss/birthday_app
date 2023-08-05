@@ -20,7 +20,8 @@ GuestModel _$GuestModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GuestModel {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  DateTime get additionDate => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get surname => throw _privateConstructorUsedError;
@@ -41,7 +42,8 @@ abstract class $GuestModelCopyWith<$Res> {
       _$GuestModelCopyWithImpl<$Res, GuestModel>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
+      DateTime additionDate,
       String avatar,
       String name,
       String surname,
@@ -64,6 +66,7 @@ class _$GuestModelCopyWithImpl<$Res, $Val extends GuestModel>
   @override
   $Res call({
     Object? id = null,
+    Object? additionDate = null,
     Object? avatar = null,
     Object? name = null,
     Object? surname = null,
@@ -75,7 +78,11 @@ class _$GuestModelCopyWithImpl<$Res, $Val extends GuestModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
+      additionDate: null == additionDate
+          ? _value.additionDate
+          : additionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -113,7 +120,8 @@ abstract class _$$_GuestModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
+      DateTime additionDate,
       String avatar,
       String name,
       String surname,
@@ -134,6 +142,7 @@ class __$$_GuestModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? additionDate = null,
     Object? avatar = null,
     Object? name = null,
     Object? surname = null,
@@ -145,7 +154,11 @@ class __$$_GuestModelCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
+      additionDate: null == additionDate
+          ? _value.additionDate
+          : additionDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -178,7 +191,8 @@ class __$$_GuestModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GuestModel implements _GuestModel {
   _$_GuestModel(
-      {this.id = 0,
+      {required this.id,
+      required this.additionDate,
       required this.avatar,
       required this.name,
       required this.surname,
@@ -190,8 +204,9 @@ class _$_GuestModel implements _GuestModel {
       _$$_GuestModelFromJson(json);
 
   @override
-  @JsonKey()
-  final int id;
+  final String id;
+  @override
+  final DateTime additionDate;
   @override
   final String avatar;
   @override
@@ -207,7 +222,7 @@ class _$_GuestModel implements _GuestModel {
 
   @override
   String toString() {
-    return 'GuestModel(id: $id, avatar: $avatar, name: $name, surname: $surname, birthDate: $birthDate, phoneNumber: $phoneNumber, profession: $profession)';
+    return 'GuestModel(id: $id, additionDate: $additionDate, avatar: $avatar, name: $name, surname: $surname, birthDate: $birthDate, phoneNumber: $phoneNumber, profession: $profession)';
   }
 
   @override
@@ -216,6 +231,8 @@ class _$_GuestModel implements _GuestModel {
         (other.runtimeType == runtimeType &&
             other is _$_GuestModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.additionDate, additionDate) ||
+                other.additionDate == additionDate) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.surname, surname) || other.surname == surname) &&
@@ -229,8 +246,8 @@ class _$_GuestModel implements _GuestModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, avatar, name, surname,
-      birthDate, phoneNumber, profession);
+  int get hashCode => Object.hash(runtimeType, id, additionDate, avatar, name,
+      surname, birthDate, phoneNumber, profession);
 
   @JsonKey(ignore: true)
   @override
@@ -248,7 +265,8 @@ class _$_GuestModel implements _GuestModel {
 
 abstract class _GuestModel implements GuestModel {
   factory _GuestModel(
-      {final int id,
+      {required final String id,
+      required final DateTime additionDate,
       required final String avatar,
       required final String name,
       required final String surname,
@@ -260,7 +278,9 @@ abstract class _GuestModel implements GuestModel {
       _$_GuestModel.fromJson;
 
   @override
-  int get id;
+  String get id;
+  @override
+  DateTime get additionDate;
   @override
   String get avatar;
   @override

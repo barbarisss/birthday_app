@@ -8,7 +8,8 @@ part of 'guest_model.dart';
 
 _$_GuestModel _$$_GuestModelFromJson(Map<String, dynamic> json) =>
     _$_GuestModel(
-      id: json['id'] as int? ?? 0,
+      id: json['id'] as String,
+      additionDate: DateTime.parse(json['additionDate'] as String),
       avatar: json['avatar'] as String,
       name: json['name'] as String,
       surname: json['surname'] as String,
@@ -20,6 +21,7 @@ _$_GuestModel _$$_GuestModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_GuestModelToJson(_$_GuestModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'additionDate': instance.additionDate.toIso8601String(),
       'avatar': instance.avatar,
       'name': instance.name,
       'surname': instance.surname,

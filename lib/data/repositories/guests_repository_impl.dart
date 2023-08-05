@@ -18,4 +18,10 @@ class GuestsRepositoryImpl implements GuestsRepository {
     final response = await guestsLocalDataSource.addGuest(guestModel);
     return response;
   }
+
+  @override
+  Future<bool> deleteGuest(String id) async {
+    final response = await guestsLocalDataSource.deleteGuest(id);
+    return response;
+  }
 }

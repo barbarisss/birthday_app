@@ -1,6 +1,7 @@
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/domain/use_cases/add_guest_use_case.dart';
+import 'package:birthday_app/domain/use_cases/delete_guest_use_case.dart';
 import 'package:birthday_app/domain/use_cases/get_all_guests_use_case.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,35 +14,22 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
   GuestsBloc({
     required this.getAllGuestsUseCase,
     required this.addGuestUseCase,
+    required this.deleteGuestUseCase,
   }) : super(const GuestsState.initial()) {
     on<GetAllGuestsEvent>(_onGetAllGuests);
     on<AddGuestEvent>(_onAddGuest);
+    on<DeleteGuestEvent>(_onDeleteGuest);
   }
 
   final GetAllGuestsUseCase getAllGuestsUseCase;
   final AddGuestUseCase addGuestUseCase;
+  final DeleteGuestUseCase deleteGuestUseCase;
 
   _onGetAllGuests(GetAllGuestsEvent event, Emitter<GuestsState> emit) async {
     emit(const GuestsState.loading());
     final response = await getAllGuestsUseCase();
 
-    if (event.sortType == AppStrings.sortName) {
-      response.sort((a, b) {
-        return a.name.toLowerCase().compareTo(b.name.toLowerCase());
-      });
-    }
-    if (event.sortType == AppStrings.sortSurname) {
-      response.sort((a, b) {
-        return a.surname.toLowerCase().compareTo(b.surname.toLowerCase());
-      });
-    }
-    if (event.sortType == AppStrings.sortAge) {
-      response.sort((a, b) {
-        final ageFirst = _calculateAge(a.birthDate);
-        final ageSecond = _calculateAge(b.birthDate);
-        return ageFirst.compareTo(ageSecond);
-      });
-    }
+    _sorting(response, event.sortType);
 
     final sortType = event.sortType;
 
@@ -50,11 +38,48 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
 
   _onAddGuest(AddGuestEvent event, Emitter<GuestsState> emit) async {
     await addGuestUseCase(event.guestModel);
+    final response = await getAllGuestsUseCase();
+    final currentState = state.maybeMap(
+        loaded: (loadedState) {
+          _sorting(response, loadedState.currentSortType);
+          return loadedState.copyWith(guests: response);
+        },
+        orElse: () => state);
+    emit(currentState);
   }
 
-  int _calculateAge(DateTime birthDate) {
-    final now = DateTime.now();
-    final age = (now.difference(birthDate).inDays / 365).floor();
-    return age;
+  _onDeleteGuest(DeleteGuestEvent event, Emitter<GuestsState> emit) async {
+    await deleteGuestUseCase(event.id);
+    final response = await getAllGuestsUseCase();
+    final currentState = state.maybeMap(
+        loaded: (loadedState) {
+          _sorting(response, loadedState.currentSortType);
+          return loadedState.copyWith(guests: response);
+        },
+        orElse: () => state);
+    emit(currentState);
+  }
+
+  void _sorting(List<GuestModel> guests, String sortType) {
+    if (sortType == AppStrings.sortAddDate) {
+      guests.sort((a, b) {
+        return a.additionDate.compareTo(b.additionDate);
+      });
+    }
+    if (sortType == AppStrings.sortName) {
+      guests.sort((a, b) {
+        return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+      });
+    }
+    if (sortType == AppStrings.sortSurname) {
+      guests.sort((a, b) {
+        return a.surname.toLowerCase().compareTo(b.surname.toLowerCase());
+      });
+    }
+    if (sortType == AppStrings.sortAge) {
+      guests.sort((b, a) {
+        return a.birthDate.compareTo(b.birthDate);
+      });
+    }
   }
 }

@@ -22,10 +22,29 @@ class GuestsLocalDataSourceHive implements GuestsLocalDataSource {
   @override
   Future<List<GuestModel>> getAllGuests() async {
     final guestsBox = Hive.box<Guest>(_kGuestsBoxName);
+    // final List<GuestModel> resultList = [];
+
+    // guestsBox.toMap().forEach(
+    //   (key, guest) {
+    //     final guestModel = GuestModel(
+    //         id: guest.id,
+    //         additionDate: guest.additionDate,
+    //         avatar: guest.avatar,
+    //         name: guest.name,
+    //         surname: guest.surname,
+    //         birthDate: guest.birthDate,
+    //         phoneNumber: guest.phoneNumber,
+    //         profession: guest.profession);
+
+    //     resultList.add(guestModel);
+    //   },
+    // );
+
     final result = guestsBox.values
         .map(
           (guest) => GuestModel(
               id: guest.id,
+              additionDate: guest.additionDate,
               avatar: guest.avatar,
               name: guest.name,
               surname: guest.surname,
@@ -42,7 +61,8 @@ class GuestsLocalDataSourceHive implements GuestsLocalDataSource {
     final guestsBox = Hive.box<Guest>(_kGuestsBoxName);
 
     final convertedGuest = Guest(
-      id: guestsBox.isEmpty ? 0 : guestsBox.values.length,
+      id: guestModel.id,
+      additionDate: guestModel.additionDate,
       avatar: guestModel.avatar,
       name: guestModel.name,
       surname: guestModel.surname,
@@ -51,13 +71,14 @@ class GuestsLocalDataSourceHive implements GuestsLocalDataSource {
       profession: guestModel.profession,
     );
 
-    await guestsBox.add(convertedGuest);
+    await guestsBox.put(convertedGuest.id, convertedGuest);
     return true;
   }
 
   @override
-  Future<bool> deleteGuest(int index) {
-    // TODO: implement deleteItem
-    throw UnimplementedError();
+  Future<bool> deleteGuest(String id) async {
+    final guestsBox = Hive.box<Guest>(_kGuestsBoxName);
+    await guestsBox.delete(id);
+    return true;
   }
 }

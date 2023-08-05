@@ -4,5 +4,5 @@ abstract class GuestsLocalDataSource {
   Future<bool> initDb();
   Future<List<GuestModel>> getAllGuests();
   Future<bool> addGuest(GuestModel guestModel);
-  Future<bool> deleteGuest(int index);
+  Future<bool> deleteGuest(String id);
 }
