@@ -10,7 +10,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.labelText,
     this.suffixIcon = '',
-    this.inputNumber = false,
+    this.textInputType,
     this.inputFormatters,
     this.validator,
     this.onTap,
@@ -21,7 +21,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final List<TextInputFormatter>? inputFormatters;
   final String labelText;
-  final bool inputNumber;
+  final TextInputType? textInputType;
   final String suffixIcon;
   final VoidCallback? onTap;
 
@@ -37,7 +37,7 @@ class CustomTextField extends StatelessWidget {
         fontWeight: FontWeight.w500,
       ),
       cursorColor: AppColors.green,
-      keyboardType: inputNumber ? TextInputType.phone : null,
+      keyboardType: textInputType,
       validator: validator,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(

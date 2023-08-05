@@ -7,16 +7,13 @@ import 'package:birthday_app/core/utils/images.dart';
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/presentation/blocs/guests_bloc/guests_bloc.dart';
-import 'package:birthday_app/presentation/screens/guests/widgets/guest_list.dart';
+import 'package:birthday_app/presentation/screens/guests/widgets/guest_card.dart';
+import 'package:birthday_app/presentation/screens/guests/widgets/guest_modal_bottom_sheet.dart';
 import 'package:birthday_app/presentation/screens/guests/widgets/info_section.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_button.dart';
-import 'package:birthday_app/presentation/shared_widgets/custom_text_field.dart';
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';
-import 'package:birthday_app/presentation/shared_widgets/modal_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
@@ -31,7 +28,6 @@ class GuestsScreenWidget extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     late Widget bodyWidget;
-    late Widget floatingButtonWidget;
 
     final sorts = [
       AppStrings.sortAddDate,
@@ -61,100 +57,45 @@ class GuestsScreenWidget extends StatelessWidget {
       child: Scaffold(
         appBar: const MainAppBarWidget(title: AppStrings.guests),
         floatingActionButton: BlocBuilder<GuestsBloc, GuestsState>(
-          builder: (context, state) {
-            state.maybeWhen(
-              orElse: () => floatingButtonWidget = const SizedBox(),
-              loaded: (guests, currentSortType) {
-                floatingButtonWidget = CustomFloatingActionButton(
-                  onPressed: () {
-                    final modalBottomSheet = ModalBottomSheet(
-                      context: context,
-                      onButtonPressed: () {
-                        final id = Uuid().v4();
+          builder: (context, state) => CustomFloatingActionButton(
+            onPressed: () {
+              final guestModalBottomSheet = GuestModalBottomSheet(
+                context: context,
+                onButtonPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    context.read<GuestsBloc>().add(
+                          AddGuestEvent(
+                            GuestModel(
+                              id: const Uuid().v4(),
+                              additionDate: DateTime.now(),
+                              avatar: AppImages.avatar,
+                              name: nameController.text,
+                              surname: surnameController.text,
+                              birthDate: parse(birthDateController.text),
+                              phoneNumber: phoneController.text,
+                              profession: professionController.text,
+                            ),
+                          ),
+                        );
 
-                        if (formKey.currentState!.validate()) {
-                          context.read<GuestsBloc>().add(
-                                AddGuestEvent(
-                                  GuestModel(
-                                    id: const Uuid().v4(),
-                                    additionDate: DateTime.now(),
-                                    avatar: AppImages.avatar,
-                                    name: nameController.text,
-                                    surname: surnameController.text,
-                                    birthDate: parse(birthDateController.text),
-                                    phoneNumber: phoneController.text,
-                                    profession: professionController.text,
-                                  ),
-                                ),
-                              );
+                    AutoRouter.of(context).pop();
+                  }
+                },
+                onWillPop: () async {
+                  cleanControllers();
+                  return true;
+                },
+                formKey: formKey,
+                nameController: nameController,
+                surnameController: surnameController,
+                birthDateController: birthDateController,
+                phoneController: phoneController,
+                professionController: professionController,
+              );
 
-                          AutoRouter.of(context).pop();
-                          cleanControllers();
-                        }
-                      },
-                      buttomTitle: AppStrings.signUp,
-                      content: Form(
-                        key: formKey,
-                        child: Column(children: [
-                          CustomTextField(
-                            controller: nameController,
-                            labelText: AppStrings.name,
-                            validator: (value) => textValidator(value),
-                          ),
-                          SizedBox(height: 12.h),
-                          CustomTextField(
-                            controller: surnameController,
-                            labelText: AppStrings.surname,
-                            validator: (value) => textValidator(value),
-                          ),
-                          SizedBox(height: 12.h),
-                          CustomTextField(
-                            controller: birthDateController,
-                            labelText: AppStrings.birthDate,
-                            suffixIcon: AppIcons.calendar,
-                            inputNumber: true,
-                            onTap: () async {
-                              final pickedDate =
-                                  await DatePicker.showSimpleDatePicker(
-                                context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1962),
-                                lastDate: DateTime.now(),
-                                dateFormat: "dd-MMMM-yyyy",
-                                locale: DateTimePickerLocale.ru,
-                                titleText: AppStrings.choseDate,
-                                looping: true,
-                              );
-                              if (pickedDate != null) {
-                                birthDateController.text = format(pickedDate);
-                              }
-                            },
-                            validator: (value) => textValidator(value),
-                          ),
-                          SizedBox(height: 12.h),
-                          CustomTextField(
-                            controller: phoneController,
-                            labelText: AppStrings.phone,
-                            inputNumber: true,
-                          ),
-                          SizedBox(height: 12.h),
-                          CustomTextField(
-                            controller: professionController,
-                            labelText: AppStrings.profession,
-                            validator: (value) => textValidator(value),
-                          ),
-                        ]),
-                      ),
-                    );
-
-                    modalBottomSheet.show();
-                  },
-                );
-              },
-            );
-
-            return floatingButtonWidget;
-          },
+              guestModalBottomSheet.show();
+            },
+          ),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(
@@ -176,7 +117,7 @@ class GuestsScreenWidget extends StatelessWidget {
                   bodyWidget = Column(
                     children: [
                       SizedBox(height: AppConstants.mainPaddingHeight),
-                      InfoSectionWidget(
+                      TopSectionWidget(
                         guestsLenght: guests.length,
                         popupMenuItems: sorts
                             .map(
@@ -205,7 +146,7 @@ class GuestsScreenWidget extends StatelessWidget {
                                     context.read<GuestsBloc>().add(
                                         DeleteGuestEvent(guests[index].id));
                                   },
-                                  child: GuestWidget(
+                                  child: GuestCardWidget(
                                     guest: guests[index],
                                   ),
                                 ),
@@ -228,19 +169,6 @@ class GuestsScreenWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String? textValidator(dynamic val) {
-    if (val.toString().isEmpty) {
-      return '*Обязательное поле для заполнения';
-    } else {
-      return null;
-    }
-  }
-
-  String format(DateTime date) {
-    String pattern = 'dd.MM.yyyy';
-    return DateFormat(pattern).format(date);
   }
 
   DateTime parse(String str) {

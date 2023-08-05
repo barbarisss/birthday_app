@@ -90,8 +90,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 //   }
 // }
 
-class InfoSectionWidget extends StatelessWidget {
-  const InfoSectionWidget({
+class TopSectionWidget extends StatelessWidget {
+  const TopSectionWidget({
     required this.guestsLenght,
     required this.popupMenuItems,
     required this.currentSortType,

@@ -5,43 +5,8 @@ import 'package:birthday_app/presentation/screens/guests/guests_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// class GuestListWidget extends StatelessWidget {
-//   const GuestListWidget({
-//     required this.guests,
-//     required this.bloc,
-//     this.onDismissed,
-//     super.key,
-//   });
-
-//   final List<GuestModel> guests;
-//   final DismissDirectionCallback? onDismissed;
-//   final GuestsBloc bloc;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListView.builder(
-//       itemBuilder: (context, index) {
-//         return Column(
-//           children: [
-//             Dismissible(
-//               key: ObjectKey(guests[index]),
-//               onDismissed: onDismissed,
-//               child: _GuestWidget(
-//                 guest: guests[index],
-//               ),
-//             ),
-//             SizedBox(height: AppConstants.mainPaddingHeight),
-//           ],
-//         );
-//       },
-//       itemCount: guests.length,
-//       physics: const BouncingScrollPhysics(),
-//     );
-//   }
-// }
-
-class GuestWidget extends StatelessWidget {
-  const GuestWidget({
+class GuestCardWidget extends StatelessWidget {
+  const GuestCardWidget({
     required this.guest,
     super.key,
   });
