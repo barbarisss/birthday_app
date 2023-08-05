@@ -19,6 +19,8 @@ import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
+enum SortType { sortAddDate, sortName, sortSurname, sortAge }
+
 @RoutePage()
 class GuestsScreenWidget extends StatelessWidget {
   const GuestsScreenWidget({super.key});
@@ -30,8 +32,10 @@ class GuestsScreenWidget extends StatelessWidget {
     late Widget bodyWidget;
 
     final sorts = [
-      AppStrings.sortWithout,
+      AppStrings.sortAddDate,
       AppStrings.sortName,
+      AppStrings.sortSurname,
+      AppStrings.sortAge,
     ];
 
     final formKey = GlobalKey<FormState>();
@@ -51,7 +55,7 @@ class GuestsScreenWidget extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => injector<GuestsBloc>()
-        ..add(const GetAllGuestsEvent(AppStrings.sortWithout)),
+        ..add(const GetAllGuestsEvent(AppStrings.sortAddDate)),
       child: Scaffold(
         appBar: const MainAppBarWidget(title: AppStrings.guests),
         floatingActionButton: BlocBuilder<GuestsBloc, GuestsState>(
@@ -78,7 +82,7 @@ class GuestsScreenWidget extends StatelessWidget {
                       AutoRouter.of(context).pop();
                       context
                           .read<GuestsBloc>()
-                          .add(const GetAllGuestsEvent(AppStrings.sortWithout));
+                          .add(const GetAllGuestsEvent(AppStrings.sortAddDate));
                       cleanControllers();
                     }
                   },

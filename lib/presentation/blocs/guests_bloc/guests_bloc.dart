@@ -30,6 +30,19 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
         return a.name.toLowerCase().compareTo(b.name.toLowerCase());
       });
     }
+    if (event.sortType == AppStrings.sortSurname) {
+      response.sort((a, b) {
+        return a.surname.toLowerCase().compareTo(b.surname.toLowerCase());
+      });
+    }
+    if (event.sortType == AppStrings.sortAge) {
+      response.sort((a, b) {
+        final ageFirst = _calculateAge(a.birthDate);
+        final ageSecond = _calculateAge(b.birthDate);
+        return ageFirst.compareTo(ageSecond);
+      });
+    }
+
     final sortType = event.sortType;
 
     emit(GuestsState.loaded(response, sortType));
@@ -37,5 +50,11 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
 
   _onAddGuest(AddGuestEvent event, Emitter<GuestsState> emit) async {
     await addGuestUseCase(event.guestModel);
+  }
+
+  int _calculateAge(DateTime birthDate) {
+    final now = DateTime.now();
+    final age = (now.difference(birthDate).inDays / 365).floor();
+    return age;
   }
 }
