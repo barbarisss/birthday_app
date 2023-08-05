@@ -27,7 +27,7 @@ class GuestListWidget extends StatelessWidget {
         );
       },
       itemCount: guests.length,
-      physics: AlwaysScrollableScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
     );
   }
 }

@@ -34,6 +34,7 @@ class GuestsScreenWidget extends StatelessWidget {
       AppStrings.sortName,
     ];
 
+    final formKey = GlobalKey<FormState>();
     final TextEditingController nameController = TextEditingController();
     final TextEditingController surnameController = TextEditingController();
     final TextEditingController birthDateController = TextEditingController();
@@ -60,71 +61,80 @@ class GuestsScreenWidget extends StatelessWidget {
                 final modalBottomSheet = ModalBottomSheet(
                   context: context,
                   onButtonPressed: () {
-                    context.read<GuestsBloc>().add(
-                          AddGuestEvent(
-                            GuestModel(
-                              avatar: AppImages.avatar,
-                              name: nameController.text,
-                              surname: surnameController.text,
-                              birthDate: parse(birthDateController.text),
-                              phoneNumber: phoneController.text,
-                              profession: professionController.text,
+                    if (formKey.currentState!.validate()) {
+                      context.read<GuestsBloc>().add(
+                            AddGuestEvent(
+                              GuestModel(
+                                avatar: AppImages.avatar,
+                                name: nameController.text,
+                                surname: surnameController.text,
+                                birthDate: parse(birthDateController.text),
+                                phoneNumber: phoneController.text,
+                                profession: professionController.text,
+                              ),
                             ),
-                          ),
-                        );
+                          );
 
-                    AutoRouter.of(context).pop();
-                    context
-                        .read<GuestsBloc>()
-                        .add(const GetAllGuestsEvent(AppStrings.sortWithout));
-                    cleanControllers();
+                      AutoRouter.of(context).pop();
+                      context
+                          .read<GuestsBloc>()
+                          .add(const GetAllGuestsEvent(AppStrings.sortWithout));
+                      cleanControllers();
+                    }
                   },
                   buttomTitle: AppStrings.signUp,
-                  content: Column(children: [
-                    CustomTextField(
-                      controller: nameController,
-                      labelText: AppStrings.name,
-                    ),
-                    SizedBox(height: 12.h),
-                    CustomTextField(
-                      controller: surnameController,
-                      labelText: AppStrings.surname,
-                    ),
-                    SizedBox(height: 12.h),
-                    CustomTextField(
-                      controller: birthDateController,
-                      labelText: AppStrings.birthDate,
-                      suffixIcon: AppIcons.calendar,
-                      inputNumber: true,
-                      onTap: () async {
-                        final pickedDate =
-                            await DatePicker.showSimpleDatePicker(
-                          context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1962),
-                          lastDate: DateTime.now(),
-                          dateFormat: "dd-MMMM-yyyy",
-                          locale: DateTimePickerLocale.ru,
-                          titleText: AppStrings.choseDate,
-                          looping: true,
-                        );
-                        if (pickedDate != null) {
-                          birthDateController.text = format(pickedDate);
-                        }
-                      },
-                    ),
-                    SizedBox(height: 12.h),
-                    CustomTextField(
-                      controller: phoneController,
-                      labelText: AppStrings.phone,
-                      inputNumber: true,
-                    ),
-                    SizedBox(height: 12.h),
-                    CustomTextField(
-                      controller: professionController,
-                      labelText: AppStrings.profession,
-                    ),
-                  ]),
+                  content: Form(
+                    key: formKey,
+                    child: Column(children: [
+                      CustomTextField(
+                        controller: nameController,
+                        labelText: AppStrings.name,
+                        validator: (value) => textValidator(value),
+                      ),
+                      SizedBox(height: 12.h),
+                      CustomTextField(
+                        controller: surnameController,
+                        labelText: AppStrings.surname,
+                        validator: (value) => textValidator(value),
+                      ),
+                      SizedBox(height: 12.h),
+                      CustomTextField(
+                        controller: birthDateController,
+                        labelText: AppStrings.birthDate,
+                        suffixIcon: AppIcons.calendar,
+                        inputNumber: true,
+                        onTap: () async {
+                          final pickedDate =
+                              await DatePicker.showSimpleDatePicker(
+                            context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1962),
+                            lastDate: DateTime.now(),
+                            dateFormat: "dd-MMMM-yyyy",
+                            locale: DateTimePickerLocale.ru,
+                            titleText: AppStrings.choseDate,
+                            looping: true,
+                          );
+                          if (pickedDate != null) {
+                            birthDateController.text = format(pickedDate);
+                          }
+                        },
+                        validator: (value) => textValidator(value),
+                      ),
+                      SizedBox(height: 12.h),
+                      CustomTextField(
+                        controller: phoneController,
+                        labelText: AppStrings.phone,
+                        inputNumber: true,
+                      ),
+                      SizedBox(height: 12.h),
+                      CustomTextField(
+                        controller: professionController,
+                        labelText: AppStrings.profession,
+                        validator: (value) => textValidator(value),
+                      ),
+                    ]),
+                  ),
                 );
 
                 modalBottomSheet.show();
@@ -183,6 +193,14 @@ class GuestsScreenWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String? textValidator(dynamic val) {
+    if (val.toString().isEmpty) {
+      return '*Обязательное поле для заполнения';
+    } else {
+      return null;
+    }
   }
 
   String format(DateTime date) {
