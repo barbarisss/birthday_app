@@ -22,24 +22,6 @@ class GuestsLocalDataSourceHive implements GuestsLocalDataSource {
   @override
   Future<List<GuestModel>> getAllGuests() async {
     final guestsBox = Hive.box<Guest>(_kGuestsBoxName);
-    // final List<GuestModel> resultList = [];
-
-    // guestsBox.toMap().forEach(
-    //   (key, guest) {
-    //     final guestModel = GuestModel(
-    //         id: guest.id,
-    //         additionDate: guest.additionDate,
-    //         avatar: guest.avatar,
-    //         name: guest.name,
-    //         surname: guest.surname,
-    //         birthDate: guest.birthDate,
-    //         phoneNumber: guest.phoneNumber,
-    //         profession: guest.profession);
-
-    //     resultList.add(guestModel);
-    //   },
-    // );
-
     final result = guestsBox.values
         .map(
           (guest) => GuestModel(

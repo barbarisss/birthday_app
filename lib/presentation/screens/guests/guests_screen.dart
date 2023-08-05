@@ -51,6 +51,15 @@ class GuestsScreenWidget extends StatelessWidget {
       professionController.clear();
     }
 
+    void fillControllers(GuestModel guestModel) {
+      nameController.text = guestModel.name;
+      surnameController.text = guestModel.surname;
+      birthDateController.text =
+          DateFormat(AppStrings.datePattern).format(guestModel.birthDate);
+      phoneController.text = guestModel.phoneNumber;
+      professionController.text = guestModel.profession;
+    }
+
     return BlocProvider(
       create: (context) => injector<GuestsBloc>()
         ..add(const GetAllGuestsEvent(AppStrings.sortAddDate)),
@@ -147,6 +156,52 @@ class GuestsScreenWidget extends StatelessWidget {
                                         DeleteGuestEvent(guests[index].id));
                                   },
                                   child: GuestCardWidget(
+                                    onDoubleTap: () {
+                                      fillControllers(guests[index]);
+
+                                      final guestModalBottomSheet =
+                                          GuestModalBottomSheet(
+                                        context: context,
+                                        onButtonPressed: () {
+                                          if (formKey.currentState!
+                                              .validate()) {
+                                            context.read<GuestsBloc>().add(
+                                                  AddGuestEvent(
+                                                    guests[index].copyWith(
+                                                      name: nameController.text,
+                                                      surname: surnameController
+                                                          .text,
+                                                      birthDate: parse(
+                                                          birthDateController
+                                                              .text),
+                                                      phoneNumber:
+                                                          phoneController.text,
+                                                      profession:
+                                                          professionController
+                                                              .text,
+                                                    ),
+                                                  ),
+                                                );
+
+                                            AutoRouter.of(context).pop();
+                                          }
+                                        },
+                                        onWillPop: () async {
+                                          cleanControllers();
+                                          return true;
+                                        },
+                                        formKey: formKey,
+                                        nameController: nameController,
+                                        surnameController: surnameController,
+                                        birthDateController:
+                                            birthDateController,
+                                        phoneController: phoneController,
+                                        professionController:
+                                            professionController,
+                                      );
+
+                                      guestModalBottomSheet.show();
+                                    },
                                     guest: guests[index],
                                   ),
                                 ),
@@ -172,7 +227,7 @@ class GuestsScreenWidget extends StatelessWidget {
   }
 
   DateTime parse(String str) {
-    String pattern = 'dd.MM.yyyy';
+    String pattern = AppStrings.datePattern;
     return DateFormat(pattern).parse(str);
   }
 }
