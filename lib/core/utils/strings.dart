@@ -32,4 +32,6 @@ abstract class AppStrings {
   static const sortSurname = 'По фамилии';
   static const sortAge = 'По возрасту';
   static const choseDate = 'Выберите дату';
+  static const errorText = '*Обязательное поле для заполнения';
+  static const datePattern = 'dd.MM.yyyy';
 }

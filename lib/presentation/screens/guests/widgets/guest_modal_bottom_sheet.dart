@@ -32,14 +32,14 @@ class GuestModalBottomSheet {
 
   String? _textValidator(dynamic val) {
     if (val.toString().isEmpty) {
-      return '*Обязательное поле для заполнения';
+      return AppStrings.errorText;
     } else {
       return null;
     }
   }
 
   String _format(DateTime date) {
-    String pattern = 'dd.MM.yyyy';
+    String pattern = AppStrings.datePattern;
     return DateFormat(pattern).format(date);
   }
 
