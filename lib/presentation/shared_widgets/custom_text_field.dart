@@ -49,7 +49,7 @@ class CustomTextField extends StatelessWidget {
         ),
         filled: true,
         isDense: true,
-        fillColor: AppColors.textFieldWhite,
+        fillColor: AppColors.lightGreen,
         labelText: labelText,
         labelStyle: textTheme.bodyLarge?.copyWith(
           height: AppConstants.lh23 / AppFontSize.fs16,

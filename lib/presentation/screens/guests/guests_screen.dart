@@ -199,7 +199,8 @@ class GuestsScreenWidget extends StatelessWidget {
 
                                       guestModalBottomSheet.show();
                                     },
-                                    guest: guests[index],
+                                    textTheme: textTheme,
+                                    guestModel: guests[index],
                                   ),
                                 ),
                                 SizedBox(

@@ -7,22 +7,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GuestCardWidget extends StatelessWidget {
   const GuestCardWidget({
-    required this.guest,
+    required this.guestModel,
+    required this.textTheme,
     this.onDoubleTap,
     super.key,
   });
 
-  final GuestModel guest;
+  final GuestModel guestModel;
   final GestureTapCallback? onDoubleTap;
+  final TextTheme textTheme;
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-
     const MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start;
     const CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start;
 
-    final age = calculateAge(guest.birthDate);
+    final age = calculateAge(guestModel.birthDate);
     final noun = getNoun(age, 'год', 'года', 'лет');
 
     return GestureDetector(
@@ -32,7 +32,7 @@ class GuestCardWidget extends StatelessWidget {
         crossAxisAlignment: crossAxisAlignment,
         children: [
           Image.asset(
-            guest.avatar,
+            guestModel.avatar,
             height: 64.h,
           ),
           SizedBox(width: AppConstants.mainPaddingWidth),
@@ -41,7 +41,7 @@ class GuestCardWidget extends StatelessWidget {
             crossAxisAlignment: crossAxisAlignment,
             children: [
               Text(
-                '${guest.name} ${guest.surname}',
+                '${guestModel.name} ${guestModel.surname}',
                 style: textTheme.bodyMedium?.copyWith(
                   color: AppColors.black,
                   fontWeight: FontWeight.w500,
@@ -54,7 +54,7 @@ class GuestCardWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                guest.profession,
+                guestModel.profession,
                 style: textTheme.bodyMedium,
               ),
             ],
