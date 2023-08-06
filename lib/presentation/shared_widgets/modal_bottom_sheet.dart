@@ -1,6 +1,6 @@
 import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
-import 'package:birthday_app/presentation/shared_widgets/custom_button_widget.dart';
+import 'package:birthday_app/presentation/shared_widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

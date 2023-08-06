@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:birthday_app/app/route/app_router.gr.dart';
 import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
+import 'package:birthday_app/core/utils/font_size.dart';
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/menu_item/menu_item_model.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,9 @@ class _MenuViewWidgetState extends State<MenuViewWidget> {
                     ),
                     Text(
                       widget.items[index].title,
-                      style: textTheme.bodyMedium,
+                      style: textTheme.bodyMedium?.copyWith(
+                        height: AppConstants.lh14 / AppFontSize.fs14,
+                      ),
                     ),
                   ],
                 ),

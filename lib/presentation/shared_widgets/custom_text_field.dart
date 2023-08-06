@@ -1,5 +1,6 @@
 import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
+import 'package:birthday_app/core/utils/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,6 +36,7 @@ class CustomTextField extends StatelessWidget {
       style: textTheme.bodyLarge?.copyWith(
         color: AppColors.black,
         fontWeight: FontWeight.w500,
+        height: AppConstants.lh23 / AppFontSize.fs16,
       ),
       cursorColor: AppColors.green,
       keyboardType: textInputType,
@@ -49,7 +51,9 @@ class CustomTextField extends StatelessWidget {
         isDense: true,
         fillColor: AppColors.textFieldWhite,
         labelText: labelText,
-        labelStyle: textTheme.bodyLarge,
+        labelStyle: textTheme.bodyLarge?.copyWith(
+          height: AppConstants.lh23 / AppFontSize.fs16,
+        ),
         suffixIcon: suffixIcon == ''
             ? null
             : Padding(

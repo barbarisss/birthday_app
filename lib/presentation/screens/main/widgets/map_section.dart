@@ -1,4 +1,6 @@
 import 'package:birthday_app/core/utils/colors.dart';
+import 'package:birthday_app/core/utils/constants.dart';
+import 'package:birthday_app/core/utils/font_size.dart';
 import 'package:birthday_app/core/utils/images.dart';
 import 'package:birthday_app/core/utils/links.dart';
 import 'package:birthday_app/core/utils/strings.dart';
@@ -63,7 +65,9 @@ class _MapSectionWidgetState extends State<MapSectionWidget> {
         SizedBox(height: 4.h),
         Text(
           AppStrings.address,
-          style: textTheme.bodyMedium,
+          style: textTheme.bodyMedium?.copyWith(
+            height: AppConstants.lh14 / AppFontSize.fs14,
+          ),
         ),
         SizedBox(height: 4.h),
         TextButton(

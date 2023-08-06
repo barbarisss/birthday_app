@@ -1,4 +1,6 @@
 import 'package:birthday_app/core/utils/colors.dart';
+import 'package:birthday_app/core/utils/constants.dart';
+import 'package:birthday_app/core/utils/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,8 +22,6 @@ class CustomButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ElevatedButtonThemeData buttonTheme = Theme.of(context).elevatedButtonTheme;
-
     return SizedBox(
       height: height,
       width: width,
@@ -40,7 +40,8 @@ class CustomButtonWidget extends StatelessWidget {
             TextStyle(
               fontFamily: 'Jost',
               fontWeight: FontWeight.w600,
-              fontSize: 16.sp,
+              fontSize: AppFontSize.fs16,
+              height: AppConstants.lh23 / AppFontSize.fs16,
             ),
           ),
         ),

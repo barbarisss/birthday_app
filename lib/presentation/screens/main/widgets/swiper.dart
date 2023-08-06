@@ -53,7 +53,6 @@ class _SwiperWidgetState extends State<SwiperWidget> {
               fontFamily: 'Jost',
               color: AppColors.white,
               fontWeight: FontWeight.w700,
-              height: 1,
             ),
           ),
         ),
