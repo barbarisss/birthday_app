@@ -9,7 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:birthday_app/domain/models/menu_item_model.dart' as _i5;
+import 'package:birthday_app/data/models/menu_item/menu_item_model.dart' as _i5;
 import 'package:birthday_app/presentation/screens/guests/guests_screen.dart'
     as _i1;
 import 'package:birthday_app/presentation/screens/main/main_screen.dart' as _i2;

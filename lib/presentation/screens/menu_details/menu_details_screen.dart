@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birthday_app/core/utils/constants.dart';
-import 'package:birthday_app/domain/models/menu_item_model.dart';
+import 'package:birthday_app/data/models/menu_item/menu_item_model.dart';
 import 'package:birthday_app/presentation/screens/menu_details/widgets/menu_item_ingredients.dart';
 import 'package:birthday_app/presentation/screens/menu_details/widgets/menu_item_image.dart';
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';

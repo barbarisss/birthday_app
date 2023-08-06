@@ -1,8 +1,8 @@
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
-import 'package:birthday_app/domain/use_cases/add_guest_use_case.dart';
-import 'package:birthday_app/domain/use_cases/delete_guest_use_case.dart';
-import 'package:birthday_app/domain/use_cases/get_all_guests_use_case.dart';
+import 'package:birthday_app/domain/use_cases/guests/add_guest_use_case.dart';
+import 'package:birthday_app/domain/use_cases/guests/delete_guest_use_case.dart';
+import 'package:birthday_app/domain/use_cases/guests/get_all_guests_use_case.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
