@@ -21,8 +21,8 @@ class WishesLocalDataSourceHive implements WishesLocalDataSource {
 
   @override
   Future<List<WishModel>> getAllWishes() async {
-    final guestsBox = Hive.box<Wish>(_kWishesBoxName);
-    final result = guestsBox.values
+    final wishBox = Hive.box<Wish>(_kWishesBoxName);
+    final result = wishBox.values
         .map(
           (wish) => WishModel(
             title: wish.title,
@@ -36,34 +36,36 @@ class WishesLocalDataSourceHive implements WishesLocalDataSource {
 
   @override
   Future<bool> addWish(WishModel wishModel) async {
-    final guestsBox = Hive.box<Wish>(_kWishesBoxName);
+    final wishBox = Hive.box<Wish>(_kWishesBoxName);
 
     final convertedWish = Wish(
       title: wishModel.title,
       link: wishModel.link,
       isSelected: wishModel.isSelected,
     );
-    await guestsBox.add(convertedWish);
+    await wishBox.add(convertedWish);
     // await guestsBox.put(convertedWish.id, convertedWish);
     return true;
   }
 
   @override
   Future<bool> selectWish(WishModel wishModel, int index) async {
-    final guestsBox = Hive.box<Wish>(_kWishesBoxName);
+    final wishBox = Hive.box<Wish>(_kWishesBoxName);
+
     final convertedWish = Wish(
       title: wishModel.title,
       link: wishModel.link,
       isSelected: !wishModel.isSelected,
     );
-    await guestsBox.putAt(index, convertedWish);
+
+    await wishBox.putAt(index, convertedWish);
     return true;
   }
 
   @override
   Future<bool> deleteWish(int index) async {
-    final guestsBox = Hive.box<Wish>(_kWishesBoxName);
-    await guestsBox.deleteAt(index);
+    final wishBox = Hive.box<Wish>(_kWishesBoxName);
+    await wishBox.deleteAt(index);
     return true;
   }
 }

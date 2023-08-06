@@ -11,7 +11,6 @@ import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uuid/uuid.dart';
 
 @RoutePage()
 class WishesScreenWidget extends StatelessWidget {
@@ -31,29 +30,6 @@ class WishesScreenWidget extends StatelessWidget {
       titleController.clear();
       linkController.clear();
     }
-
-    void fillControllers(WishModel wishModel) {
-      titleController.text = wishModel.title;
-      linkController.text = wishModel.link;
-    }
-
-    // final List<WishModel> wishes = [
-    //   WishModel(
-    //     id: const Uuid().v4(),
-    //     title: 'Название1',
-    //     link: 'Ссылка1',
-    //   ),
-    //   WishModel(
-    //     id: const Uuid().v4(),
-    //     title: 'Название1',
-    //     link: 'Ссылка1',
-    //   ),
-    //   WishModel(
-    //     id: const Uuid().v4(),
-    //     title: 'Название1',
-    //     link: 'Ссылка1',
-    //   ),
-    // ];
 
     return BlocProvider(
       create: (context) =>

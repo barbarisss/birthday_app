@@ -2,7 +2,6 @@ import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
 import 'package:birthday_app/core/utils/font_size.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData theme() {
   return ThemeData(

@@ -1,11 +1,8 @@
-import 'package:birthday_app/core/utils/icons.dart';
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_text_field.dart';
 import 'package:birthday_app/presentation/shared_widgets/modal_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 
 class WishModalBottomSheet {
   WishModalBottomSheet({

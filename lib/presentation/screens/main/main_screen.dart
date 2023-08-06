@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birthday_app/app/di/injector.dart';
-import 'package:birthday_app/data/models/entertainment_item/entertainment_item_model.dart';
 import 'package:birthday_app/presentation/blocs/entertainment_bloc/entertainment_bloc.dart';
 import 'package:birthday_app/presentation/blocs/menu_bloc/menu_bloc.dart';
 import 'package:birthday_app/presentation/screens/main/widgets/button_section.dart';

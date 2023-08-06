@@ -20,7 +20,7 @@ class WishCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int lenghtLimit = 35;
+    const lenghtLimit = 35;
 
     return GestureDetector(
       onTap: onTap,
@@ -71,13 +71,10 @@ class WishCardWidget extends StatelessWidget {
 
   void goToWishLink(String link) {
     final Uri uri = Uri.parse(link);
-    if (uri.isAbsolute) {
-      launchUrl(
-        uri,
-        mode: LaunchMode.externalApplication,
-      );
-    } else {
-      print("лооооооооооооооооох пииииииииииииииииииидр");
-    }
+
+    launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    );
   }
 }
