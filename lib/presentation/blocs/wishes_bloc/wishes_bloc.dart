@@ -42,7 +42,6 @@ class WishesBloc extends Bloc<WishesEvent, WishesState> {
   }
 
   _onSelectWishEvent(SelectWishEvent event, Emitter<WishesState> emit) async {
-    print('БЛООООООООООООК');
     selectWishUseCase(event.wishModel);
     final response = await getAllWishesUseCase();
     emit(WishesState.loaded(response));

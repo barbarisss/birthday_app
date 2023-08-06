@@ -55,7 +55,6 @@ class WishesLocalDataSourceHive implements WishesLocalDataSource {
 
   @override
   Future<bool> selectWish(WishModel wishModel) async {
-    print('ТУТ УЖЕ БАЗААА');
     final guestsBox = Hive.box<Wish>(_kWishesBoxName);
     final convertedWish = Wish(
       id: wishModel.id,
