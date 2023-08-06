@@ -11,9 +11,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
   MenuBloc({
     required this.getAllMenuItemsUseCase,
   }) : super(const MenuState.initial()) {
-    on<GetAllMenuItemsEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<GetAllMenuItemsEvent>(_onGetAllMenuItems);
   }
 
   final GetAllMenuItemsUseCase getAllMenuItemsUseCase;

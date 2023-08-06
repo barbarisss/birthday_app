@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:birthday_app/app/di/injector.dart';
 import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
-import 'package:birthday_app/core/utils/icons.dart';
 import 'package:birthday_app/core/utils/images.dart';
 import 'package:birthday_app/core/utils/strings.dart';
 import 'package:birthday_app/data/models/guest/guest_model.dart';
@@ -16,8 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
-
-enum SortType { sortAddDate, sortName, sortSurname, sortAge }
 
 @RoutePage()
 class GuestsScreenWidget extends StatelessWidget {

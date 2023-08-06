@@ -169,21 +169,21 @@ mixin _$MenuState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<MenuItemModel> guests) loaded,
+    required TResult Function(List<MenuItemModel> menuItems) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<MenuItemModel> guests)? loaded,
+    TResult? Function(List<MenuItemModel> menuItems)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<MenuItemModel> guests)? loaded,
+    TResult Function(List<MenuItemModel> menuItems)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -268,7 +268,7 @@ class _$_InitialMenuState implements _InitialMenuState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<MenuItemModel> guests) loaded,
+    required TResult Function(List<MenuItemModel> menuItems) loaded,
   }) {
     return initial();
   }
@@ -278,7 +278,7 @@ class _$_InitialMenuState implements _InitialMenuState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<MenuItemModel> guests)? loaded,
+    TResult? Function(List<MenuItemModel> menuItems)? loaded,
   }) {
     return initial?.call();
   }
@@ -288,7 +288,7 @@ class _$_InitialMenuState implements _InitialMenuState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<MenuItemModel> guests)? loaded,
+    TResult Function(List<MenuItemModel> menuItems)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -376,7 +376,7 @@ class _$_LoadingMenuState implements _LoadingMenuState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<MenuItemModel> guests) loaded,
+    required TResult Function(List<MenuItemModel> menuItems) loaded,
   }) {
     return loading();
   }
@@ -386,7 +386,7 @@ class _$_LoadingMenuState implements _LoadingMenuState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<MenuItemModel> guests)? loaded,
+    TResult? Function(List<MenuItemModel> menuItems)? loaded,
   }) {
     return loading?.call();
   }
@@ -396,7 +396,7 @@ class _$_LoadingMenuState implements _LoadingMenuState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<MenuItemModel> guests)? loaded,
+    TResult Function(List<MenuItemModel> menuItems)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -450,7 +450,7 @@ abstract class _$$_LoadedMenuStateCopyWith<$Res> {
           _$_LoadedMenuState value, $Res Function(_$_LoadedMenuState) then) =
       __$$_LoadedMenuStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<MenuItemModel> guests});
+  $Res call({List<MenuItemModel> menuItems});
 }
 
 /// @nodoc
@@ -464,12 +464,12 @@ class __$$_LoadedMenuStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? guests = null,
+    Object? menuItems = null,
   }) {
     return _then(_$_LoadedMenuState(
-      null == guests
-          ? _value._guests
-          : guests // ignore: cast_nullable_to_non_nullable
+      null == menuItems
+          ? _value._menuItems
+          : menuItems // ignore: cast_nullable_to_non_nullable
               as List<MenuItemModel>,
     ));
   }
@@ -478,19 +478,20 @@ class __$$_LoadedMenuStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadedMenuState implements _LoadedMenuState {
-  const _$_LoadedMenuState(final List<MenuItemModel> guests) : _guests = guests;
+  const _$_LoadedMenuState(final List<MenuItemModel> menuItems)
+      : _menuItems = menuItems;
 
-  final List<MenuItemModel> _guests;
+  final List<MenuItemModel> _menuItems;
   @override
-  List<MenuItemModel> get guests {
-    if (_guests is EqualUnmodifiableListView) return _guests;
+  List<MenuItemModel> get menuItems {
+    if (_menuItems is EqualUnmodifiableListView) return _menuItems;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_guests);
+    return EqualUnmodifiableListView(_menuItems);
   }
 
   @override
   String toString() {
-    return 'MenuState.loaded(guests: $guests)';
+    return 'MenuState.loaded(menuItems: $menuItems)';
   }
 
   @override
@@ -498,12 +499,13 @@ class _$_LoadedMenuState implements _LoadedMenuState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoadedMenuState &&
-            const DeepCollectionEquality().equals(other._guests, _guests));
+            const DeepCollectionEquality()
+                .equals(other._menuItems, _menuItems));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_guests));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_menuItems));
 
   @JsonKey(ignore: true)
   @override
@@ -516,9 +518,9 @@ class _$_LoadedMenuState implements _LoadedMenuState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<MenuItemModel> guests) loaded,
+    required TResult Function(List<MenuItemModel> menuItems) loaded,
   }) {
-    return loaded(guests);
+    return loaded(menuItems);
   }
 
   @override
@@ -526,9 +528,9 @@ class _$_LoadedMenuState implements _LoadedMenuState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<MenuItemModel> guests)? loaded,
+    TResult? Function(List<MenuItemModel> menuItems)? loaded,
   }) {
-    return loaded?.call(guests);
+    return loaded?.call(menuItems);
   }
 
   @override
@@ -536,11 +538,11 @@ class _$_LoadedMenuState implements _LoadedMenuState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<MenuItemModel> guests)? loaded,
+    TResult Function(List<MenuItemModel> menuItems)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(guests);
+      return loaded(menuItems);
     }
     return orElse();
   }
@@ -581,10 +583,10 @@ class _$_LoadedMenuState implements _LoadedMenuState {
 }
 
 abstract class _LoadedMenuState implements MenuState {
-  const factory _LoadedMenuState(final List<MenuItemModel> guests) =
+  const factory _LoadedMenuState(final List<MenuItemModel> menuItems) =
       _$_LoadedMenuState;
 
-  List<MenuItemModel> get guests;
+  List<MenuItemModel> get menuItems;
   @JsonKey(ignore: true)
   _$$_LoadedMenuStateCopyWith<_$_LoadedMenuState> get copyWith =>
       throw _privateConstructorUsedError;
