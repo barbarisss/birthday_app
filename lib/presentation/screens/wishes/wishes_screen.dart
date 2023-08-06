@@ -5,11 +5,9 @@ import 'package:birthday_app/data/models/wish/wish_model.dart';
 import 'package:birthday_app/presentation/screens/wishes/widgets/wish_card.dart';
 import 'package:birthday_app/presentation/screens/wishes/widgets/wish_modal_bottom_sheet.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_button.dart';
-import 'package:birthday_app/presentation/shared_widgets/custom_text_field.dart';
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';
-import 'package:birthday_app/presentation/shared_widgets/modal_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uuid/uuid.dart';
 
 @RoutePage()
 class WishesScreenWidget extends StatelessWidget {
@@ -34,9 +32,21 @@ class WishesScreenWidget extends StatelessWidget {
     }
 
     final List<WishModel> wishes = [
-      WishModel(title: 'Название1', link: 'Ссылка1'),
-      WishModel(title: 'Название1', link: 'Ссылка1'),
-      WishModel(title: 'Название1', link: 'Ссылка1'),
+      WishModel(
+        id: const Uuid().v4(),
+        title: 'Название1',
+        link: 'Ссылка1',
+      ),
+      WishModel(
+        id: const Uuid().v4(),
+        title: 'Название1',
+        link: 'Ссылка1',
+      ),
+      WishModel(
+        id: const Uuid().v4(),
+        title: 'Название1',
+        link: 'Ссылка1',
+      ),
     ];
 
     return Scaffold(

@@ -7,7 +7,7 @@ part of 'wish_model.dart';
 // **************************************************************************
 
 _$_WishModel _$$_WishModelFromJson(Map<String, dynamic> json) => _$_WishModel(
-      id: json['id'] as int? ?? 0,
+      id: json['id'] as String,
       title: json['title'] as String,
       link: json['link'] as String,
       isSelected: json['isSelected'] as bool? ?? false,
