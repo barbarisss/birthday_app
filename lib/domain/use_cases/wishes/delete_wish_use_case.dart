@@ -5,7 +5,7 @@ class DeleteWishUseCase {
 
   final WishesRepository wishesRepository;
 
-  Future<bool> call(String id) async {
-    return await wishesRepository.deleteWish(id);
+  Future<bool> call(int index) async {
+    return await wishesRepository.deleteWish(index);
   }
 }

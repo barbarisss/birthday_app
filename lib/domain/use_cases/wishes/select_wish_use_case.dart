@@ -6,7 +6,7 @@ class SelectWishUseCase {
 
   final WishesRepository wishesRepository;
 
-  Future<bool> call(WishModel wishModel) async {
-    return await wishesRepository.selectWish(wishModel);
+  Future<bool> call(WishModel wishModel, int index) async {
+    return await wishesRepository.selectWish(wishModel, index);
   }
 }

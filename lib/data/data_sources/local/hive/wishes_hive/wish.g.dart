@@ -17,24 +17,21 @@ class WishAdapter extends TypeAdapter<Wish> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Wish(
-      id: fields[0] as String,
-      title: fields[1] as String,
-      link: fields[2] as String,
-      isSelected: fields[3] as bool,
+      title: fields[0] as String,
+      link: fields[1] as String,
+      isSelected: fields[2] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Wish obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.title)
-      ..writeByte(2)
-      ..write(obj.link)
       ..writeByte(3)
+      ..writeByte(0)
+      ..write(obj.title)
+      ..writeByte(1)
+      ..write(obj.link)
+      ..writeByte(2)
       ..write(obj.isSelected);
   }
 

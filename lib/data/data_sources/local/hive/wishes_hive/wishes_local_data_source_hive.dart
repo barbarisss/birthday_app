@@ -1,8 +1,5 @@
-import 'package:birthday_app/data/data_sources/local/guests_local_data_source.dart';
-import 'package:birthday_app/data/data_sources/local/hive/guests_hive/guest.dart';
 import 'package:birthday_app/data/data_sources/local/hive/wishes_hive/wish.dart';
 import 'package:birthday_app/data/data_sources/local/wishes_local_data_sources.dart';
-import 'package:birthday_app/data/models/guest/guest_model.dart';
 import 'package:birthday_app/data/models/wish/wish_model.dart';
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:path_provider/path_provider.dart';
@@ -28,7 +25,6 @@ class WishesLocalDataSourceHive implements WishesLocalDataSource {
     final result = guestsBox.values
         .map(
           (wish) => WishModel(
-            id: wish.id,
             title: wish.title,
             link: wish.link,
             isSelected: wish.isSelected,
@@ -43,33 +39,31 @@ class WishesLocalDataSourceHive implements WishesLocalDataSource {
     final guestsBox = Hive.box<Wish>(_kWishesBoxName);
 
     final convertedWish = Wish(
-      id: wishModel.id,
       title: wishModel.title,
       link: wishModel.link,
       isSelected: wishModel.isSelected,
     );
-
-    await guestsBox.put(convertedWish.id, convertedWish);
+    await guestsBox.add(convertedWish);
+    // await guestsBox.put(convertedWish.id, convertedWish);
     return true;
   }
 
   @override
-  Future<bool> selectWish(WishModel wishModel) async {
+  Future<bool> selectWish(WishModel wishModel, int index) async {
     final guestsBox = Hive.box<Wish>(_kWishesBoxName);
     final convertedWish = Wish(
-      id: wishModel.id,
       title: wishModel.title,
       link: wishModel.link,
       isSelected: !wishModel.isSelected,
     );
-    await guestsBox.put(convertedWish.id, convertedWish);
+    await guestsBox.putAt(index, convertedWish);
     return true;
   }
 
   @override
-  Future<bool> deleteWish(String id) async {
+  Future<bool> deleteWish(int index) async {
     final guestsBox = Hive.box<Wish>(_kWishesBoxName);
-    await guestsBox.delete(id);
+    await guestsBox.deleteAt(index);
     return true;
   }
 }

@@ -29,27 +29,22 @@ class WishesLocalDataSourceSqflite implements WishesLocalDataSource {
 
   Future<void> _initWishesTable(Database db) async {
     await db.execute(
-        'CREATE TABLE $_wishesTable(id TEXT NOT NULL, title TEXT NOT NULL, link TEXT NOT NULL, isSelected BOOLEAN NOT NULL);');
+        'CREATE TABLE $_wishesTable(title TEXT NOT NULL, link TEXT NOT NULL, isSelected BOOLEAN NOT NULL);');
   }
 
   @override
   Future<List<WishModel>> getAllWishes() async {
-    print('getttttttttttttttttt');
     _db.getVersion();
-    print(await _db.getVersion());
     final json = await _db.rawQuery('SELECT * FROM $_wishesTable');
     return json.map<WishModel>((e) => WishModel.fromJson(e)).toList();
   }
 
   @override
   Future<bool> addWish(WishModel wish) async {
-    print('addddddddddddddddddddddd');
     await _db.transaction(
       (txn) async {
         await txn.rawInsert(
-            'INSERT INTO $_wishesTable(id, title, link, isSelected) VALUES("${wish.id}", "${wish.title}", "${wish.link}", ${wish.isSelected})');
-        // 'INSERT INTO $_wishesTable(id, title, link, isSelected) VALUES(?)',
-        // [wish.id, wish.title, wish.link, wish.isSelected]);
+            'INSERT INTO $_wishesTable(title, link, isSelected) VALUES("${wish.title}", "${wish.link}", ${wish.isSelected})');
       },
     );
 
@@ -57,16 +52,16 @@ class WishesLocalDataSourceSqflite implements WishesLocalDataSource {
   }
 
   @override
-  Future<bool> deleteWish(String id) async {
+  Future<bool> deleteWish(int index) async {
     await _db.rawDelete('''
         DELETE FROM $_wishesTable
-        WHERE id = $id
+        WHERE id = $index
       ''');
     return true;
   }
 
   @override
-  Future<bool> selectWish(WishModel wishModel) async {
+  Future<bool> selectWish(WishModel wishModel, int index) async {
     // TODO: implement selectWish
     throw UnimplementedError();
   }

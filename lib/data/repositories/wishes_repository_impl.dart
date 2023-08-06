@@ -20,14 +20,14 @@ class WishesRepositoryImpl implements WishesRepository {
   }
 
   @override
-  Future<bool> selectWish(WishModel wishModel) async {
-    final response = await wishesLocalDataSource.selectWish(wishModel);
+  Future<bool> selectWish(WishModel wishModel, int index) async {
+    final response = await wishesLocalDataSource.selectWish(wishModel, index);
     return response;
   }
 
   @override
-  Future<bool> deleteWish(String id) async {
-    final response = await wishesLocalDataSource.deleteWish(id);
+  Future<bool> deleteWish(int index) async {
+    final response = await wishesLocalDataSource.deleteWish(index);
     return response;
   }
 }

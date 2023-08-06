@@ -6,7 +6,7 @@ part 'wish_model.g.dart';
 @freezed
 class WishModel with _$WishModel {
   factory WishModel({
-    required String id,
+    // required String id,
     required String title,
     required String link,
     @Default(false) bool isSelected,

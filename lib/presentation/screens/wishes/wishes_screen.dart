@@ -70,7 +70,6 @@ class WishesScreenWidget extends StatelessWidget {
                     context.read<WishesBloc>().add(
                           AddWishEvent(
                             WishModel(
-                              id: const Uuid().v4(),
                               title: titleController.text,
                               link: linkController.text,
                             ),
@@ -109,12 +108,16 @@ class WishesScreenWidget extends StatelessWidget {
                       children: [
                         Dismissible(
                           key: ObjectKey(wishes[index]),
-                          onDismissed: (direction) {},
+                          onDismissed: (direction) {
+                            context
+                                .read<WishesBloc>()
+                                .add(DeleteWishEvent(index));
+                          },
                           child: WishCardWidget(
                             onTap: () {
                               context
                                   .read<WishesBloc>()
-                                  .add(SelectWishEvent(wishes[index]));
+                                  .add(SelectWishEvent(wishes[index], index));
                             },
                             wishModel: wishes[index],
                             textStyle: textTheme.bodyMedium,

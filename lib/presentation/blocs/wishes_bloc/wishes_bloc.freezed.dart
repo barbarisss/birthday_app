@@ -20,24 +20,24 @@ mixin _$WishesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllWishes,
     required TResult Function(WishModel wishModel) addWish,
-    required TResult Function(WishModel wishModel) selectWish,
-    required TResult Function(String id) deleteWish,
+    required TResult Function(WishModel wishModel, int index) selectWish,
+    required TResult Function(int index) deleteWish,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllWishes,
     TResult? Function(WishModel wishModel)? addWish,
-    TResult? Function(WishModel wishModel)? selectWish,
-    TResult? Function(String id)? deleteWish,
+    TResult? Function(WishModel wishModel, int index)? selectWish,
+    TResult? Function(int index)? deleteWish,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllWishes,
     TResult Function(WishModel wishModel)? addWish,
-    TResult Function(WishModel wishModel)? selectWish,
-    TResult Function(String id)? deleteWish,
+    TResult Function(WishModel wishModel, int index)? selectWish,
+    TResult Function(int index)? deleteWish,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,8 +126,8 @@ class _$GetAllWishesEvent implements GetAllWishesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllWishes,
     required TResult Function(WishModel wishModel) addWish,
-    required TResult Function(WishModel wishModel) selectWish,
-    required TResult Function(String id) deleteWish,
+    required TResult Function(WishModel wishModel, int index) selectWish,
+    required TResult Function(int index) deleteWish,
   }) {
     return getAllWishes();
   }
@@ -137,8 +137,8 @@ class _$GetAllWishesEvent implements GetAllWishesEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllWishes,
     TResult? Function(WishModel wishModel)? addWish,
-    TResult? Function(WishModel wishModel)? selectWish,
-    TResult? Function(String id)? deleteWish,
+    TResult? Function(WishModel wishModel, int index)? selectWish,
+    TResult? Function(int index)? deleteWish,
   }) {
     return getAllWishes?.call();
   }
@@ -148,8 +148,8 @@ class _$GetAllWishesEvent implements GetAllWishesEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllWishes,
     TResult Function(WishModel wishModel)? addWish,
-    TResult Function(WishModel wishModel)? selectWish,
-    TResult Function(String id)? deleteWish,
+    TResult Function(WishModel wishModel, int index)? selectWish,
+    TResult Function(int index)? deleteWish,
     required TResult orElse(),
   }) {
     if (getAllWishes != null) {
@@ -277,8 +277,8 @@ class _$AddWishEvent implements AddWishEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllWishes,
     required TResult Function(WishModel wishModel) addWish,
-    required TResult Function(WishModel wishModel) selectWish,
-    required TResult Function(String id) deleteWish,
+    required TResult Function(WishModel wishModel, int index) selectWish,
+    required TResult Function(int index) deleteWish,
   }) {
     return addWish(wishModel);
   }
@@ -288,8 +288,8 @@ class _$AddWishEvent implements AddWishEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllWishes,
     TResult? Function(WishModel wishModel)? addWish,
-    TResult? Function(WishModel wishModel)? selectWish,
-    TResult? Function(String id)? deleteWish,
+    TResult? Function(WishModel wishModel, int index)? selectWish,
+    TResult? Function(int index)? deleteWish,
   }) {
     return addWish?.call(wishModel);
   }
@@ -299,8 +299,8 @@ class _$AddWishEvent implements AddWishEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllWishes,
     TResult Function(WishModel wishModel)? addWish,
-    TResult Function(WishModel wishModel)? selectWish,
-    TResult Function(String id)? deleteWish,
+    TResult Function(WishModel wishModel, int index)? selectWish,
+    TResult Function(int index)? deleteWish,
     required TResult orElse(),
   }) {
     if (addWish != null) {
@@ -362,7 +362,7 @@ abstract class _$$SelectWishEventCopyWith<$Res> {
           _$SelectWishEvent value, $Res Function(_$SelectWishEvent) then) =
       __$$SelectWishEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({WishModel wishModel});
+  $Res call({WishModel wishModel, int index});
 
   $WishModelCopyWith<$Res> get wishModel;
 }
@@ -379,12 +379,17 @@ class __$$SelectWishEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? wishModel = null,
+    Object? index = null,
   }) {
     return _then(_$SelectWishEvent(
       null == wishModel
           ? _value.wishModel
           : wishModel // ignore: cast_nullable_to_non_nullable
               as WishModel,
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -400,14 +405,16 @@ class __$$SelectWishEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SelectWishEvent implements SelectWishEvent {
-  const _$SelectWishEvent(this.wishModel);
+  const _$SelectWishEvent(this.wishModel, this.index);
 
   @override
   final WishModel wishModel;
+  @override
+  final int index;
 
   @override
   String toString() {
-    return 'WishesEvent.selectWish(wishModel: $wishModel)';
+    return 'WishesEvent.selectWish(wishModel: $wishModel, index: $index)';
   }
 
   @override
@@ -416,11 +423,12 @@ class _$SelectWishEvent implements SelectWishEvent {
         (other.runtimeType == runtimeType &&
             other is _$SelectWishEvent &&
             (identical(other.wishModel, wishModel) ||
-                other.wishModel == wishModel));
+                other.wishModel == wishModel) &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, wishModel);
+  int get hashCode => Object.hash(runtimeType, wishModel, index);
 
   @JsonKey(ignore: true)
   @override
@@ -433,10 +441,10 @@ class _$SelectWishEvent implements SelectWishEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllWishes,
     required TResult Function(WishModel wishModel) addWish,
-    required TResult Function(WishModel wishModel) selectWish,
-    required TResult Function(String id) deleteWish,
+    required TResult Function(WishModel wishModel, int index) selectWish,
+    required TResult Function(int index) deleteWish,
   }) {
-    return selectWish(wishModel);
+    return selectWish(wishModel, index);
   }
 
   @override
@@ -444,10 +452,10 @@ class _$SelectWishEvent implements SelectWishEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllWishes,
     TResult? Function(WishModel wishModel)? addWish,
-    TResult? Function(WishModel wishModel)? selectWish,
-    TResult? Function(String id)? deleteWish,
+    TResult? Function(WishModel wishModel, int index)? selectWish,
+    TResult? Function(int index)? deleteWish,
   }) {
-    return selectWish?.call(wishModel);
+    return selectWish?.call(wishModel, index);
   }
 
   @override
@@ -455,12 +463,12 @@ class _$SelectWishEvent implements SelectWishEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllWishes,
     TResult Function(WishModel wishModel)? addWish,
-    TResult Function(WishModel wishModel)? selectWish,
-    TResult Function(String id)? deleteWish,
+    TResult Function(WishModel wishModel, int index)? selectWish,
+    TResult Function(int index)? deleteWish,
     required TResult orElse(),
   }) {
     if (selectWish != null) {
-      return selectWish(wishModel);
+      return selectWish(wishModel, index);
     }
     return orElse();
   }
@@ -504,9 +512,11 @@ class _$SelectWishEvent implements SelectWishEvent {
 }
 
 abstract class SelectWishEvent implements WishesEvent {
-  const factory SelectWishEvent(final WishModel wishModel) = _$SelectWishEvent;
+  const factory SelectWishEvent(final WishModel wishModel, final int index) =
+      _$SelectWishEvent;
 
   WishModel get wishModel;
+  int get index;
   @JsonKey(ignore: true)
   _$$SelectWishEventCopyWith<_$SelectWishEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -518,7 +528,7 @@ abstract class _$$DeleteWishEventCopyWith<$Res> {
           _$DeleteWishEvent value, $Res Function(_$DeleteWishEvent) then) =
       __$$DeleteWishEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({String id});
+  $Res call({int index});
 }
 
 /// @nodoc
@@ -532,13 +542,13 @@ class __$$DeleteWishEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? index = null,
   }) {
     return _then(_$DeleteWishEvent(
-      null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -546,14 +556,14 @@ class __$$DeleteWishEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeleteWishEvent implements DeleteWishEvent {
-  const _$DeleteWishEvent(this.id);
+  const _$DeleteWishEvent(this.index);
 
   @override
-  final String id;
+  final int index;
 
   @override
   String toString() {
-    return 'WishesEvent.deleteWish(id: $id)';
+    return 'WishesEvent.deleteWish(index: $index)';
   }
 
   @override
@@ -561,11 +571,11 @@ class _$DeleteWishEvent implements DeleteWishEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeleteWishEvent &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, index);
 
   @JsonKey(ignore: true)
   @override
@@ -578,10 +588,10 @@ class _$DeleteWishEvent implements DeleteWishEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllWishes,
     required TResult Function(WishModel wishModel) addWish,
-    required TResult Function(WishModel wishModel) selectWish,
-    required TResult Function(String id) deleteWish,
+    required TResult Function(WishModel wishModel, int index) selectWish,
+    required TResult Function(int index) deleteWish,
   }) {
-    return deleteWish(id);
+    return deleteWish(index);
   }
 
   @override
@@ -589,10 +599,10 @@ class _$DeleteWishEvent implements DeleteWishEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllWishes,
     TResult? Function(WishModel wishModel)? addWish,
-    TResult? Function(WishModel wishModel)? selectWish,
-    TResult? Function(String id)? deleteWish,
+    TResult? Function(WishModel wishModel, int index)? selectWish,
+    TResult? Function(int index)? deleteWish,
   }) {
-    return deleteWish?.call(id);
+    return deleteWish?.call(index);
   }
 
   @override
@@ -600,12 +610,12 @@ class _$DeleteWishEvent implements DeleteWishEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllWishes,
     TResult Function(WishModel wishModel)? addWish,
-    TResult Function(WishModel wishModel)? selectWish,
-    TResult Function(String id)? deleteWish,
+    TResult Function(WishModel wishModel, int index)? selectWish,
+    TResult Function(int index)? deleteWish,
     required TResult orElse(),
   }) {
     if (deleteWish != null) {
-      return deleteWish(id);
+      return deleteWish(index);
     }
     return orElse();
   }
@@ -649,9 +659,9 @@ class _$DeleteWishEvent implements DeleteWishEvent {
 }
 
 abstract class DeleteWishEvent implements WishesEvent {
-  const factory DeleteWishEvent(final String id) = _$DeleteWishEvent;
+  const factory DeleteWishEvent(final int index) = _$DeleteWishEvent;
 
-  String get id;
+  int get index;
   @JsonKey(ignore: true)
   _$$DeleteWishEventCopyWith<_$DeleteWishEvent> get copyWith =>
       throw _privateConstructorUsedError;
