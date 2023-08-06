@@ -2,6 +2,7 @@ import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/data/models/wish/wish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WishCardWidget extends StatelessWidget {
   const WishCardWidget({
@@ -19,6 +20,8 @@ class WishCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int lenghtLimit = 35;
+
     return GestureDetector(
       onTap: onTap,
       onDoubleTap: onDoubleTap,
@@ -37,10 +40,17 @@ class WishCardWidget extends StatelessWidget {
                     color: AppColors.black,
                   ),
                 ),
-                Text(
-                  wishModel.link,
-                  style: textStyle?.copyWith(
-                    decoration: TextDecoration.underline,
+                InkWell(
+                  onTap: () {
+                    goToWishLink(wishModel.link);
+                  },
+                  child: Text(
+                    wishModel.link.length > lenghtLimit
+                        ? '${wishModel.link.substring(0, lenghtLimit)}...'
+                        : wishModel.link,
+                    style: textStyle?.copyWith(
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ],
@@ -57,5 +67,17 @@ class WishCardWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void goToWishLink(String link) {
+    final Uri uri = Uri.parse(link);
+    if (uri.isAbsolute) {
+      launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+    } else {
+      print("лооооооооооооооооох пииииииииииииииииииидр");
+    }
   }
 }
