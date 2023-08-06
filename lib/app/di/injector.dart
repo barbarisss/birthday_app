@@ -1,6 +1,6 @@
 import 'package:birthday_app/data/data_sources/local/guests_local_data_source.dart';
 import 'package:birthday_app/data/data_sources/local/hive/guests_hive/guests_local_data_source_hive.dart';
-import 'package:birthday_app/data/data_sources/local/sqflite/wishes_local_data_source_sqflite.dart';
+import 'package:birthday_app/data/data_sources/local/hive/wishes_hive/wishes_local_data_source_hive.dart';
 import 'package:birthday_app/data/data_sources/local/wishes_local_data_sources.dart';
 import 'package:birthday_app/data/data_sources/remote/entertainment_remote_data_source.dart';
 import 'package:birthday_app/data/data_sources/remote/fake_remote/entertainment_fake/entertainment_remote_data_source_fake.dart';
@@ -37,7 +37,7 @@ Future<void> initDependencies() async {
     () => GuestsLocalDataSourceHive(),
   );
   injector.registerLazySingleton<WishesLocalDataSource>(
-    () => WishesLocalDataSourceSqflite(),
+    () => WishesLocalDataSourceHive(),
   );
   injector.registerLazySingleton<MenuRemoteDataSource>(
     () => MenuRemoteDataSourceFake(),

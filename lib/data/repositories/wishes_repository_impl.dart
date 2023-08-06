@@ -20,8 +20,8 @@ class WishesRepositoryImpl implements WishesRepository {
   }
 
   @override
-  Future<bool> selectWish(String id) async {
-    final response = await wishesLocalDataSource.selectWish(id);
+  Future<bool> selectWish(WishModel wishModel) async {
+    final response = await wishesLocalDataSource.selectWish(wishModel);
     return response;
   }
 

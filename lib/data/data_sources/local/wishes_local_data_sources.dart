@@ -4,6 +4,6 @@ abstract class WishesLocalDataSource {
   Future<bool> initDb();
   Future<List<WishModel>> getAllWishes();
   Future<bool> addWish(WishModel wishModel);
-  Future<bool> selectWish(String id);
+  Future<bool> selectWish(WishModel wishModel);
   Future<bool> deleteWish(String id);
 }

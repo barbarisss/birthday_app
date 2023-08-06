@@ -111,27 +111,10 @@ class WishesScreenWidget extends StatelessWidget {
                           key: ObjectKey(wishes[index]),
                           onDismissed: (direction) {},
                           child: WishCardWidget(
-                            onDoubleTap: () {
-                              fillControllers(wishes[index]);
-
-                              final wishModalBottomSheet = WishModalBottomSheet(
-                                context: context,
-                                onButtonPressed: () {
-                                  if (formKey.currentState!.validate()) {
-                                    debugPrint('добавление подарка');
-                                    AutoRouter.of(context).pop();
-                                  }
-                                },
-                                onWillPop: () async {
-                                  cleanControllers();
-                                  return true;
-                                },
-                                formKey: formKey,
-                                titleController: titleController,
-                                linkController: linkController,
-                              );
-
-                              wishModalBottomSheet.show();
+                            onTap: () {
+                              context
+                                  .read<WishesBloc>()
+                                  .add(SelectWishEvent(wishes[index]));
                             },
                             wishModel: wishes[index],
                             textStyle: textTheme.bodyMedium,

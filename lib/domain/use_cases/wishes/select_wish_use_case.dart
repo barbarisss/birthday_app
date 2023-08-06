@@ -1,3 +1,4 @@
+import 'package:birthday_app/data/models/wish/wish_model.dart';
 import 'package:birthday_app/domain/repositories/wishes_repository.dart';
 
 class SelectWishUseCase {
@@ -5,7 +6,7 @@ class SelectWishUseCase {
 
   final WishesRepository wishesRepository;
 
-  Future<bool> call(String id) async {
-    return await wishesRepository.selectWish(id);
+  Future<bool> call(WishModel wishModel) async {
+    return await wishesRepository.selectWish(wishModel);
   }
 }

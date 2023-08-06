@@ -66,7 +66,7 @@ class WishesLocalDataSourceSqflite implements WishesLocalDataSource {
   }
 
   @override
-  Future<bool> selectWish(String id) async {
+  Future<bool> selectWish(WishModel wishModel) async {
     // TODO: implement selectWish
     throw UnimplementedError();
   }

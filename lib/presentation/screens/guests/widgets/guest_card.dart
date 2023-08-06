@@ -27,39 +27,42 @@ class GuestCardWidget extends StatelessWidget {
 
     return GestureDetector(
       onDoubleTap: onDoubleTap,
-      child: Row(
-        mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment,
-        children: [
-          Image.asset(
-            guestModel.avatar,
-            height: 64.h,
-          ),
-          SizedBox(width: AppConstants.mainPaddingWidth),
-          Column(
-            mainAxisAlignment: mainAxisAlignment,
-            crossAxisAlignment: crossAxisAlignment,
-            children: [
-              Text(
-                '${guestModel.name} ${guestModel.surname}',
-                style: textTheme.bodyMedium?.copyWith(
-                  color: AppColors.black,
-                  fontWeight: FontWeight.w500,
+      child: ColoredBox(
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: mainAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
+          children: [
+            Image.asset(
+              guestModel.avatar,
+              height: 64.h,
+            ),
+            SizedBox(width: AppConstants.mainPaddingWidth),
+            Column(
+              mainAxisAlignment: mainAxisAlignment,
+              crossAxisAlignment: crossAxisAlignment,
+              children: [
+                Text(
+                  '${guestModel.name} ${guestModel.surname}',
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              Text(
-                '$age $noun',
-                style: textTheme.bodySmall?.copyWith(
-                  height: 1,
+                Text(
+                  '$age $noun',
+                  style: textTheme.bodySmall?.copyWith(
+                    height: 1,
+                  ),
                 ),
-              ),
-              Text(
-                guestModel.profession,
-                style: textTheme.bodyMedium,
-              ),
-            ],
-          )
-        ],
+                Text(
+                  guestModel.profession,
+                  style: textTheme.bodyMedium,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
