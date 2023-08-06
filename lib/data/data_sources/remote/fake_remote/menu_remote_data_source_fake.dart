@@ -39,10 +39,10 @@ class MenuRemoteDataSourceFake implements MenuRemoteDataSource {
 
   @override
   Future<List<MenuItemModel>> getAllMenuItems() async {
-    final getMenuItems = await Future.delayed(
+    final fetchMenuItems = await Future.delayed(
       const Duration(milliseconds: 1500),
       () => menuItems,
     );
-    return getMenuItems;
+    return fetchMenuItems;
   }
 }

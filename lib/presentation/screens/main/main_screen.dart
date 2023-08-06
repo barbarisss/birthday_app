@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birthday_app/app/di/injector.dart';
-import 'package:birthday_app/data/models/entertaiment_item/entertaiment_item_model.dart';
-import 'package:birthday_app/data/models/menu_item/menu_item_model.dart';
+import 'package:birthday_app/data/models/entertainment_item/entertainment_item_model.dart';
 import 'package:birthday_app/presentation/blocs/menu_bloc/menu_bloc.dart';
 import 'package:birthday_app/presentation/screens/main/widgets/button_section.dart';
 import 'package:birthday_app/presentation/screens/main/widgets/entertaiment_view.dart';
@@ -33,33 +32,33 @@ class MainScreenWidget extends StatelessWidget {
       AppImages.camp,
     ];
 
-    List<EntertaimentItemModel> entertaimentItems = [
-      EntertaimentItemModel(
+    List<EntertainmentItemModel> entertaimentItems = [
+      EntertainmentItemModel(
         icon: AppImages.boardGames,
         title: AppStrings.boardGames,
         discription: AppStrings.aboutBoardGames,
       ),
-      EntertaimentItemModel(
+      EntertainmentItemModel(
         icon: AppImages.pool,
         title: AppStrings.pool,
         discription: AppStrings.aboutPool,
       ),
-      EntertaimentItemModel(
+      EntertainmentItemModel(
         icon: AppImages.boardGames,
         title: AppStrings.boardGames,
         discription: AppStrings.aboutBoardGames,
       ),
-      EntertaimentItemModel(
+      EntertainmentItemModel(
         icon: AppImages.pool,
         title: AppStrings.pool,
         discription: AppStrings.aboutPool,
       ),
-      EntertaimentItemModel(
+      EntertainmentItemModel(
         icon: AppImages.boardGames,
         title: AppStrings.boardGames,
         discription: AppStrings.aboutBoardGames,
       ),
-      EntertaimentItemModel(
+      EntertainmentItemModel(
         icon: AppImages.pool,
         title: AppStrings.pool,
         discription: AppStrings.aboutPool,

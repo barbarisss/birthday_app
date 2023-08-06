@@ -2,7 +2,7 @@ import 'package:birthday_app/core/utils/colors.dart';
 import 'package:birthday_app/core/utils/constants.dart';
 import 'package:birthday_app/core/utils/icons.dart';
 import 'package:birthday_app/core/utils/strings.dart';
-import 'package:birthday_app/data/models/entertaiment_item/entertaiment_item_model.dart';
+import 'package:birthday_app/data/models/entertainment_item/entertainment_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +15,7 @@ class EntertaimentViewWidget extends StatefulWidget {
   });
 
   final TextTheme textTheme;
-  final List<EntertaimentItemModel> items;
+  final List<EntertainmentItemModel> items;
 
   @override
   State<EntertaimentViewWidget> createState() => _EntertaimentViewWidgetState();
@@ -82,7 +82,7 @@ class _AnimatedEntertaimentItemWidget extends StatefulWidget {
   });
 
   final TextTheme textTheme;
-  final EntertaimentItemModel item;
+  final EntertainmentItemModel item;
 
   @override
   State<_AnimatedEntertaimentItemWidget> createState() =>

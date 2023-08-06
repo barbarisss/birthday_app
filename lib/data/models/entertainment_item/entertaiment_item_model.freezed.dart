@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'entertaiment_item_model.dart';
+part of 'entertainment_item_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,37 +14,37 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-EntertaimentItemModel _$EntertaimentItemModelFromJson(
+EntertainmentItemModel _$EntertainmentItemModelFromJson(
     Map<String, dynamic> json) {
   return _EntertaimentItemModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$EntertaimentItemModel {
+mixin _$EntertainmentItemModel {
   String get icon => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get discription => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $EntertaimentItemModelCopyWith<EntertaimentItemModel> get copyWith =>
+  $EntertainmentItemModelCopyWith<EntertainmentItemModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EntertaimentItemModelCopyWith<$Res> {
-  factory $EntertaimentItemModelCopyWith(EntertaimentItemModel value,
-          $Res Function(EntertaimentItemModel) then) =
-      _$EntertaimentItemModelCopyWithImpl<$Res, EntertaimentItemModel>;
+abstract class $EntertainmentItemModelCopyWith<$Res> {
+  factory $EntertainmentItemModelCopyWith(EntertainmentItemModel value,
+          $Res Function(EntertainmentItemModel) then) =
+      _$EntertainmentItemModelCopyWithImpl<$Res, EntertainmentItemModel>;
   @useResult
   $Res call({String icon, String title, String discription});
 }
 
 /// @nodoc
-class _$EntertaimentItemModelCopyWithImpl<$Res,
-        $Val extends EntertaimentItemModel>
-    implements $EntertaimentItemModelCopyWith<$Res> {
-  _$EntertaimentItemModelCopyWithImpl(this._value, this._then);
+class _$EntertainmentItemModelCopyWithImpl<$Res,
+        $Val extends EntertainmentItemModel>
+    implements $EntertainmentItemModelCopyWith<$Res> {
+  _$EntertainmentItemModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -77,7 +77,7 @@ class _$EntertaimentItemModelCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$_EntertaimentItemModelCopyWith<$Res>
-    implements $EntertaimentItemModelCopyWith<$Res> {
+    implements $EntertainmentItemModelCopyWith<$Res> {
   factory _$$_EntertaimentItemModelCopyWith(_$_EntertaimentItemModel value,
           $Res Function(_$_EntertaimentItemModel) then) =
       __$$_EntertaimentItemModelCopyWithImpl<$Res>;
@@ -88,7 +88,7 @@ abstract class _$$_EntertaimentItemModelCopyWith<$Res>
 
 /// @nodoc
 class __$$_EntertaimentItemModelCopyWithImpl<$Res>
-    extends _$EntertaimentItemModelCopyWithImpl<$Res, _$_EntertaimentItemModel>
+    extends _$EntertainmentItemModelCopyWithImpl<$Res, _$_EntertaimentItemModel>
     implements _$$_EntertaimentItemModelCopyWith<$Res> {
   __$$_EntertaimentItemModelCopyWithImpl(_$_EntertaimentItemModel _value,
       $Res Function(_$_EntertaimentItemModel) _then)
@@ -136,7 +136,7 @@ class _$_EntertaimentItemModel implements _EntertaimentItemModel {
 
   @override
   String toString() {
-    return 'EntertaimentItemModel(icon: $icon, title: $title, discription: $discription)';
+    return 'EntertainmentItemModel(icon: $icon, title: $title, discription: $discription)';
   }
 
   @override
@@ -169,7 +169,7 @@ class _$_EntertaimentItemModel implements _EntertaimentItemModel {
   }
 }
 
-abstract class _EntertaimentItemModel implements EntertaimentItemModel {
+abstract class _EntertaimentItemModel implements EntertainmentItemModel {
   factory _EntertaimentItemModel(
       {required final String icon,
       required final String title,
