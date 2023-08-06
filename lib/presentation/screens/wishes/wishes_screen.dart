@@ -1,4 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:birthday_app/core/utils/strings.dart';
+import 'package:birthday_app/data/models/wish/wish_model.dart';
+import 'package:birthday_app/presentation/screens/wishes/widgets/wish_modal_bottom_sheet.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_floating_action_button.dart';
 import 'package:birthday_app/presentation/shared_widgets/custom_text_field.dart';
 import 'package:birthday_app/presentation/shared_widgets/main_app_bar.dart';
@@ -6,6 +9,7 @@ import 'package:birthday_app/presentation/shared_widgets/modal_bottom_sheet.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+@RoutePage()
 class WishesScreenWidget extends StatelessWidget {
   const WishesScreenWidget({super.key});
 
@@ -22,43 +26,35 @@ class WishesScreenWidget extends StatelessWidget {
       linkController.clear();
     }
 
+    void fillControllers(WishModel wishModel) {
+      titleController.text = wishModel.title;
+      linkController.text = wishModel.link;
+    }
+
     return Scaffold(
       appBar: const MainAppBarWidget(title: AppStrings.guests),
       floatingActionButton: CustomFloatingActionButton(
         onPressed: () {
-          final modalBottomSheet = ModalBottomSheet(
+          final wishModalBottomSheet = WishModalBottomSheet(
             context: context,
-            onButtonPressed: () {},
-            buttomTitle: AppStrings.signUp,
-            content: Form(
-              key: formKey,
-              child: Column(children: [
-                CustomTextField(
-                  controller: titleController,
-                  labelText: AppStrings.name,
-                  validator: (value) => textValidator(value),
-                ),
-                SizedBox(height: 12.h),
-                CustomTextField(
-                  controller: linkController,
-                  labelText: AppStrings.surname,
-                  validator: (value) => textValidator(value),
-                ),
-              ]),
-            ),
+            onButtonPressed: () {
+              if (formKey.currentState!.validate()) {
+                debugPrint('добавление подарка');
+                AutoRouter.of(context).pop();
+              }
+            },
+            onWillPop: () async {
+              cleanControllers();
+              return true;
+            },
+            formKey: formKey,
+            titleController: titleController,
+            linkController: linkController,
           );
 
-          modalBottomSheet.show();
+          wishModalBottomSheet.show();
         },
       ),
     );
-  }
-
-  String? textValidator(dynamic val) {
-    if (val.toString().isEmpty) {
-      return '*Обязательное поле для заполнения';
-    } else {
-      return null;
-    }
   }
 }

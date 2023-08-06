@@ -9,14 +9,16 @@ class ModalBottomSheet {
     required this.context,
     required this.onButtonPressed,
     this.onWillPop,
-    required this.buttomTitle,
+    required this.buttonTitle,
+    required this.buttonWidth,
     required this.content,
   });
 
   final BuildContext context;
   final VoidCallback? onButtonPressed;
   final WillPopCallback? onWillPop;
-  final String buttomTitle;
+  final String buttonTitle;
+  final double buttonWidth;
   final Widget content;
 
   void show() {
@@ -54,8 +56,8 @@ class ModalBottomSheet {
                     onPressed: onButtonPressed,
                     color: AppColors.green,
                     height: 50.h,
-                    width: 156.w,
-                    title: buttomTitle,
+                    width: buttonWidth,
+                    title: buttonTitle,
                   )
                 ],
               ),

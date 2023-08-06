@@ -22,7 +22,7 @@ class ButtonSectionWigdet extends StatelessWidget {
           title: AppStrings.guests,
         ),
         CustomButtonWidget(
-          onPressed: () {},
+          onPressed: () => AutoRouter.of(context).push(const WishesRoute()),
           color: AppColors.yellow,
           height: 50.h,
           width: 156.w,

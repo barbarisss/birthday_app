@@ -34,4 +34,7 @@ abstract class AppStrings {
   static const choseDate = 'Выберите дату';
   static const errorText = '*Обязательное поле для заполнения';
   static const datePattern = 'dd.MM.yyyy';
+  static const title = 'Название';
+  static const link = 'Ссылка';
+  static const addGift = 'Добавить подарок';
 }

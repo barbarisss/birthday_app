@@ -48,7 +48,8 @@ class GuestModalBottomSheet {
       context: context,
       onButtonPressed: onButtonPressed,
       onWillPop: onWillPop,
-      buttomTitle: AppStrings.signUp,
+      buttonTitle: AppStrings.signUp,
+      buttonWidth: 156.w,
       content: Form(
         key: formKey,
         child: Column(children: [
