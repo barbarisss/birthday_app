@@ -181,21 +181,22 @@ mixin _$EntertainmentState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EntertainmentItemModel> menuItems) loaded,
+    required TResult Function(List<EntertainmentItemModel> entertainmentItems)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EntertainmentItemModel> menuItems)? loaded,
+    TResult? Function(List<EntertainmentItemModel> entertainmentItems)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EntertainmentItemModel> menuItems)? loaded,
+    TResult Function(List<EntertainmentItemModel> entertainmentItems)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -284,7 +285,8 @@ class _$_InitialEntertainmentState implements _InitialEntertainmentState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EntertainmentItemModel> menuItems) loaded,
+    required TResult Function(List<EntertainmentItemModel> entertainmentItems)
+        loaded,
   }) {
     return initial();
   }
@@ -294,7 +296,7 @@ class _$_InitialEntertainmentState implements _InitialEntertainmentState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EntertainmentItemModel> menuItems)? loaded,
+    TResult? Function(List<EntertainmentItemModel> entertainmentItems)? loaded,
   }) {
     return initial?.call();
   }
@@ -304,7 +306,7 @@ class _$_InitialEntertainmentState implements _InitialEntertainmentState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EntertainmentItemModel> menuItems)? loaded,
+    TResult Function(List<EntertainmentItemModel> entertainmentItems)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -395,7 +397,8 @@ class _$_LoadingEntertainmentState implements _LoadingEntertainmentState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EntertainmentItemModel> menuItems) loaded,
+    required TResult Function(List<EntertainmentItemModel> entertainmentItems)
+        loaded,
   }) {
     return loading();
   }
@@ -405,7 +408,7 @@ class _$_LoadingEntertainmentState implements _LoadingEntertainmentState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EntertainmentItemModel> menuItems)? loaded,
+    TResult? Function(List<EntertainmentItemModel> entertainmentItems)? loaded,
   }) {
     return loading?.call();
   }
@@ -415,7 +418,7 @@ class _$_LoadingEntertainmentState implements _LoadingEntertainmentState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EntertainmentItemModel> menuItems)? loaded,
+    TResult Function(List<EntertainmentItemModel> entertainmentItems)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -470,7 +473,7 @@ abstract class _$$_LoadedEntertainmentStateCopyWith<$Res> {
           $Res Function(_$_LoadedEntertainmentState) then) =
       __$$_LoadedEntertainmentStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<EntertainmentItemModel> menuItems});
+  $Res call({List<EntertainmentItemModel> entertainmentItems});
 }
 
 /// @nodoc
@@ -484,12 +487,12 @@ class __$$_LoadedEntertainmentStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? menuItems = null,
+    Object? entertainmentItems = null,
   }) {
     return _then(_$_LoadedEntertainmentState(
-      null == menuItems
-          ? _value._menuItems
-          : menuItems // ignore: cast_nullable_to_non_nullable
+      null == entertainmentItems
+          ? _value._entertainmentItems
+          : entertainmentItems // ignore: cast_nullable_to_non_nullable
               as List<EntertainmentItemModel>,
     ));
   }
@@ -499,20 +502,21 @@ class __$$_LoadedEntertainmentStateCopyWithImpl<$Res>
 
 class _$_LoadedEntertainmentState implements _LoadedEntertainmentState {
   const _$_LoadedEntertainmentState(
-      final List<EntertainmentItemModel> menuItems)
-      : _menuItems = menuItems;
+      final List<EntertainmentItemModel> entertainmentItems)
+      : _entertainmentItems = entertainmentItems;
 
-  final List<EntertainmentItemModel> _menuItems;
+  final List<EntertainmentItemModel> _entertainmentItems;
   @override
-  List<EntertainmentItemModel> get menuItems {
-    if (_menuItems is EqualUnmodifiableListView) return _menuItems;
+  List<EntertainmentItemModel> get entertainmentItems {
+    if (_entertainmentItems is EqualUnmodifiableListView)
+      return _entertainmentItems;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_menuItems);
+    return EqualUnmodifiableListView(_entertainmentItems);
   }
 
   @override
   String toString() {
-    return 'EntertainmentState.loaded(menuItems: $menuItems)';
+    return 'EntertainmentState.loaded(entertainmentItems: $entertainmentItems)';
   }
 
   @override
@@ -521,12 +525,12 @@ class _$_LoadedEntertainmentState implements _LoadedEntertainmentState {
         (other.runtimeType == runtimeType &&
             other is _$_LoadedEntertainmentState &&
             const DeepCollectionEquality()
-                .equals(other._menuItems, _menuItems));
+                .equals(other._entertainmentItems, _entertainmentItems));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_menuItems));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_entertainmentItems));
 
   @JsonKey(ignore: true)
   @override
@@ -540,9 +544,10 @@ class _$_LoadedEntertainmentState implements _LoadedEntertainmentState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<EntertainmentItemModel> menuItems) loaded,
+    required TResult Function(List<EntertainmentItemModel> entertainmentItems)
+        loaded,
   }) {
-    return loaded(menuItems);
+    return loaded(entertainmentItems);
   }
 
   @override
@@ -550,9 +555,9 @@ class _$_LoadedEntertainmentState implements _LoadedEntertainmentState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<EntertainmentItemModel> menuItems)? loaded,
+    TResult? Function(List<EntertainmentItemModel> entertainmentItems)? loaded,
   }) {
-    return loaded?.call(menuItems);
+    return loaded?.call(entertainmentItems);
   }
 
   @override
@@ -560,11 +565,11 @@ class _$_LoadedEntertainmentState implements _LoadedEntertainmentState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<EntertainmentItemModel> menuItems)? loaded,
+    TResult Function(List<EntertainmentItemModel> entertainmentItems)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(menuItems);
+      return loaded(entertainmentItems);
     }
     return orElse();
   }
@@ -606,10 +611,10 @@ class _$_LoadedEntertainmentState implements _LoadedEntertainmentState {
 
 abstract class _LoadedEntertainmentState implements EntertainmentState {
   const factory _LoadedEntertainmentState(
-          final List<EntertainmentItemModel> menuItems) =
+          final List<EntertainmentItemModel> entertainmentItems) =
       _$_LoadedEntertainmentState;
 
-  List<EntertainmentItemModel> get menuItems;
+  List<EntertainmentItemModel> get entertainmentItems;
   @JsonKey(ignore: true)
   _$$_LoadedEntertainmentStateCopyWith<_$_LoadedEntertainmentState>
       get copyWith => throw _privateConstructorUsedError;

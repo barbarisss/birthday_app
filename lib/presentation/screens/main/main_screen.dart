@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birthday_app/app/di/injector.dart';
 import 'package:birthday_app/data/models/entertainment_item/entertainment_item_model.dart';
+import 'package:birthday_app/presentation/blocs/entertainment_bloc/entertainment_bloc.dart';
 import 'package:birthday_app/presentation/blocs/menu_bloc/menu_bloc.dart';
 import 'package:birthday_app/presentation/screens/main/widgets/button_section.dart';
 import 'package:birthday_app/presentation/screens/main/widgets/entertaiment_view.dart';
@@ -24,6 +25,7 @@ class MainScreenWidget extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     late Widget menuWidget;
+    late Widget entertainmentWidget;
 
     const List<String> swiperItems = [
       AppImages.camp,
@@ -32,45 +34,16 @@ class MainScreenWidget extends StatelessWidget {
       AppImages.camp,
     ];
 
-    List<EntertainmentItemModel> entertaimentItems = [
-      EntertainmentItemModel(
-        icon: AppImages.boardGames,
-        title: AppStrings.boardGames,
-        discription: AppStrings.aboutBoardGames,
-      ),
-      EntertainmentItemModel(
-        icon: AppImages.pool,
-        title: AppStrings.pool,
-        discription: AppStrings.aboutPool,
-      ),
-      EntertainmentItemModel(
-        icon: AppImages.boardGames,
-        title: AppStrings.boardGames,
-        discription: AppStrings.aboutBoardGames,
-      ),
-      EntertainmentItemModel(
-        icon: AppImages.pool,
-        title: AppStrings.pool,
-        discription: AppStrings.aboutPool,
-      ),
-      EntertainmentItemModel(
-        icon: AppImages.boardGames,
-        title: AppStrings.boardGames,
-        discription: AppStrings.aboutBoardGames,
-      ),
-      EntertainmentItemModel(
-        icon: AppImages.pool,
-        title: AppStrings.pool,
-        discription: AppStrings.aboutPool,
-      ),
-    ];
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) =>
               injector<MenuBloc>()..add(const GetAllMenuItemsEvent()),
-        )
+        ),
+        BlocProvider(
+          create: (context) => injector<EntertainmentBloc>()
+            ..add(const GetAllEntertainmentItemsEvent()),
+        ),
       ],
       child: Scaffold(
         body: SafeArea(
@@ -113,9 +86,24 @@ class MainScreenWidget extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 30.h),
-                    EntertaimentViewWidget(
-                      textTheme: textTheme,
-                      items: entertaimentItems,
+                    BlocBuilder<EntertainmentBloc, EntertainmentState>(
+                      builder: (context, state) {
+                        state.maybeWhen(
+                          orElse: () {
+                            entertainmentWidget = const Center(
+                                child: CircularProgressIndicator(
+                              color: AppColors.green,
+                            ));
+                          },
+                          loaded: (entertainmentItems) {
+                            entertainmentWidget = EntertainmentViewWidget(
+                              textTheme: textTheme,
+                              items: entertainmentItems,
+                            );
+                          },
+                        );
+                        return entertainmentWidget;
+                      },
                     ),
                     SizedBox(height: 30.h),
                     MapSectionWidget(textTheme: textTheme),

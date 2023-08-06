@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class EntertaimentViewWidget extends StatefulWidget {
-  const EntertaimentViewWidget({
+class EntertainmentViewWidget extends StatefulWidget {
+  const EntertainmentViewWidget({
     required this.textTheme,
     required this.items,
     super.key,
@@ -18,10 +18,11 @@ class EntertaimentViewWidget extends StatefulWidget {
   final List<EntertainmentItemModel> items;
 
   @override
-  State<EntertaimentViewWidget> createState() => _EntertaimentViewWidgetState();
+  State<EntertainmentViewWidget> createState() =>
+      _EntertainmentViewWidgetState();
 }
 
-class _EntertaimentViewWidgetState extends State<EntertaimentViewWidget> {
+class _EntertainmentViewWidgetState extends State<EntertainmentViewWidget> {
   var isColapsed = true;
   var turns = 0.0;
 
