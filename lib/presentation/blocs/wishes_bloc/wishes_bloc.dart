@@ -28,8 +28,19 @@ class WishesBloc extends Bloc<WishesEvent, WishesState> {
   final SelectWishUseCase selectWishUseCase;
   final DeleteWishUseCase deleteWishUseCase;
 
-  _onGetAllWishesEvent(GetAllWishesEvent event, Emitter<WishesState> emit) {}
-  _onAddWishEvent(AddWishEvent event, Emitter<WishesState> emit) {}
+  _onGetAllWishesEvent(
+      GetAllWishesEvent event, Emitter<WishesState> emit) async {
+    emit(const WishesState.loading());
+    final response = await getAllWishesUseCase();
+    emit(WishesState.loaded(response));
+  }
+
+  _onAddWishEvent(AddWishEvent event, Emitter<WishesState> emit) async {
+    await addWishUseCase(event.wishModel);
+    final response = await getAllWishesUseCase();
+    emit(WishesState.loaded(response));
+  }
+
   _onSelectWishEvent(SelectWishEvent event, Emitter<WishesState> emit) {}
   _onDeleteWishEvent(DeleteWishEvent event, Emitter<WishesState> emit) {}
 }

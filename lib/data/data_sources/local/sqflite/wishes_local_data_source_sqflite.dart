@@ -7,7 +7,7 @@ import 'package:sqflite/sqflite.dart';
 class WishesLocalDataSourceSqflite implements WishesLocalDataSource {
   late Database _db;
   final _dbName = 'wishes_sqflite.db';
-  final _wishesTable = 'wishes_tb';
+  final _wishesTable = 'wishes';
 
   @override
   Future<bool> initDb() async {
@@ -28,39 +28,28 @@ class WishesLocalDataSourceSqflite implements WishesLocalDataSource {
   }
 
   Future<void> _initWishesTable(Database db) async {
-    await db.execute('''
-          CREATE TABLE $_wishesTable(
-          title TEXT,
-          description TEXT
-          )
-        ''');
+    await db.execute(
+        'CREATE TABLE $_wishesTable(id TEXT NOT NULL, title TEXT NOT NULL, link TEXT NOT NULL, isSelected BOOLEAN NOT NULL);');
   }
 
   @override
   Future<List<WishModel>> getAllWishes() async {
+    print('getttttttttttttttttt');
+    _db.getVersion();
+    print(await _db.getVersion());
     final json = await _db.rawQuery('SELECT * FROM $_wishesTable');
     return json.map<WishModel>((e) => WishModel.fromJson(e)).toList();
   }
 
   @override
   Future<bool> addWish(WishModel wish) async {
+    print('addddddddddddddddddddddd');
     await _db.transaction(
       (txn) async {
-        await txn.rawInsert('''
-          INSERT INTO $_wishesTable 
-          (
-          id,
-          title,
-          link,
-          isSelected
-          )
-          VALUES
-            (
-              "${wish.id}",
-              "${wish.title}"
-              "${wish.link}",
-              "${wish.isSelected}"
-            )''');
+        await txn.rawInsert(
+            'INSERT INTO $_wishesTable(id, title, link, isSelected) VALUES("${wish.id}", "${wish.title}", "${wish.link}", ${wish.isSelected})');
+        // 'INSERT INTO $_wishesTable(id, title, link, isSelected) VALUES(?)',
+        // [wish.id, wish.title, wish.link, wish.isSelected]);
       },
     );
 
