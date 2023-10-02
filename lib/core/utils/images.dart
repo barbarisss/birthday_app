@@ -1,5 +1,9 @@
 abstract class AppImages {
   static const camp = 'assets/images/camp.png';
+  static const kazan1 = 'assets/images/kazan_1.jpeg';
+  static const kazan2 = 'assets/images/kazan_2.jpg';
+  static const kazan3 = 'assets/images/kazan_3.jpg';
+  static const kazan4 = 'assets/images/kazan_4.jpg';
   static const canapes = 'assets/images/canapes.png';
   static const cheesePlate = 'assets/images/cheese_plate.png';
   static const fruits = 'assets/images/fruits.png';

@@ -27,10 +27,10 @@ class MainScreenWidget extends StatelessWidget {
     late Widget entertainmentWidget;
 
     const List<String> swiperItems = [
-      AppImages.camp,
-      AppImages.camp,
-      AppImages.camp,
-      AppImages.camp,
+      AppImages.kazan1,
+      AppImages.kazan2,
+      AppImages.kazan3,
+      AppImages.kazan4,
     ];
 
     return MultiBlocProvider(
