@@ -27,7 +27,7 @@ class _MapSectionWidgetState extends State<MapSectionWidget> {
   @override
   Widget build(BuildContext context) {
     final textTheme = widget.textTheme;
-    const point = Point(latitude: 47.242516, longitude: 38.690101);
+    const point = Point(latitude: 55.797086, longitude: 49.124206);
 
     return Column(
       children: [
@@ -42,7 +42,7 @@ class _MapSectionWidgetState extends State<MapSectionWidget> {
                   icon: PlacemarkIcon.single(
                     PlacemarkIconStyle(
                       image: BitmapDescriptor.fromAssetImage(AppImages.marker),
-                      scale: 0.08,
+                      scale: 0.15,
                     ),
                   ))
             ],
@@ -51,7 +51,7 @@ class _MapSectionWidgetState extends State<MapSectionWidget> {
                 CameraUpdate.newCameraPosition(
                   const CameraPosition(
                     target: point,
-                    zoom: 10,
+                    zoom: 16,
                   ),
                 ),
               );
