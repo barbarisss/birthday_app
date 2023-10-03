@@ -18,9 +18,9 @@ abstract class AppStrings {
   static const aboutPool = 'Два бассейна с подогревом';
   static const expand = 'Развернуть ▼';
   static const place = 'Место';
-  static const address = 'Центральная ул., 84, хутор Седых';
+  static const address = 'Театральная улица, 7/31, г. Казань';
   static const goToWebsite = 'Перейти на сайт места';
-  static const date = '25 августа\n2023';
+  static const date = '30 июня\n2023';
   static const signUp = 'Записаться';
   static const name = 'Имя';
   static const surname = 'Фамилия';
